@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="accountDetailed.css">
+    <style>
+
+        /*滑槽样式*/
+        ::-webkit-scrollbar {
+            width: 5px;
+            background: rgba(234, 234, 234, 1);
+            border-radius: 2px;
+            margin-right: 15px;
+        }
+
+        /*滑块样式*/
+        ::-webkit-scrollbar-thumb {
+            border-radius: 2px;
+            width: 3px;
+            background: rgb(206, 206, 206);
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body id="accountDetailedBody">
+<div id="app">
+    <div class="header_search">
+        <form action="">
+            <label for="">是否人员费用:</label>
+            <select name="" id="select01" v-model="selectText01">
+                <template v-for="(items,index) in select01Data">
+                    <option :value="items.value">{{items.name}}</option>
+                </template>
+            </select>
+
+            <label for="">是否手动调整:</label>
+            <select name="" id="select02" v-model="selectText02">
+                <template v-for="(items,index) in select02Data">
+                    <option :value="items.value">{{items.name}}</option>
+                </template>
+            </select>
+
+            <label for="">是否超期报账:</label>
+            <select name="" id="select03" v-model="selectText03">
+                <template v-for="(items,index) in select03Data">
+                    <option :value="items.value">{{items.name}}</option>
+                </template>
+            </select>
+            <input type="text" placeholder="输入支付对象查询" style="padding-left: 5px;" v-model="searchText">
+            <input type="button" value="查询" @click="searchBth()">
+            <input type="button" value="数据统计" class="dataStatistics" v-if="isShowEChart" @click="intoEChart()">
+            <input type="button" value="图表统计" class="dataStatistics" v-if="!isShowEChart"  @click="outEChart()">
+        </form>
+    </div>
+
+    <div class="content_data">
+        <template v-for="(items,index) in contentData">
+            <div class="content_dataList" onclick="showAndHideTableData_box(this)">
+                <span>{{items.TypeName}}</span>
+                <span>{{items.NowTypeJiSuanJinE}}元</span>
+                <span>占比{{items.percentage}}</span>
+                <span><img src="down.png" alt="下拉" width="11px" height="6px" class="downIcon"></span>
+            </div>
+            <div class="tableData_box" style="display: none;"><!--style="display: none;"-->
+                <table style="height: 0;" cellpadding="0" cellspacing="0" border="1"
+                       class="tableData">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>编号</th>
+                        <th>标题</th>
+                        <th>状态</th>
+                        <th>金额</th>
+                        <th>计算金额</th>
+                        <th>提交人</th>
+                        <th>添加时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr :class="{'showNoNum':items.AmountApplyList.length!=0}">
+                        <td colspan="8" style="color: #999;">无数据</td>
+                    </tr>
+                    <template v-for="(items2,index) in items.AmountApplyList">
+                        <tr class="table01_tr" onclick="showAndHideTableData_box02(this)">
+                            <td width="60px"><img src="jiantou02.png" alt="图标" class="downIcon02"
+                                                  style="transform: rotate(180deg)" width="13px" width="15px"></td>
+                            <td>{{items2.NO}}</td>
+                            <td>{{items2.Title}}</td>
+                            <td>{{items2.State}}</td>
+                            <td>{{items2.Amount}}</td>
+                            <td style="color: #FF8400;">{{items2.JiSuanJinE}}</td>
+                            <td>{{items2.addusername}}</td>
+                            <td>{{items2.AddTimeStr}}</td>
+                        </tr>
+                        <tr class="inner_table" style="display: none;"> <!--style="display: none;"-->
+                            <td colspan="8">
+                                <div class="tableData_box02">
+                                    <table
+                                            style="border: 0"
+                                            class="tableData">
+                                        <thead>
+                                        <tr>
+                                            <th>标题</th>
+                                            <th>支付对象</th>
+                                            <th>金额</th>
+                                            <th>超期报账</th>
+                                            <th>添加时间</th>
+                                            <th>类型</th>
+                                            <th>提交人</th>
+                                            <th>是否摊销</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <template v-for="(items3,index) in items2.projectlist">
+                                            <tr :class="{'noStyle':items3.IsJiSuanJinE==true,'yesStyle':items3.IsJiSuanJinE!=true}"
+                                                @mouseenter="items3.IsJiSuanJinE!=true?showJiSuanJinE($event):''">
+                                                <td>{{items3.Name}}</td>
+                                                <td>{{items3.payAddressStr}}</td>
+                                                <td>{{items3.Amoumt}}</td>
+                                                <td :class="{'isChaoQiBaoZhang':items3.IsYc==true}"
+                                                    v-if="items3.IsYc==true">是
+                                                </td>
+                                                <td v-if="items3.IsYc==false">否</td>
+                                                <td>{{items3.AddTimeStr}}</td>
+                                                <td>{{items3.typename}}</td>
+                                                <td>{{items3.addusername}}</td>
+                                                <td>{{items3.TanXiaoDateOrFeiTanXiaoDate}}</td>
+                                                <td style="cursor:pointer;" onclick="openXiangQing(this)"><span
+                                                        style="display: none">{{items3.ID}}</span> 详情
+                                                </td>
+
+                                                <td v-if="items3.IsJiSuanJinE!=true" class="showTd" style="height: 0;border: 0;position: absolute; margin-left: -78%;margin-top: 3%;display: none;">
+                                                    <div class="showBox">
+                                                        <span>该记录不计算</span>
+                                                        <img src="showJSJE.png">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!--<tr v-if="items3.IsJiSuanJinE!=true" style="position: absolute;border: 0;height: 0;">-->
+                                            <!---->
+                                            <!--</tr>-->
+                                        </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="showIsJiSuanJinE" onclick="isShowIsJiSuanJinE(this)">
+                                    <span>显示 同一条报账中不计入该分类明细</span>
+                                    <img src="show.png" alt="展开">
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+    </div>
+
+    <div id="eChart-main" :class="{'hideEChart':!isShowEChart,'blockEChart':isShowEChart}"></div><!--v-show="isShowEChart"-->
+</div>
+
+<script type="text/javascript" src="../../View/new_designWorksList_ly_kxt/newpage/js/jquery-1.11.1.min.js"></script>
+<script src="../../View/new_designWorksList_ly_kxt/newpage/js/vue.js"></script>
+<script src="../../xlSystem/XL/js/main.js"></script>
+<script src="../../xlSystem/XL/layer/layer.js"></script>
+<!--<script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>-->
+<script src="../../View/new_designWorksList_ly_kxt/echarts.min.js"></script>
+<script src="accountDetailed.js"></script>
+
+</body>
+</html>

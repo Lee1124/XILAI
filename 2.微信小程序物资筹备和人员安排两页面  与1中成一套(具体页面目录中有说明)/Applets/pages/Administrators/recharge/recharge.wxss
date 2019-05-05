@@ -1,0 +1,10 @@
+/* pages/Administrators/recharge/recharge.wxss */
+
+.nextStep {
+  margin: 20px 12px;
+  background: #eb8778;
+  text-align: center;
+  padding: 24rpx;
+  color: #fff;
+  font-size: 34rpx;
+}

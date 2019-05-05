@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="jwplayer.js"></script>
+    <script type="text/javascript">jwplayer.key = "kBktgn9ZNrZo6rWAb+nxnN3ii5tHF/NfnHpd/A==";</script>
+   
+  
+</head>
+<body>
+    <div id="myElement">Loading the player ...</div>
+     
+<script type="text/javascript">
+ jwplayer("myElement").setup({
+      playlist: [{
+        file: "ftp://Administrator:Windows2008@218.6.160.126/Video/D8AB58E6-2B94-6591-CB9B-94932BFD803A.mp4",
+        image: "ftp://Administrator:Windows2008@218.6.160.126/Image/7EA4F82B-C4BF-4B81-7746-2DE0BAADFB57.JPG",
+        title: "Sintel Trailer"
+       },{
+        file: "ftp://Administrator:Windows2008@218.6.160.126/Video/59d20000-fb3a-47d7-96a4-481ebe4a9849.mp4",
+        image: "ftp://Administrator:Windows2008@218.6.160.126/Image/A26F0B9E-29A9-FB30-9833-6D68588F1E61.jpg",
+        title: "Tears of Steel Trailer",
+        description: "A complete open pipeline was used to produce this visual effect film."
+      },{
+        file: "ftp://Administrator:Windows2008@218.6.160.126/Video/4803501f-2cf5-4729-8f35-0f7038689cfcmp4",
+        image: "ftp://Administrator:Windows2008@218.6.160.126/Image/9E2CFB4F-9A40-063E-F5BA-4DB63C9D53EC.JPG",
+        title: "Big Buck Bunny Trailer",
+        description: "This  animated film is made using free and open source software."
+      },{
+        file: "ftp://Administrator:Windows2008@218.6.160.126/Video/f6529c6f-27ec-441f-ab4d-8dafccd6399a.rmvb",
+        image: "ftp://Administrator:Windows2008@218.6.160.126/Image/D8AB58E6-2B94-6591-CB9B-94932BFD803A.jpg",
+        title: "Elephants Dream Trailer",
+        description: "This is the worlds first open movie, made entirely with Blender."
+      }],
+      width: 700,
+      height: 240,
+      listbar: {
+        position: "right",
+        size: 280
+      },
+      events: {
+		onPlaylistItem : function(event) {
+		var index = event.index;
+	        var itemvideo = this.getPlaylistItem(index);
+	         alert( itemvideo.title);
+                 }
+ 	}
+    });
+</script>
+</body>
+</html>

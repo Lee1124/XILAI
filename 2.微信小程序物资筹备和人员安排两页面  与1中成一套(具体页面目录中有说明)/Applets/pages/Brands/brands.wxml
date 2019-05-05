@@ -1,0 +1,19 @@
+<!--pages/Brands/brands.wxml-->
+<import src="../template/template.wxml"/> 
+<template is="tabbar" data="{{tabbar,unread}}"/>
+<template is="header" data="{{header}}"/>
+ <!--故事-->
+<scroll-view scroll-y='true' class='branchs_view' style='background:#f4f4f4' style='{{isXinRen?"padding-top:120rpx;":"padding-top:30rpx"}}'>
+<view wx:for='{{storyList}}'>
+    <view class="time">{{item.time}}</view>
+    <navigator url="/pages/gushi/gushi?url_={{item.keys}}" class="brand-list" bindtap='SaveLog' data-item='{{item.id}}'>
+        <image src="{{item.img}}" mode='aspectFill'></image>
+        <view class="content">
+            <view class="content-title">{{item.title}}</view>
+            <view class="content-text">
+                <text>{{item.content}}</text>
+            </view>  
+        </view>
+    </navigator>
+</view>
+</scroll-view>

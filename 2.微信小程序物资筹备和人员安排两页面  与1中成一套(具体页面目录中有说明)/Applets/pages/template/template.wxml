@@ -1,0 +1,50 @@
+<!--pages/template/template.wxml-->
+
+<template name="tabbar">
+  <!-- <cover-view> -->
+    <view class="tabbar_box" style="background-color:{{tabbar.backgroundColor}}; border-top-color:{{tabbar.borderStyle}}; {{tabbar.position == 'top' ? 'top:0' : 'bottom:0'}}">
+      <block wx:for="{{tabbar.list}}" wx:for-item="item" wx:key="index">
+        <navigator class="tabbar_nav" url="{{item.pagePath}}" data-url='{{item.pagePath}}' style="width:{{1/tabbar.list.length*100}}%; color:{{item.selected ? tabbar.selectedColor : tabbar.color}}" open-type="redirect" bindtap='ToSkip'>
+          <image class="tabbar_icon" data-selected="{{item.selected}}" src="{{item.selected ? item.selectedIconPath : item.iconPath}}"></image>
+          <view wx:if="{{item.text=='消息'&&unread>0&&!item.selected}}" class="unread_">{{unread}}</view>
+          <text>{{item.text}}</text>
+        </navigator>
+      </block>
+    </view>
+    
+  <!-- </cover-view> -->
+  <!-- <view class="tabbar_box" style="background-color:{{tabbar.backgroundColor}}; border-top-color:{{tabbar.borderStyle}}; {{tabbar.position == 'top' ? 'top:0' : 'bottom:0'}}">
+        <block wx:for="{{tabbar.list}}" wx:key="index">
+            <view class="tabbar_nav"
+                       url="{{item.pagePath}}" data-u="{{item.pagePath}}" data-url='{{item.pagePath}}'
+                       style="width:{{1/tabbar.list.length*100}}%; color:{{item.selected ? tabbar.selectedColor : tabbar.color}}"
+                       open-type="redirect" bindtap='ToSkip'>
+                <image class="tabbar_icon" src="{{item.selected ? item.selectedIconPath : item.iconPath}}"></image>
+                <view wx:if="{{item.text=='消息'&&unread>0&&!item.selected}}">{{unread}}</view>
+                <text data-url="{{item.pagePath}}">{{item.text}}</text>
+            </view>
+        </block>
+    </view> -->
+</template>
+
+
+<template name="header">
+  <view class="header_box" wx:if='{{header.list.length>0}}'>
+    <navigator id="{{item.selected?'check_View':''}}" wx:for="{{header.list}}" wx:for-item="item" wx:key="index" url="{{item.pagePath}}?user=true" style="color:{{item.selected ? tabbar.selectedColor : tabbar.color}}" open-type="redirect">
+      {{item.text}}
+    </navigator>
+  </view>
+</template>
+
+
+<template name="userToggle">
+  <cover-view catchtouchmove="myCatchTouch" wx:if="{{userToggle}}" class='mask'>
+    <cover-view class='my_content'>
+      <cover-view class='title'>您还没有授权登录，是否授权登录。</cover-view>
+      <cover-view class='btn-group'>
+        <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" style='color:#999;'>授权登录</button>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+</template>
+

@@ -1,0 +1,566 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.98",
+	"appid": "wxb1c40518af450477",
+	"projectname": "xilai20181002",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 81,
+			"list": [
+				{
+					"id": 0,
+					"name": "预约",
+					"pathName": "pages/Cases/Cases",
+					"query": "",
+					"scene": "1005"
+				},
+				{
+					"id": -1,
+					"name": "案例详情",
+					"pathName": "pages/Casexq/Casexq",
+					"query": "id=96"
+				},
+				{
+					"id": -1,
+					"name": "预约",
+					"pathName": "pages/MyService/flow/flow",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "仪式",
+					"pathName": "pages/MyService/rite/rite",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "咨询",
+					"pathName": "pages/message/message",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "婚礼设计",
+					"pathName": "pages/MyService/designPlan/designPlan",
+					"query": "orderId=718554c9-6e19-4c73-86a7-46cff116910f"
+				},
+				{
+					"id": 6,
+					"name": "婚礼当天流程",
+					"pathName": "pages/MyService/rite/rite",
+					"query": "oid=7117e599-a0c4-4eb9-bd0c-1bc246375c02&type=123"
+				},
+				{
+					"id": 7,
+					"name": "我的",
+					"pathName": "pages/Cases/Cases",
+					"query": "scene=1047",
+					"scene": "1047"
+				},
+				{
+					"id": -1,
+					"name": "案例详情",
+					"pathName": "pages/Cases/Cases",
+					"query": "orderId=11"
+				},
+				{
+					"id": -1,
+					"name": "案例详情",
+					"pathName": "pages/issue/issue",
+					"query": "orderId=11"
+				},
+				{
+					"id": -1,
+					"name": "案例详情",
+					"pathName": "pages/issue/issue",
+					"query": "type='img'"
+				},
+				{
+					"id": -1,
+					"name": "婚礼设计",
+					"pathName": "pages/issue/issue",
+					"query": "orderId=718554c9-6e19-4c73-86a7-46cff116910f"
+				},
+				{
+					"id": 12,
+					"name": "yanz",
+					"pathName": "pages/validation/validation",
+					"query": "share=true&url=/pages/message/message"
+				},
+				{
+					"id": 13,
+					"name": "意向表扫码",
+					"pathName": "pages/question/question",
+					"query": "isShare=true&&orderId=18874117-8e89-4b69-bd1c-763c1645326f&weddingRole=0",
+					"scene": "1011"
+				},
+				{
+					"id": 14,
+					"name": "意向表分享",
+					"pathName": "pages/question/question",
+					"query": "orderId=2aa04086-2895-48eb-a3b2-af80297b4d1d&weddingRole=1&isShare=true",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "意向表分享",
+					"pathName": "pages/question/question",
+					"query": "orderId=ab9eb548-c57a-4b2c-8c5b-404af2744721&weddingRole=1",
+					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "意向表分享",
+					"pathName": "pages/question/question",
+					"query": "orderId=ab9eb548-c57a-4b2c-8c5b-404af2744721&weddingRole=1",
+					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "意向表分享",
+					"pathName": "pages/MyService/MyService",
+					"query": "orderId=ab9eb548-c57a-4b2c-8c5b-404af2744721&weddingRole=1",
+					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "意向表分享",
+					"pathName": "pages/MyService/MyService",
+					"query": "orderId=ab9eb548-c57a-4b2c-8c5b-404af2744721&weddingRole=1",
+					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/MyService/MyService",
+					"query": "orderId=1&weddingRole"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=1&weddingRole"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=1&weddingRole=1"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=1&weddingRole=1"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=1&weddingRole=1"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/Reserve/Reserve",
+					"query": "orderId=ooUwn4wuMFbQpx3sBatpV1mf33xE&weddingRole=1"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=ooUwn4wuMFbQpx3sBatpV1mf33xE&weddingRole=1"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=ooUwn4wuMFbQpx3sBatpV1mf33xE&weddingRole=1"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=ooUwn4wuMFbQpx3sBatpV1mf33xE&weddingRole=1&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=ooUwn4wuMFbQpx3sBatpV1mf33xE&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=ooUwn4wuMFbQpx3sBatpV1mf33xE"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/Reserve/Reserve",
+					"query": "orderId=ooUwn4wuMFbQpx3sBatpV1mf33xE&isShare=true&weddingRole=1"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/MyService/MyService",
+					"query": "orderId=ooUwn4wuMFbQpx3sBatpV1mf33xE"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=ooUwn4wuMFbQpx3sBatpV1mf33xE"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=ooUwn4wuMFbQpx3sBatpV1mf33xE&weddingRole=1&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/Cases/Cases",
+					"query": "orderId=ooUwn4wuMFbQpx3sBatpV1mf33xE&weddingRole=1&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=ooUwn4wuMFbQpx3sBatpV1mf33xE&weddingRole=1&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=089a861e-e3a6-4476-82d9-279c8eaede36&weddingRole=1&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=089a861e-e3a6-4476-82d9-279c8eaede36&weddingRole=1&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=089a861e-e3a6-4476-82d9-279c8eaede36&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=66da51f0-4c42-4de2-8c7c-f421257106c1&isShare=true&weddingRole=0",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=66da51f0-4c42-4de2-8c7c-f421257106c1&isShare=true&weddingRole=0",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=66da51f0-4c42-4de2-8c7c-f421257106c1&isShare=true&weddingRole=0",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=66da51f0-4c42-4de2-8c7c-f421257106c1&isShare=true&weddingRole=0",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=66da51f0-4c42-4de2-8c7c-f421257106c1&isShare=true&weddingRole=0",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=66da51f0-4c42-4de2-8c7c-f421257106c1&isShare=true&weddingRole=0",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=66da51f0-4c42-4de2-8c7c-f421257106c1&isShare=true&weddingRole=0",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=ab9eb548-c57a-4b2c-8c5b-404af2744721&weddingRole=0&isShare=true",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/MyService/MyService",
+					"query": "orderId=66da51f0-4c42-4de2-8c7c-f421257106c1&weddingRole=0&isShare=true",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=66da51f0-4c42-4de2-8c7c-f421257106c1&weddingRole=0&isShare=true",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=66da51f0-4c42-4de2-8c7c-f421257106c1&weddingRole=0&isShare=true",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=66da51f0-4c42-4de2-8c7c-f421257106c1&weddingRole=0&isShare=true",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=1468d7ff-53ff-4a69-ab48-e6923a21ab8f&weddingRole=0&isShare=true",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=1468d7ff-53ff-4a69-ab48-e6923a21ab8f&weddingRole=0&isShare=true",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=1468d7ff-53ff-4a69-ab48-e6923a21ab8f&weddingRole=0&isShare=true",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=1468d7ff-53ff-4a69-ab48-e6923a21ab8f&weddingRole=0&isShare=true",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=1468d7ff-53ff-4a69-ab48-e6923a21ab8f&weddingRole=0&isShare=true",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=1468d7ff-53ff-4a69-ab48-e6923a21ab8f&weddingRole=0&isShare=true",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=1468d7ff-53ff-4a69-ab48-e6923a21ab8f&weddingRole=0&isShare=true",
+					"scene": "1008"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=ab9eb548-c57a-4b2c-8c5b-404af2744721&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=ab9eb548-c57a-4b2c-8c5b-404af2744721&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=ab9eb548-c57a-4b2c-8c5b-404af2744721&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=ab9eb548-c57a-4b2c-8c5b-404af2744721&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/message/message",
+					"query": "orderId=ab9eb548-c57a-4b2c-8c5b-404af2744721&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=1468d7ff-53ff-4a69-ab48-e6923a21ab8f&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=1468d7ff-53ff-4a69-ab48-e6923a21ab8f&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=68bbee90-7728-4bd1-895e-1e476c9805f3&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=68bbee90-7728-4bd1-895e-1e476c9805f3&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=68bbee90-7728-4bd1-895e-1e476c9805f3&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=68bbee90-7728-4bd1-895e-1e476c9805f3&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=68bbee90-7728-4bd1-895e-1e476c9805f3&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=68bbee90-7728-4bd1-895e-1e476c9805f3&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=68bbee90-7728-4bd1-895e-1e476c9805f3&weddingRole=0&isShare=true"
+				},
+				{
+					"id": 72,
+					"name": "意向",
+					"pathName": "pages/question/question",
+					"query": "orderId=68bbee90-7728-4bd1-895e-1e476c9805f3&weddingRole=0&isShare=true"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/message/message",
+					"query": "orderId=68bbee90-7728-4bd1-895e-1e476c9805f3&weddingRole=0&isShare=true",
+					"scene": "1012"
+				},
+				{
+					"id": -1,
+					"name": "意向",
+					"pathName": "pages/message/message",
+					"query": "orderId=68bbee90-7728-4bd1-895e-1e476c9805f3&weddingRole=0&isShare=true",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=e8fe831c-6c6c-428c-b764-ec17a54f41cc&weddingRole=0&isShare=true",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=e8fe831c-6c6c-428c-b764-ec17a54f41cc&weddingRole=1&isShare=true",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "新人意向表",
+					"pathName": "pages/question/question",
+					"query": "orderId=e8fe831c-6c6c-428c-b764-ec17a54f41cc&weddingRole=1&isShare=true",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "意向表扫码",
+					"pathName": "pages/question/question",
+					"query": "isShare=true&&orderId=242d1d20-f594-449c-9727-261b9e947637&weddingRole=0",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "意向表扫码",
+					"pathName": "pages/question/question",
+					"query": "isShare=true&&orderId=18874117-8e89-4b69-bd1c-763c1645326f&weddingRole=0",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/Cases/Cases",
+					"query": "scene=1047",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "统筹",
+					"pathName": "pages/MyService/materialManage/materialManage",
+					"query": "orderId=41419de0-30b8-45e1-a32e-72c4dbf9c166",
+					"scene": 1011
+				}
+			]
+		}
+	}
+}

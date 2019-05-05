@@ -1,0 +1,41 @@
+<!--pages/MyService/MyService.wxml-->
+<import src="../template/template.wxml" />
+<template is="tabbar" data="{{tabbar}}" />
+<view class='html'>
+    <view class="_header">
+        <image class='bgImage' src='https://xilai99.com/image/img/myBg.jpg'>
+        </image>
+        <!--<image class='bgImage'-->
+        <!--src='../../images/myBg.jpg'>-->
+        <!--</image>-->
+        <view class='userInfo'>
+            <image class='txImage' src='{{txImage}}'></image>
+            <text>{{userName}}</text>
+        </view>
+        <view class='userWedding'>
+            <text wx:if='{{day>=0}}'>距离您的婚礼还有{{day}}天</text>
+            <text wx:else>您的婚礼已圆满结束</text>
+            <text>{{date}}{{hotel}}</text>
+        </view>
+    </view>
+
+    <view class='service'>
+        <navigator url="{{item.event==''?item.url+'?orderId='+orderId:''}}" class='service_view  {{item.event=="hint" ? "active" : ""}}' hover-class="none" wx:for='{{serviceList}}' bindtap='{{item.event!=""?item.event:""}}'>
+            <image class='tubiao' mode='aspectFill' src='{{item.tubiao}}'></image>
+            <text>{{item.name}}</text>
+            <image class='view_right' src='../../images/right.png'></image>
+        </navigator>
+    </view>
+    <view style='margin-top:70px;margin-bottom:100px;text-align:center;' hover-class="none">
+        <text bindtap='UserLogut' class='zhuxiao'>注销</text>
+    </view>
+</view>
+<!-- 需要使用 button 来授权登录 -->
+<view catchtouchmove="myCatchTouch" wx:if="{{canIUse}}" class='mask'>
+    <view class='my_content'>
+        <view class='title'>您还没有授权登陆，是否授权登陆2</view>
+        <view class='btn-group'>
+            <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权登录</button>
+        </view>
+    </view>
+</view>

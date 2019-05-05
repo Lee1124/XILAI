@@ -1,0 +1,5 @@
+<view class="showList">
+  <view class="item_" bindtap='checkDian' wx:for="{{array}}" data-item="{{item}}" >
+    {{item.name}}<text class="address">[{{item.address}}]</text>
+  </view>
+</view>

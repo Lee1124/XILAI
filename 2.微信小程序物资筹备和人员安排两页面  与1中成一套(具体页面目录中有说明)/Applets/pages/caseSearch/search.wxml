@@ -1,0 +1,16 @@
+<!--pages/caseSearch/search.wxml-->
+<import src="../template/template.wxml" />
+<view class="header">
+  <image src="/images/icon/search.png"></image>
+  <input placeholder='搜索...' confirm-type="search" focus="{{isfocus}}" bindconfirm='getSearch' data-value="{{showKeyInput}}" bindinput="changeInputText" value="{{showKeyInput}}" bindfocus='limitNumb'></input>
+  <a href="#" class="cancel" bindtap="cancelSearch">取消</a>
+</view>
+<view class="content">
+  <label class="title">标签搜索</label>
+  <view class="labelList">
+    <a class="lab {{item.ischoie ? 'isActiveLab': ''}}" wx:for="{{labelList}}" bindtap="choieLabel" data-item="{{item}}">{{ item.name }}</a>
+  </view>
+  <view class="btnBox">
+    <button class="searchBtn" bindtap='getSearch'>去搜索</button>
+  </view>
+</view>

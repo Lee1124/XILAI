@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<link rel="stylesheet" href="../../Scripts/layer/theme/default/layer.css">-->
+    <link rel="stylesheet" href="main_business_income.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="content_data">
+        <div class="tableData_box">
+            <div class="tableData thead">
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="width: 58px;"></th>
+                        <th style="width: 558px;">婚礼</th>
+                        <th style="width: 290px;">签单金额</th>
+                        <th>实收</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tableData tbody">
+                <table>
+                    <tbody>
+                    <template v-for="(items,index) in contentData">
+                        <tr class="table01_tr" onclick="showAndHideTableData_box02(this)">
+                            <td style="width: 58px;"><img src="jiantou02.png" alt="图标" class="downIcon02"
+                                                          style="transform: rotate(180deg)" width="13px" width="15px">
+                            </td>
+                            <td style="width: 558px;">{{items.OrderTitle}}</td>
+                            <td style="width: 290px;">{{items.QianDanJinE}}</td>
+                            <td>{{items.ShiShouJinE}}</td>
+                        </tr>
+                        <tr class="inner_table" style="display: none;"> <!--style="display: none;"-->
+                            <td colspan="8">
+                                <div class="tableData_box02">
+                                    <table
+                                            style="border: 0"
+                                            class="tableData">
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>类型</th>
+                                            <th>金额</th>
+                                            <th>手续费</th>
+                                            <th>编号</th>
+                                            <th>对象</th>
+                                            <th>添加人</th>
+                                            <th>添加时间</th>
+                                            <th>备注</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <template v-for="(items2,index) in items.mxList">
+                                            <!--:class="{'yesHidden':items2.IsDSK==true,'noHidden':items2.IsDSK==false}"-->
+                                            <tr :class="{'yesHidden':items2.IsDSK==true,'noHidden':items2.IsDSK==false}"
+                                                @mouseenter="items2.IsDSK==true?showDSK($event):''">
+                                                <td>{{index+1}}</td>
+                                                <td>{{items2.TypeName}}</td>
+                                                <td>{{items2.Amount}}</td>
+                                                <td>{{items2.ShouXuFei}}</td>
+                                                <td>{{items2.No}}</td>
+                                                <td>{{items2.ToAddressStr}}</td>
+                                                <td>{{items2.AddUserName}}</td>
+                                                <td>{{items2.AddTimeStr}}</td>
+                                                <td>{{items2.Remark}}</td>
+
+                                                <td v-if="items2.IsDSK==true" class="showTd"
+                                                    style="height: 0;border: 0;position: absolute; margin-left: -84%;margin-top: 3%;display: none;">
+                                                    <div class="showBox">
+                                                        <span>该记录为代收款</span>
+                                                        <img src="showDSK.png">
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                        </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="showIsDSK" onclick="isShowIsDSK(this)">
+                                    <span>查看代收款</span>
+                                    <img src="show.png" alt="展开">
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<script type="text/javascript" src="../../View/new_designWorksList_ly_kxt/newpage/js/jquery-1.11.1.min.js"></script>-->
+<!--<script src="../../View/new_designWorksList_ly_kxt/newpage/js/vue.js"></script>-->
+<!--<script src="../../xlSystem/XL/js/main.js"></script>-->
+<!--&lt;!&ndash;<script src="../../xlSystem/XL/layer/layer.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script src="layui/layui.js"></script>&ndash;&gt;-->
+<!--<script src="../../xlSystem/XL/layer/layer.js"></script>-->
+<!--<script src="main_business_income.js"></script>-->
+
+<script type="text/javascript" src="jquery-1.12.4.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="layui/layui.js"></script>
+<script src="main_business_income.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "usingComponents":{
+    "nav":"../../../components/flow-nav",
+    "popup":"../../../components/popup/popup"
+  },
+  "navigationBarTitleText": "婚礼当天流程",
+  "disableScroll":true
+}

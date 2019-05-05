@@ -1,0 +1,18 @@
+<!--pages/consociationDetails/consociationDetails.wxml-->
+<view class='head'>
+  <scroll-view scroll-y="true">
+  <view class='image_view'>
+    <image  src="https://xilai99.com/image/96/fa78d902-94a8-48d9-9994-8fa82203b8ef.jpg"></image>
+  </view>
+    <view class='title'>
+      {{dataInfo.title}}
+    </view>
+    <view class='zbview'>
+      <image src='../../images/zb.png' ></image>
+      <text>{{dataInfo.location}}</text>
+    </view>
+    <view class='details'>
+    <text decode='true'>&nbsp;&nbsp;&nbsp;&nbsp;{{dataInfo.description}}</text>
+    </view>
+</scroll-view>
+</view>

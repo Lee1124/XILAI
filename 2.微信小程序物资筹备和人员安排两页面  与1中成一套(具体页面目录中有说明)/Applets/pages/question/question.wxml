@@ -1,0 +1,299 @@
+<import src="../template/template.wxml" />
+<template is="userToggle" data="{{userToggle}}" />
+<view class='centerbox' wx:if="{{showPage == 1}}">
+  <image src='https://xilai99.com/image/img/wj_logo.png'></image>
+  <text class='frist_title'>一 {{title}} 一</text>
+  <text class='first_center'>这是属于你们的爱情白皮书, 一场独一无二的幸福婚礼, 需要我们共同的努力。通过爱情白皮书，我们可以更多的了解你们的爱情故事、婚姻期许、家族底蕴、友情岁月。\n一场包含了亲情、友情、爱情的定制婚礼， 即将诞生...</text>
+  <text class='first_bottom'>为了保持婚礼的神秘感, 请务必不要看对方的问卷表。请独立完成自己的这一份。</text>
+  <button wx:if="{{questionShow}}" hover-class='none' class='open_button' bindtap='openQuestion'>进入问卷表</button>
+</view>
+<view class='centerbox1' wx:if="{{showPage == 2}}">
+  <text class='second_title'>{{second_title}}</text>
+  <scroll-view scroll-y="true" bindtouchstart="touchStart" bindtouchend="touchEnd" class='testt'>
+    <block wx:if="{{showCenterPage == 1}}">
+      <view class='second_data flex_1'>
+        <text decode="{{true}}">*姓&nbsp;&nbsp;&nbsp;名:</text>
+          <input type='text' bindblur='changeVal' id='name' value='{{qusData.name}}'></input>    
+      </view>
+      <view class='second_data flex_1'>
+        <text decode="{{true}}">&ensp;英文名:</text>
+        <input type='text' bindblur='changeVal' id='english_name' value='{{qusData.english_name}}'></input>
+      </view>
+      <view class='second_data flex_1'>
+        <text decode="{{true}}">*职&nbsp;&nbsp;&nbsp;业:</text>
+        <input type='text' bindblur='changeVal' id='profession' value='{{qusData.profession}}'></input>
+      </view>
+      <view class='second_data flex_1'>
+        <text decode="{{true}}">&ensp;生&nbsp;&nbsp;&nbsp;日:</text>
+        <!--<input type='text' bindblur='changeVal' id='birthday' value='{{qusData.birthday}}'></input>-->
+        <picker mode="date" value="{{qusData.birthday}}"  bindchange="bindDateChange">
+            <view class="picker">
+            {{qusData.birthday}}
+            </view>
+        </picker>
+      </view>
+      <view class='second_data flex_1'>
+        <text decode="{{true}}">*属&nbsp;&nbsp;&nbsp;相:</text>
+        <!-- <view>
+            {{qusData.horoscope}}
+        </view> -->
+        <!-- <input type='text' disabled="true" bindblur='changeVal' id='horoscope' value='{{qusData.horoscope}}'></input> -->
+        <picker bindchange="bindPickerChange" value="{{qusData.arr_index}}" range="{{array}}">
+            <view class="picker">
+            {{qusData.horoscope}}
+            </view>
+        </picker>
+      </view>
+      <view class='second_data flex_1'>
+        <text decode="{{true}}">*星&nbsp;&nbsp;&nbsp;座:</text>
+        <picker bindchange="bindPickerChangexingzuo" value="{{index}}" range="{{xingzuo}}">
+            <view class="picker">
+            {{qusData.constellatory}}
+            </view>
+        </picker>
+        <!--<input type='text' bindblur='changeVal' id='constellatory' value='{{qusData.constellatory}}'></input>-->
+      </view>
+      <!-- <view class='second_data'>
+        <text decode="{{true}}">*手机号:</text>
+        <input type='text' bindblur='changeVal' id='telephone_number' value='{{qusData.telephone_number}}'></input>
+      </view>
+      <view class='second_data'>
+        <text decode="{{true}}">&ensp;微&nbsp;&nbsp;&nbsp;信:</text>
+        <input type='text' bindblur='changeVal' id='message' value='{{qusData.message}}'></input>
+      </view> -->
+      <view class='second_data flex_1'>
+        <text decode="{{true}}">&ensp;微&nbsp;&nbsp;&nbsp;博:</text>
+        <input type='text' bindblur='changeVal' id='microblogging' value='{{qusData.microblogging}}'></input>
+      </view>
+    </block>
+
+    <block wx:if="{{showCenterPage == 2}}">
+      <view class='second_data flex_1'>
+        <text>喜欢的颜色:</text>
+        <input type='text' bindblur='changeVal' id='like_color' value='{{qusData.like_color}}'></input>
+      </view>
+      <view style='position:relative' class='second_data' bindtap='changeText' data-title='喜欢的花材' id='like_flower'>
+        <text >喜欢的花材:</text>
+        <text style="{{qusData.like_flower.length>0?'width:100%':''}}" class='langtext'>{{qusData.like_flower}}</text>
+        <!--<input type='text' bindblur='changeVal' id='like_flower' value='{{qusData.like_flower}}'></input>-->
+        <image catchtap='uploadImgs' class='second_data_img' src='https://xilai99.com/image/img/wj_image.png'></image>
+        <!-- <image wx:if="qusData.fl_m1!=undefined&&qusData.fl_m1!=''" data-index='1' bindtap="listenerButtonPreviewImage" class='upload_img' src='{{qusData.fl_m1}}'>
+          <image bindtap='sstest'data-index='1' src='../../images/wj_ic.png'></image>
+        </image>
+        <image wx:if="qusData.fl_m2!=undefined&&qusData.fl_m2!=''" data-index='2'  bindtap="listenerButtonPreviewImage" class='upload_img' src='{{qusData.fl_m2}}'>
+          <image bindtap='sstest' data-index='2'  src='../../images/wj_ic.png'></image>
+        </image>
+        <image wx:if="qusData.fl_m3!=undefined&&qusData.fl_m3!=''" data-index='3'  bindtap="listenerButtonPreviewImage" class='upload_img' src='{{qusData.fl_m3}}'>
+          <image bindtap='sstest' data-index='3'  src='../../images/wj_ic.png'></image>
+        </image> -->
+        <image  wx:for='{{imgList}}' data-index='{{index}}'  bindtap="listenerButtonPreviewImage" class='upload_img'  src='{{item}}'>
+            <image catchtap ='sstest' data-index='{{index}}' style='width:20px;height:20px' id='{{imgListInspect[index]}}' data-img='{{item}}'  src='../../images/wj_ic.png'></image>
+        </image>
+      </view>
+      <view class='second_data flex_1'>
+        <text>喜欢的电影:</text>
+        <input type='text' bindblur='changeVal' id='like_the_movie' value='{{qusData.like_the_movie}}'></input>
+      </view>
+      <view class='second_data flex_1'>
+        <text>喜欢的音乐:</text>
+        <input type='text' bindblur='changeVal' id='Moving_music' value='{{qusData.Moving_music}}'></input>
+      </view>
+      <view class='second_data flex_1'>
+        <text decode="{{true}}">宗教信仰:</text>
+        <input type='text' bindblur='changeVal' id='religiouswarship' value='{{qusData.religiouswarship}}'></input>
+      </view>
+      <view class='second_data' bindtap='changeText' data-title='特长或才艺' id='TCCY'>
+        <text style="{{qusData.Advance_notice.length>0?'width:100%':''}}">特长或才艺: </text>
+        <!-- <input type='text' bindblur='changeVal' id='TCCY' value='{{qusData.faPoint}}'></input> -->
+        <text style="{{qusData.TCCY.length>0?'width:100%':''}}"  class='langtext'>{{qusData.TCCY}}</text>
+      </view>
+    </block>
+
+    <block wx:if="{{showCenterPage == 3}}">
+      <view class='second_data flex_1'>
+        <text>宾客人数:</text>
+        <input type='text' bindblur='changeVal' id='people' value='{{qusData.people}}'></input>
+      </view>
+      <view class='second_data flex_1'>
+        <text>宴会桌数:</text>
+        <input type='text' bindblur='changeVal' id='Table_number' value='{{qusData.Table_number}}'></input>
+      </view>
+      <view class='second_data flex_1'>
+        <text>亲友占比:</text>
+        <input type='text' bindblur='changeVal' id='male_and_female_relatives' value='{{qusData.male_and_female_relatives}}' placeholder='男方亲友 : 女方亲友'></input>
+      </view>
+    </block>
+
+    <block wx:if="{{showCenterPage == 4}}">
+      <view class='second_data' bindtap='changeText' data-title='相识时间' id='How_long_have_known' >
+        <text style="{{qusData.How_long_have_known.length>0?'width:100%':''}}">相识时间: </text>
+        <!-- <input type='text' bindblur='changeVal' id='val19' value='{{qusData.meTime}}'></input> -->
+        <text style="{{qusData.How_long_have_known.length>0?'width:100%':''}}" class='langtext'>{{qusData.How_long_have_known}}</text>
+      </view>
+      <view class='second_data' bindtap='changeText' data-title='第一次见面' id='first_meet'>
+        <text style="{{qusData.first_meet.length>0?'width:100%':''}}">第一次见面: </text>
+        <!-- <input type='text' bindblur='changeVal' id='val20' value='{{qusData.meSee}}'></input> -->
+        <text style="{{qusData.first_meet.length>0?'width:100%':''}}" class='langtext'>{{qusData.first_meet}}</text>
+      </view>
+      <view class='second_data' bindtap='changeText' id='Common_tourist_destination' data-title='第一次共同旅行'>
+        <text style="{{qusData.Common_tourist_destination.length>0?'width:100%':''}}">第一次共同旅行: </text>
+        <!-- <input style='width: 63%;' type='text' bindblur='changeVal' id='val21' value='{{qusData.meTravel}}'></input> -->
+        <text style='width: 63%;' style="{{qusData.Common_tourist_destination.length>0?'width:100%':''}}" class='langtext'>{{qusData.Common_tourist_destination}}</text>
+      </view>
+      <view class='second_data'  bindtap='changeText' id='A_special_memorial' data-title='印象深刻的礼物'>
+        <text style="{{qusData.A_special_memorial.length>0?'width:100%':''}}">印象深刻的礼物: </text>
+        <!-- <input style='width: 63%;' type='text' bindblur='changeVal' id='val22' value='{{qusData.meGift}}'></input> -->
+        <text style='width: 63%;' style="{{qusData.A_special_memorial.length>0?'width:100%':''}}" class='langtext'>{{qusData.A_special_memorial}}</text>
+      </view>
+      <view class='second_data' bindtap='changeText' id='Touching_things' data-title='为你做的难忘的事'>
+        <text style="{{qusData.Touching_things.length>0?'width:100%':''}}">为你做的难忘的事: </text>
+        <!-- <input style='width: 58%;' type='text' bindblur='changeVal' id='val23' value='{{qusData.meThing}}'></input> -->
+        <text style='width: 58%;' style="{{qusData.Touching_things.length>0?'width:100%':''}}" class='langtext'>{{qusData.Touching_things}}</text>
+      </view>
+      <view class='second_data' bindtap='changeText' id='Love_process' data-title='简述一下恋爱过程'>
+        <text style="{{qusData.Love_process.length>0?'width:100%':''}}">简述一下恋爱过程: </text>
+        <!-- <input style='width: 58%;' type='text' bindblur='changeVal' id='val24' value='{{qusData.meCourse}}'></input> -->
+        <text style='width: 58%;' style="{{qusData.Love_process.length>0?'width:100%':''}}" class='langtext'>{{qusData.Love_process}}</text>
+      </view>
+      <view class='second_data' bindtap='changeText' id='Scene_of_proposal' data-title='简述一下求婚过程'>
+        <text style="{{qusData.Scene_of_proposal.length>0?'width:100%':''}}">简述一下求婚过程: </text>
+        <!-- <input style='width: 58%;' type='text' bindblur='changeVal' id='val25' value='{{qusData.meMary}}'></input> -->
+        <text style='width: 58%;' style="{{qusData.Scene_of_proposal.length>0?'width:100%':''}}" class='langtext'>{{qusData.Scene_of_proposal}}</text>
+      </view>
+      <view class='second_data' bindtap='changeText' id='Special_attention_place' data-title='婚礼中注意事项' >
+        <text style="{{qusData.Special_attention_place.length>0?'width:100%':''}}">婚礼中注意事项: </text>
+        <!-- <input style='width: 60%;' type='text' bindblur='changeVal' id='val26' value='{{qusData.meAteion}}'></input> -->
+        <text style='width: 60%;' style="{{qusData.Special_attention_place.length>0?'width:100%':''}}" class='langtext'>{{qusData.Special_attention_place}}</text>
+      </view>
+    </block>
+
+    <block wx:if="{{showCenterPage == 5}}">
+      <view class='second_data' bindtap='changeText' id='Advance_notice' data-title='简述家庭情况'>
+        <text style="{{qusData.Advance_notice.length>0?'width:100%':''}}" >简述家庭情况: </text>
+        <!-- <input style='width: 66%;' type=' text ' bindblur='changeVal ' id='val27 ' value='{{qusData.faAbout}} '></input> -->
+        <text style='width: 66%;' style="{{qusData.Advance_notice.length>0?'width:100%':''}}" class='langtext'>{{qusData.Advance_notice}}</text>
+      </view>
+      <view class='second_data ' bindtap='changeText' id='father_figure' data-title='谈谈爸爸妈妈'>
+        <text style="{{qusData.important.length>0?'width:100%':''}}">谈谈爸爸妈妈: </text>
+        <!-- <input style='width: 66%;' type='text' bindblur='changeVal' id='val28' value='{{qusData.faParent}}' placeholder='性格/喜好/心中形象'></input> -->
+        <text style='width: 66%;' style="{{qusData.father_figure.length>0?'width:100%':''}}" class='langtext'>{{qusData.father_figure}}</text>
+      </view>
+      <view class='second_data' bindtap='changeText' id='important' data-title='成长中重要的事'>
+        <text style="{{qusData.important.length>0?'width:100%':''}}">成长中重要的事: </text>
+        <!-- <input style='width: 63%;' type='text' bindblur='changeVal' id='val29' value='{{qusData.faThings}}'></input> -->
+        <text style='width: 63%;' style="{{qusData.important.length>0?'width:100%':''}}" class='langtext'>{{qusData.important}}</text>
+      </view>
+    </block>
+
+
+    <block wx:if="{{showCenterPage == 6}}">
+      <view class='second_data' wx:if="{{yusuanIsShow}}" bindtap='showShadw1' id='Budget_for_the_venue'>
+        <text>婚礼布置预算:</text>
+        <input style='width: 66%;vertical-align:middle;' disabled='disabled' type='text' value='{{qusData.Budget_for_the_venue}} '></input>
+      </view>
+      <view class='second_data flex_1' >
+        <text>婚礼风格:</text>
+        <input type='text ' value='{{qusData.like_style}}' bindblur='changeVal' id='like_style'></input>
+      </view>
+      <view class='second_data 'bindtap='changeText' data-title='婚礼氛围' id='atmosphere' >
+        <text style="{{qusData.atmosphere.length>0?'width:100%':''}}" >婚礼氛围:</text>
+        <!-- <input type='text ' bindblur='changeVal' id='val32' value='{{qusData.laFance}} '></input> -->
+        <text style="{{qusData.atmosphere.length>0?'width:100%':''}}" class='langtext'>{{qusData.atmosphere}}</text>
+      </view>
+      <view class='second_data flex_1' bindblur='changeVal' id='wedding_color' >
+        <text>婚礼颜色:</text>
+        <input type='text ' value='{{qusData.wedding_color}} '></input>
+      </view>
+      <view class='second_data ' bindtap='showShadw2' id='otherfour' >
+        <text>婚礼形式:</text>
+        <!-- <input type='text ' bindblur='changeVal' id='val34' value='{{qusData.laComp}} '></input> -->
+        <input style='width: 66%;' disabled='disabled' type=' text ' value="{{qusData.otherfour}}"></input>
+      </view>
+      <view class='second_data' bindtap='changeText' data-title='想对设计师说'  id='say_designer'>
+        <text style="{{qusData.say_designer.length>0?'width:100%':''}}">想对设计师说:</text>
+        <text style="{{qusData.say_designer.length>0?'width:100%':'60%'}}" class='langtext'>{{qusData.say_designer}}</text>
+        <!-- <input style='width: 66%;' type='text' bindblur='changeVal' id='val35' value='{{qusData.laSaw}}'></input> -->
+      </view>
+        <view>
+      <button wx:if="{{showCenterPage == 6}}" hover-class='none' class='open_button save_button' bindtap='saveQuestion'>保存</button><!-- //  -->
+  
+  </view>
+    </block>
+  </scroll-view>
+
+    
+
+</view>
+
+<!-- 遮罩层 -->
+<view class='shadw_box' wx:if="{{shadwShow}}">
+  <block wx:if="{{shadwType == 1}}">
+    <view>
+      <text data-num="1" class="{{_num==1?'change_click':''}}" bindtap="change_click">我的基本信息</text>
+      <text data-num="2" class="{{_num==2?'change_click':''}}" bindtap="change_click">我的喜好信息</text>
+      <text data-num="3" class="{{_num==3?'change_click':''}}" bindtap="change_click">我的宾客信息</text>
+      <text data-num="4" class="{{_num==4?'change_click':''}}" bindtap="change_click">我的爱情故事</text>
+      <text data-num="5" class="{{_num==5?'change_click':''}}" bindtap="change_click">我的家庭生活</text>
+      <text data-num="6" class="{{_num==6?'change_click':''}}" bindtap="change_click">我的婚礼设计</text>
+    </view>
+    <image bindtap='hideShadw' src='https://xilai99.com/image/img/wj_close.png'></image>
+  </block>
+
+  <block wx:if="{{shadwType == 2}}">
+    <view class='shadw2'>
+      <text class='second_title shadw2_title'>婚礼布置预算</text>
+      <radio-group bindchange="radioChange">
+        <label wx:for="{{items}}">
+          <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </radio-group>
+      <button hover-class='none' class='open_button save_button2' bindtap='savePrice'>确定</button>
+    </view>
+    <image class='shadw2_image' bindtap='hideShadw' src='https://xilai99.com/image/img/wj_close.png'></image>
+  </block>
+  <block wx:if="{{ shadwType == 4 }}">
+    <view class='shadw2'>
+      <text class='second_title shadw2_title'>婚礼形式</text>
+      <radio-group bindchange="radioChange">
+        <label wx:for="{{items1}}">
+          <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </radio-group>
+      <button hover-class='none' class='open_button save_button2' bindtap='savePrice1'>确定</button>
+    </view>
+    <image class='shadw2_image' bindtap='hideShadw' src='https://xilai99.com/image/img/wj_close.png'></image>
+  </block>
+  <!-- 多行文本弹窗输入处理 -->
+  <block wx:if="{{ shadwType == 3 }}">
+    <view class='shadw2'>
+      <text class='second_title shadw2_title'>{{input_title}}</text>
+      <textarea  bindinput="textareaChange" maxlength='-1' fixed='true' value='{{input_content}}' focus="{{textFocus}}" bindtap='bindFocus' placeholder="请输入..." />
+      <button hover-class='none' class='open_button save_button2' bindtap='inputSure'>确定</button>
+    </view>
+    <image class='shadw2_image' bindtap='hideShadw' src='https://xilai99.com/image/img/wj_close.png'></image>
+  </block>
+</view>
+
+<!-- 分页 -->
+<block wx:if="{{showPage == 2}}">
+ <image  bindtap='showShadw_1' class="test {{!IsEmployees?'test6':'test7'}}"  style="margin-right:10px;" src='https://xilai99.com/image/img/zhongx.png'>
+    <text style="left:-7px;white-space: nowrap;">个人中心</text>
+  </image>
+  <image bindtap='showShadw' class="test {{!IsEmployees?'test5':''}}" src='https://xilai99.com/image/img/wj_menu.png'>
+    <text style="{{IsEmployees?'left:4px;':'left:6px;'}}">目录</text>
+  </image>
+  <image bindtap='lastPage' class="test {{!IsEmployees?'test3':'test1'}}" src='https://xilai99.com/image/img/wj_left.png'>
+    <!-- <image bindtap='lastPage' class='test test1' src='../../images/wj_left.png'> -->
+    <text>上一页</text>
+    <text class='pagenum'>{{showCenterPage}}/6</text>
+  </image>
+  <image bindtap='nextPage' class="test {{!IsEmployees?'test4':'test2'}}" src='https://xilai99.com/image/img/wj_right.png'>
+    <text>下一页</text>
+  </image>
+</block>
+<canvas canvas-id="photo_canvas" style="width:800px;height:640px;position: absolute;top:-900px;"></canvas>
+<modal hidden="{{hiddenmodalput}}" title="请输入手机号码验证" confirm-text="确定" bindconfirm="formSubmit" no-cancel>  
+  <view>
+    <input type='number' placeholder="手机号码" class="phoneInput" bindinput="getPhoneNumber"/>
+  </view>
+</modal>

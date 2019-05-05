@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    padding: 22px;
+}
+
+.tableData_box table {
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    border-collapse: collapse!important;
+}
+th, td {
+    border: 1px solid #D9D7D5;
+}
+
+.tableData_box table tr {
+    height: 38px;
+}
+
+.tableData_box table thead tr {
+    background: #AD9F87;
+    font-weight: 700;
+    color: #FFF;
+}
+.tableData_box table tbody tr {
+    color: #222;
+}
+
+.isRed {
+    color: #FF0000;
+}

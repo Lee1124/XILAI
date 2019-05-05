@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="mianyang_contract_service.css?no=1">
+</head>
+<body>
+<div id="app">
+    <div class="shadow" v-if="shadowType"></div>
+    <div class="header">
+        <div class="header_top">
+            <img src="logo.png" alt="喜来婚礼">
+            <span class="num">my20190128-307</span>
+        </div>
+        <div class="header_bottom">喜来婚礼服务协议</div>
+    </div>
+
+
+    <!--甲、乙双方-->
+    <div class="content-01">
+        <table>
+            <tbody>
+            <tr class="marginBottomDisplayBlock">
+                <td>
+                    <div class="content-01-inner content-inner">
+                        <label>接受服务者（甲方）：</label>
+                        <input type="text" v-model="xl.Value" :data-key="xl.inspect" @blur="changeNews($event)">&nbsp;
+                        <input type="text" v-model="xn.Value" :data-key="xn.inspect" @blur="changeNews($event)">
+                    </div>
+                    <div class="content-01-inner">
+                        <span>联系电话：</span>
+                        <input type="text" v-model="tel.Value" :data-key="tel.inspect" @blur="changeNews($event)">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="content-01-inner content-inner">
+                        <label>提供服务者（乙方）：</label>
+                    </div>
+                    <div class="content-01-inner content-01-inner-yi-01">
+                        <input type="text" class="width230" v-model="name.Value" :data-key="name.inspect"
+                               @blur="changeNews($event)">，
+                        <span>住所地：</span>
+                        <input type="text" class="width230" v-model="address.Value" :data-key="address.inspect"
+                               @blur="changeNews($event)">，
+                    </div>
+                    <div class="content-01-inner">
+                        <span>联系人：</span>
+                        <input type="text" class="width100" v-model="person.Value" :data-key="person.inspect"
+                               @blur="changeNews($event)">，
+                        <span>联系电话：</span>
+                        <input type="text" v-model="personTel.Value" :data-key="personTel.inspect"
+                               @blur="changeNews($event)"> 。
+                    </div>
+
+                    <div class="content-01-inner">
+                        <span class="common-text marginTop20">
+                        乙方为专业的宴会服务提供商，根据《中华人民共和国合同法》、《中华人民共和国消费者权益保护法》及相关法律法规，
+                        经双方友好协商，就甲方聘请乙方为其提供宴会服务相关事宜签订本合同，以兹双方共同遵守。
+                        </span>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <!--第1条款-->
+    <div class="content-02">
+        <div class="content-02-inner content-inner">
+            <label>第一条 婚礼基本情况</label>
+        </div>
+        <div class="content-02-inner textIndent2em">
+            <span>1、基本情况：新郎：</span>
+            <input type="text" class="width55" v-model="xl.Value" :data-key="xl.inspect" @blur="changeNews($event)">
+            <span>新娘：</span>
+            <input type="text" class="width55" v-model="xn.Value" :data-key="xn.inspect" @blur="changeNews($event)">
+            <span>宴会性质：</span>
+            <input type="text" class="width150" v-model="yhType.Value" :data-key="yhType.inspect"
+                   @blur="changeNews($event)">
+        </div>
+
+        <div class="content-02-inner textIndent2em">
+            <span>2、仪式举行时间：</span>
+            <input type="text" class="width45" v-model="date.year" data-key="year"  @blur="changeNews($event)"
+                   id="year">
+            <span>年</span>
+            <input type="text" class="width45" v-model="date.date" data-key="date" @blur="changeNews($event)"
+                   id="month">
+            <span>月</span>
+            <input type="text" class="width45" v-model="date.day" data-key="day" @blur="changeNews($event)"
+                   id="day">
+            <span>日</span>
+            <span class="before">（ <input type="radio" name="01" data-time="z" class="radioInput"
+                                          @click="radioClick($event)" data-key="OrderDateOther">
+                <span class="radio01" v-show="radioType==1">√</span>
+                <span class="radio02" v-show="radioType==2">√</span>
+                中午<input type="radio" name="01" data-time="w" @click="radioClick($event)" class="radioInput"
+                         data-key="OrderDateOther" style="margin: 0 5px 0 10px">晚上），预计参加</span>
+        </div>
+        <div class="content-02-inner">
+            <span>庆典宾客数量：</span>
+            <input type="text" class="width45" v-model="num.Value" :data-key="num.inspect" @blur="changeNews($event)">
+            <span>桌宾客</span>
+        </div>
+        <div class="content-02-inner">
+            <span class="common-text">3 宴会仪式举行地点：<input type="text" style="min-width: 350px;" v-model="yhAddress.Value"
+                                                        :data-key="yhAddress.inspect" @blur="changeNews($event)">。</span>
+        </div>
+    </div>
+
+    <!--第2条款-->
+    <div class="content-03">
+        <div class="content-03-inner content-inner">
+            <label>第二条 乙方提供的服务项目及内容</label>
+        </div>
+
+        <div class="content-03-inner">
+            <span class="common-text" style="font-size: 18px;color: #000;">
+                乙方向甲方提供宴会服务项目包括但不限于婚礼现场布置，宴会主持、摄影、摄像等服务，根据于双方的沟通情况，甲方选择的服务项目为以下第
+                （   <input type="text" class="width45" style="border: 0;" v-model="num2.Value" :data-key="num2.inspect" @blur="changeNews($event)">    ）项、内容具体如下：
+            </span>
+        </div>
+        <div class="content-03-inner">
+            <span class="common-text">
+                1、 提供宴会策划方案。乙方应在本协议签订后
+                <input type="text" class="width45" v-model="time1.Value" :data-key="time1.inspect" @blur="changeNews($event)">
+                日内向甲方提供宴会活动策划方案，包括但不限于宴会创意、宴会流程等提交甲方确认。甲方应于
+                <input type="text" class="width45" v-model="time2.Value" :data-key="time2.inspect" @blur="changeNews($event)">
+                日内对乙方的策划进行书面确认。策划方案确认后乙方不得单方面方实施策划。
+                若因不可抗力或者非乙方因素导致宴会策划内容在宴会现场不能实施，则乙方有权变更策划内容，并采取相应的补救措施。
+            </span>
+        </div>
+        <div class="content-03-inner">
+            <span class="common-text">
+                2、 提供宴会现场布置服务。乙方负责提供宴会当日主宴会场舞台布置，包括现场布置所需鲜花等一次性或易耗品材料的采购；
+                灯光、音响、地毯及其他摆件、设施、设备的提供（应由第三方提供电源、灯光等设施、设备除外）。
+            </span>
+        </div>
+        <div class="content-03-inner marginTop140">
+            <span class="common-text">
+                3、提供宴会主持人服务。经双方协商，乙方指定
+                <input type="text" class="width45" v-model="host.Value" :data-key="host.inspect" @blur="changeNews($event)">
+                先生∕女士为甲方宴会现场主持人。如因特殊情况（生病或意外等）指定主持人不能完成主持活动的，乙方应提前告之甲方并更换同档次水平的主持人。
+            </span>
+        </div>
+        <div class="content-03-inner">
+            <span class="common-text">
+                4、提供宴会摄像服务。乙方提供专业器材及技术人员对甲方宴会活动进行摄像，
+            </span>
+        </div>
+        <div class="content-03-inner">
+            <span class="common-text">
+                5、提供宴会跟拍摄影服务。乙方提供专业器材及技术人员对甲方宴会进行跟拍服务。
+            </span>
+        </div>
+
+        <div class="content-03-inner">
+            <span class="common-text">
+                6、提供造型服务。 乙方提供专业人员为甲方提供造型服务。
+            </span>
+        </div>
+
+        <div class="content-03-inner">
+            <span class="common-text">
+                7、其他约定服务。双方约定的其他服务内容
+                <input type="text" class="width240" v-model="content.Value" :data-key="content.inspect" @blur="changeNews($event)">。
+            </span>
+        </div>
+
+        <div class="content-03-inner">
+            <span class="common-text">
+                8、甲方宴会项目独立选择第三方提供服务的，甲方应在本合同签订日（最晚应于宴会举办日前20日）告知乙方，就第三方相关服务内容及服务要求由甲方与第三方另行协商，乙方不对第三方服务承担责任。
+            </span>
+        </div>
+    </div>
+
+    <!--第3条款-->
+    <div class="content-04">
+        <div class="content-04-inner content-inner">
+            <label>第三条 服务报酬及支付</label>
+        </div>
+        <div class="content-04-inner textIndent2em">
+            <span>1、甲方需向乙方支付的服务费共计人民币 </span>
+            <input type="text" class="width165" v-model="allMoney.Value" :data-key="allMoney.inspect" @blur="changeNews($event,'money')">元(大写：人民
+        </div>
+        <div class="content-04-inner">
+            币<input type="text" class="width230" v-model="allMoneyToUpper.Value" :data-key="allMoneyToUpper.inspect" readonly>)。
+        </div>
+        <div class="content-04-inner textIndent2em">
+            <span>2、费用支付期限</span>
+        </div>
+        <div class="content-04-inner textIndent2em">
+            <span>（1）、本合同签订之日，甲方向乙方支付总服务费用的 30 % 即 <input type="text" class="width110" v-model="money01.Value"
+                                                          :data-key="money01.inspect" @blur="changeNews($event,'money01')"></span>
+        </div>
+        <div class="content-04-inner">
+            <span class="common-text-noIndent">（大写：<input type="text" class="width230" v-model="money01ToUpper.Value"
+                                                          :data-key="money01ToUpper.inspect" readonly>），其中总服务费20 %部分为合同定金，另总服务费10 %部分为一期款。</span>
+        </div>
+        <div class="content-04-inner">
+            <span class="common-text">（2）、在与督导见面沟通及约见主持人当日，甲方向乙方支付总服务费的60% 即</span>
+        </div>
+        <div class="content-04-inner">
+            <span class="common-text-noIndent"><input type="text" v-model="money02.Value" :data-key="money02.inspect" @blur="changeNews($event,'money02')">元（大写：<input
+                    type="text" class="width230" v-model="money02ToUpper.Value" :data-key="money02ToUpper.inspect" readonly>）作为二期款。二期款的支付
+            时间最晚应在宴会举行7日前支付，否则乙方有权解除合同，并按总服务费的30%向甲方收取违约金。如合同解除乙方还有其他损失的，相关损失由甲方承担。</span>
+        </div>
+        <div class="content-04-inner">
+            <span class="common-text">（3）、在宴会当日，甲方应在宴会仪式结束后3个小时内向乙方付清余款，即</span>
+        </div>
+        <div class="content-04-inner">
+            <span class="common-text-noIndent">总服务费的10%即 <input type="text" v-model="money03.Value"
+                                                                :data-key="money03.inspect" @blur="changeNews($event,'money03')">元（大写：<input type="text"
+                                                                                                        class="width200"
+                                                                                                        v-model="money03ToUpper.Value"
+                                                                                                        :data-key="money03ToUpper.inspect" readonly>），甲方逾期付款的，应按前款金额的日千分之三支付违约金。</span>
+        </div>
+        <div class="content-04-inner">
+            <span class="common-text">3、甲方临时增加服务项目（即合同约定外服务项目）的，服务费用应即时结清，
+                不能及时结清的，最晚应于宴会彩排前支付。</span>
+        </div>
+        <div class="content-04-inner marginTop140">
+            <span class="common-text">4、合同签订后，甲方要求减少服务项目的，甲方最迟应在宴会举行30日前告知乙方。在甲方告知前已经选定主持、摄影、摄像、跟妆、督导（五大金刚）特定服务人员的，
+                相关人员的服务费已经收取的不予退还，未收取的相关费用损失由甲方承担。因甲方取消服务项目导致的材料、设施损失由甲方承担。</span>
+        </div>
+    </div>
+
+    <!--第4条款-->
+    <div class="content-05">
+        <div class="content-04-inner content-inner">
+            <label>第四条 甲方权利与义务</label>
+        </div>
+        <div class="content-04-inner content-inner">
+            <span class="common-text">1、甲方有权对乙方提供的宴会策划方案进行确认，提出修改建议等（甲方理解并认同乙方提供的电脑演示视频及图片仅为效果展示，宴会实际呈现效果与电脑演示效果存在差异）。
+                经甲方确认的策划方案若因不可抗力或者非乙方因素导致宴会策划内容在宴会现场不能实施，则乙方有权变更策划内容，并采取相应的补救措施。</span>
+        </div>
+        <div class="content-04-inner content-inner">
+            <span class="common-text">2、获得宴会服务。甲方有权要求乙方按照本协议约定时间、内容提供相应服务，如需增加服务项目，双方应另行确认（包括电子邮件、短信、微信等书面方式）</span>
+        </div>
+        <div class="content-04-inner content-inner">
+            <span class="common-text">3、甲方应按时足额支付本合同各约定事项服务费。鉴于乙方提供服务已进行了价格折让，本合同约定服务费均为不含税价格，
+               <span style="text-decoration: underline">乙方只向甲方出具正规收据，如甲方需要税务发票，相关税费由甲方承担。</span> </span>
+        </div>
+        <div class="content-04-inner content-inner">
+            <span class="common-text">4、为保证宴会质量，甲方应按约定时间和方式，有效配合乙方完成各约定事项与内容，并及时告知乙方与宴会庆典相关的各项事宜。若甲方在宴会服务等方面存有私人禁忌的，则应在签订本合同时书面告知乙方，
+                若因未告知乙方产生的任何损失，相应责任由甲方承担。</span>
+        </div>
+        <div class="content-04-inner content-inner">
+            <span class="common-text">5、若甲方需变更宴会举行的时间，则须提前 30日告知乙方，并由双方重新协商服务内容及服务费用。因宴会日期变更导致原合同约定服务人员（四大金钢）不能提供服务的，乙方有权更换服务人员，已收取的服务费用不予退还。
+                更换服务人员收取服务费由双方另行协商。因宴会日期变更导致现场道具、设施无法使用的，相关损失费用由甲方承担。</span>
+        </div>
+        <div class="content-04-inner content-inner">
+            <span class="common-text">6、若甲方需要变更宴会地点的，应在宴会前30日告知乙方，因宴会地点变更导致原设施、物品不能继续使用的，由此产生的损失由甲方承担。</span>
+        </div>
+        <div class="content-04-inner content-inner">
+            <span class="common-text">7、甲方有义务协调第三方包括但不限于酒店、安保及其他非乙方提供的服务项目、服务人员等予以协助，为乙方开展服务提供必要条件（包括但不限于提供相应的工作时间、工作场地、人员支持、电力电源、灯光、音响、工作梯、物品器械等条件），
+                若因此而需要支付第三方费用的，该费用由甲方承担。</span>
+        </div>
+        <div class="content-04-inner content-inner marginTop140">
+            <span class="common-text">附注：如甲方指定的婚宴配套服务单位（包括但不限于酒店、酒楼、宾馆等）向乙方加收其他相关费用（包括但不限于入场费、保证金、清洁费、电力费、安全保卫费、超时费等）由甲方承担。</span>
+        </div>
+    </div>
+
+    <!--第5条款-->
+    <div class="content-06">
+        <div class="content-06-inner content-inner">
+            <label>第五条 乙方的权利与义务</label>
+        </div>
+        <div class="content-06-inner ">
+            <span class="common-text">1、全面履行义务。乙方应当按照甲方确认的策划方案为甲方提供所选定的宴会服</span>
+        </div>
+        <div class="content-06-inner">
+            <span class="common-text-noIndent">务，按本合同约定的服务项目和要求完成服务事项。</span>
+        </div>
+        <div class="content-06-inner">
+            <span class="common-text">2、 及时沟通义务。由于天气、交通、电力、政府禁止令等非乙方可控制因素或不可抗力导致乙方对甲方提供的服务项目、内容、质量标准发生变化的，
+                乙方应及时与甲方沟通，并协商调整宴会方案；如通讯中断或情势不允许沟通的，甲方授予乙方采取合理补救措施的权利。</span>
+        </div>
+        <div class="content-06-inner">
+            <span class="common-text">3、协助义务。乙方应尽责处理甲方宴会庆典筹备事务，并合理提醒甲方有关注意事项。</span>
+        </div>
+        <div class="content-06-inner">
+            <span class="common-text">4、乙方应当尊重甲方人格尊严、民族风俗习惯等。</span>
+        </div>
+        <div class="content-06-inner">
+            <span class="common-text">5、乙方有权利收取本合同约定的服务费用。</span>
+        </div>
+        <div class="content-06-inner">
+            <span class="common-text">6、合理利用权利。 甲方除在本合同中特别申明禁止乙方使用其肖像外，甲方允许乙方合理使用甲方形象及数据信息进行研究、教学及商业宣传等。</span>
+        </div>
+    </div>
+
+    <!--第6条款-->
+    <div class="content-07">
+        <div class="content-07-inner content-inner">
+            <label>第六条 特别约定</label>
+        </div>
+        <div class="content-07-inner">
+            <span class="common-text">1、耗材异常波动。当鲜花等耗材因不可抗因素出现价格的剧烈上涨时（涨幅在100% 及以上时视为剧烈上涨），乙方有权根据具体情况对订单进行修改，合同中所有项目物品均为租赁使用。</span>
+        </div>
+        <div class="content-07-inner">
+            <span class="common-text">2、安全条款。双方均应避免安排存有安全隐患宴会事项，不建议使用各类易燃易爆物质（包括但不限于彩花、彩带、礼炮、易燃充气气球、喷喷乐、冷焰火等），如果甲方执意使用，则甲方应承担可能由此造成的所有损失。</span>
+        </div>
+        <div class="content-07-inner">
+            <span class="common-text">3、甲方所选择的摄影摄像服务中，若因意外特殊情况出现影像资料丢失，乙方按照此项目的双倍价格支付给甲方。 </span>
+        </div>
+        <div class="content-07-inner">
+            <span class="common-text">4、有第三方（包括但不限于酒店、安保及其他非乙方提供的服务项目、服务人员等）参与宴会服务的，由甲方统筹安排并承担安全保障义务。 </span>
+        </div>
+        <div class="content-07-inner marginTop140">
+            <span class="common-text">5、本协议第一条的第三款规定地点，为甲方指定乙方提供宴会服务的履行地，甲方须确保该场地能保证乙方正常实施预定服务项目，因场地原因致使服务不能履行的，乙方不承担任何责任。对于酒店提供的设施、人员服务及服务项目是否与乙方提供的服务项目协调匹配，
+                由甲方负责统筹安排，乙方在职责范围内予以积极协助。</span>
+        </div>
+        <div class="content-07-inner">
+            <span class="common-text" >6、甲方自己单独外请的金刚人员在服务中出现的问题与乙方无关；例如主持人自带电脑播放音乐出现播放故障导致效果问题乙方不承担责任，跟摄、跟拍出现视频图片效果不好乙方不承担责任，对化妆师造型不满意乙方不承担责任。</span>
+        </div>
+        <div class="content-07-inner">
+            <span class="common-text">7、在宴会前双方可到甲方所预订的酒店（餐厅）实地彩排走场，彩排时的程序完全按照宴会流程进行，但彩排时乙方不提供现场布置、摄影、摄像、化妆、烟花等服务。</span>
+        </div>
+        <div class="content-07-inner ">
+            <span class="common-text">8、乙方无法履行合同的，经甲方同意，可将本合同中乙方的全部或部分权利和义务转让给第三人。</span>
+        </div>
+    </div>
+
+    <!--第7条款-->
+    <div class="content-08">
+        <div class="content-08-inner content-inner">
+            <label>第七条 违约责任</label>
+        </div>
+        <div class="content-08-inner">
+            <span class="common-text">1、甲方未按合同约定金额、期限支付一期款（含定金部分）的，乙方有权解除合同并按合同总额的20%追究甲方违约责任；甲方未按合同约定金额、期限支付二期款的，乙方有权解除合同并按合同总额的30%追究甲方违约责任；
+                甲方未按合同约定金额、期限支付三期款的，应按预期付款金额的日千分之三支付违约金。</span>
+        </div>
+        <div class="content-08-inner">
+            <span class="common-text">2、甲方于宴会仪式举行
+                <input type="text" class="width45 fontWeight700" readonly value="30">日前要求解除合同的，甲方按照已支付总服务费的
+                <input type="text" class="width45 fontWeight700" readonly value="30%">作为违约金及损失赔偿金；于宴会仪式举行
+                <input type="text" class="width45 fontWeight700" readonly value="15">日前要求解除合同的，按总服务费的
+                <input type="text" class="width45 fontWeight700" readonly value="70%">作为违约金及损失赔偿金；于宴会仪式举行
+                <input type="text" class="width45 fontWeight700" readonly value="7">日前要求解除合同的，按总服务费的
+                <input type="text" class="width45 fontWeight700" readonly value="90%">作为违约金及损失赔偿金。</span>
+        </div>
+        <div class="content-08-inner">
+            <span class="common-text">3、乙方明确表示或者以自己的行为表明不提供全部或者部分服务的，甲方有权单方解除合同，并要求乙方赔偿损失，同时退还已经收取甲方的费用。</span>
+        </div>
+    </div>
+
+    <!--第8条款-->
+    <div class="content-09">
+        <div class="content-09-inner content-inner">
+            <label>第八条 其他条款</label>
+        </div>
+        <div class="content-09-inner">
+            <span class="common-text">1、因本合同发生的争议，由双方协商解决。协商不成或者不愿协商的，可向乙方所在地人民法院提起诉讼。</span>
+        </div>
+        <div class="content-09-inner">
+            <span class="common-text">2、本合同及其附件、补充协议、变更协议自双方签字或盖章之日起生效。甲乙双方通过电话、网络即时通讯工具如微信、短信、
+                QQ等交流内容为合同履行或者变更的有效部分、双方对电子数据的真实性、有效性予以认可。</span>
+        </div>
+        <div class="content-09-inner">
+            <span class="common-text">3、本合同一式
+                <span style="text-decoration: underline">两份</span>，
+                双方各执 <span style="text-decoration: underline">一份，自双方签字（盖章）后生效。</span></span>
+        </div>
+        <div class="content-09-inner marginTop140">
+            <span class="common-text">4、双方未尽事宜，以合同附件形式体现，在本合同中约定的内容与附件内容不一致的，以附件为准；主合同与附件具有同等的法律效力。
+                本合同签订后，双方另行签订的协议与本合同不一致的，以另行签订的协议为准。</span>
+        </div>
+        <div class="content-09-inner">
+            <span class="common-text" style="color: #ff0000;">5、所有款项请转入喜来公司制定账户，销售人员不能启用私人账号收款。</span>
+        </div>
+    </div>
+
+
+    <!--落款-->
+    <div class="content-10 marginTop50">
+        <div class="content-10-inner textRight">
+            <span>甲方：</span>
+            <input type="text" class="width100" v-model="xl.Value" :data-key="xl.inspect">,
+            <input type="text" class="width100" v-model="xn.Value" :data-key="xn.inspect">
+            <span style="margin:0 11px 0 20px">乙方：（签字盖章）</span>
+        </div>
+        <div class="content-10-inner textRight marginTop50">
+            <span>时间：</span>
+            <input type="text" class="width100" style="margin-right: 131px" v-model="time3">
+            <span>时间：</span>
+            <input type="text" class="width100" v-model="time4">
+        </div>
+    </div>
+
+
+    <!-- 漂浮打印按钮 -->
+    <div class="all_float" @click="test()">打印</div>
+
+
+</div>
+
+
+<!--<script type="text/javascript" src="../../View/new_designWorksList_ly_kxt/newpage/js/jquery-1.11.1.min.js"></script>-->
+<!--<script src="../../View/new_designWorksList_ly_kxt/newpage/js/vue.js"></script>-->
+<!--<script src="../../xlSystem/XL/js/main.js"></script>-->
+<!--&lt;!&ndash;<script src="../../xlSystem/XL/layer/layer.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script src="layui/layui.js"></script>&ndash;&gt;-->
+<!--<script src="../../xlSystem/XL/layer/layer.js"></script>-->
+<!--<script src="main_business_income.js?no=1"></script>-->
+
+<script type="text/javascript" src="jquery-1.12.4.js"></script>
+<script src="layui/layui.js"></script>
+<script src="main.js"></script>
+<script src="vue.js"></script>
+<script src="mianyang_contract_service.js"></script>
+
+</body>
+</html>

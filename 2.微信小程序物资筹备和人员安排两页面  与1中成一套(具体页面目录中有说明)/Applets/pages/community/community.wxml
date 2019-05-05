@@ -1,0 +1,78 @@
+<import src="../template/template.wxml"/>
+<template is="tabbar" data="{{tabbar}}"/>
+<scroll-view scroll-top="{{top}}" scroll-y="true" style='height:{{toggle?80:60}}%' id='myscoll' bindtouchstart='close'  bindtap='close'>
+  <view class='time'>
+    <view>2018年2月28日 11:28</view>
+  </view>
+  <view>
+    <view style='padding:20rpx;'>
+      <view class='pic-title'><image src='https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2511100503,501373762&fm=27&gp=0.jpg'></image></view>
+      <view class='survey'>
+        <view>新郎问卷调查表</view>
+        <view>邀请你，张晓彬|讲述你独一无二的爱情故事</view>
+      </view>
+    </view>    
+    <view class='self part'>
+      <view class='part-item2'>
+        <image src='https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2859410315,1608202772&fm=27&gp=0.jpg' class='avatar'></image>
+      </view>
+      <view class='self-item1'>
+        <view class='msg'>
+          <view class='arrow1'></view>
+          <text selectable="true">张先生，请尽快填写这份问卷！这对我们为您设计婚礼方案会有很大的帮助。谢谢！</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view>
+    <view class='self'>
+      <view class='self-item1'>
+        <view class='tip'>已读</view>
+        <view class='msg selfbg'>
+          <view class='arrow'></view>
+          <text selectable="true">好的！马上开始！</text>
+        </view>
+      </view>
+      <view class='self-item2'>
+        <image src='https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3091043133,212922888&fm=27&gp=0.jpg' class='avatar'></image>
+      </view>
+    </view>
+  </view>
+  <view wx:for="{{chatList}}">
+    <view class='self'>
+      <view class='self-item1'>
+        <view class='tip'>未读</view>
+        <view class='msg selfbg'>
+          <view class='arrow'></view>
+          <text selectable="true">{{item.text}}</text>
+        </view>
+      </view>
+      <view class='self-item2'>
+        <image src='https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3091043133,212922888&fm=27&gp=0.jpg' class='avatar'></image>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view style='bottom:{{toggle?100:350}}rpx' class='chat'>
+    <view class='chat-item1'>
+      <textarea bindinput='chatContent' value='{{content}}' fixed="true" cursor-spacing='20' show-confirm-bar="{{false}}" focus="{{jiao}}" auto-height="true"></textarea>
+    </view>
+    <view class='chat-item2'>
+      <image wx:if="{{content==''}}" bindtap='open' class='add' src='../../images/icon/add.png'></image>
+      <view bindtap='send' class='send' wx:if="{{content!=''}}">发送</view>
+    </view>
+</view>
+<view wx:if="{{!toggle}}" class='action'>
+  <view bindtap='camera' class='icon-group'>
+    <image class='icon' src='../../images/pho.png'></image>
+    <view>拍照</view>
+  </view>
+  <view bindtap='chooseImage' class='icon-group'>
+    <image class='icon' src='../../images/pic.png'></image>
+    <view>相册</view>
+  </view>
+  <view bindtap='chooseLocation' class='icon-group'>
+    <image class='icon' src='../../images/loc.png'></image>
+    <view>位置</view>
+  </view>
+</view>

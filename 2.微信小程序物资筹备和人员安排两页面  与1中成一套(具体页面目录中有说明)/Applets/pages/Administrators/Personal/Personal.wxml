@@ -1,0 +1,91 @@
+<!--pages/Administrators/Personal/Personal.wxml-->
+<import src="../../template/template.wxml" />
+<template is="tabbar" data="{{tabbar}}" />
+
+<view class="box_1">
+  <image src="../../../images/bg_1.png" class="bg_1" />
+  <text class="go_out" bindtap="go_out">注销</text>
+  <view class="Head_portrait">
+    <view wx:if="{{loginUser.imgUrl==''}}">未设置</view>
+    <image wx:if="{{loginUser.imgUrl!=''}}" src="{{loginUser.imgUrl}}" />
+  </view>
+  <view class="user_name">
+    {{loginUser.name}}
+  </view>
+</view>
+<view class="box_2" wx:if="{{ishead}}">
+  <view>
+    <!--<view bindtap="goshops">-->
+    <view>
+      <view>当前店铺</view>
+      <view>全部({{shop_obj.nowShopCount}})</view>
+    </view>
+    <view bindtap="goflow">
+      <view>总计流量</view>
+      <view>{{ismanage ? managedata.allCount : shop_obj.TotalTraffic}}人</view>
+    </view>
+    <view bindtap="goflow_1">
+      <view>昨日新增</view>
+      <view>{{ismanage ? managedata.yesAllCount : shop_obj.yesTotalTraffic}}人</view>
+    </view>
+  </view>
+</view>
+<view class="box_3">
+  <navigator url="../MyFlow/MyFlow?type=2" navigate hover-class="className">
+    <view>
+      <image src="../../../images/My.png" />
+    </view>
+    <view>
+      <view>我的流量</view>
+      <view>
+        {{flow.AllCount}}人
+        <image src="../../../images/right.png" />
+      </view>
+    </view>
+  </navigator>
+  <navigator url="../MyFlow/MyFlow?type=2" navigate hover-class="className">
+    <view>
+      <image src="../../../images/xuanzhuan.png" />
+    </view>
+    <view>
+      <view>昨日更新</view>
+      <view>
+        {{flow.YesterdayCount}}人
+        <image src="../../../images/right.png" />
+      </view>
+    </view>
+  </navigator>
+  <navigator url="../QRcode/QRcode" navigate hover-class="className">
+    <view>
+      <image src="../../../images/saoyisao.png" />
+    </view>
+    <view>
+      <view>我的二维码</view>
+      <view>
+        <image src="../../../images/right.png" />
+      </view>
+    </view>
+  </navigator>
+  <navigator url="../scanStatistic/scanStatistic" navigate hover-class="className" wx:if="{{ishead}}">
+    <view>
+      <image src="../../../images/icon/preparation.png" />
+    </view>
+    <view>
+      <view>浏览统计</view>
+      <view>
+        <image src="../../../images/right.png" />
+      </view>
+    </view>
+  </navigator>
+  <navigator url="../pointList/pointList" navigate hover-class="className" wx:if="{{ishead}}">
+    <view>
+      <image src="../../../images/icon/questionnaire.png" />
+    </view>
+    <view>
+      <view>积分提现</view>
+      <view>
+        <image src="../../../images/right.png" />
+      </view>
+    </view>
+  </navigator>
+</view>

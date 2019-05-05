@@ -1,0 +1,102 @@
+<!--pages/ personnelArrangement/ personnelArrangement.wxml-->
+<view class='personnel-page'>
+  <!-- 基本信息 -->
+  <view class='baseNews'>
+    <!-- 标题 -->
+    <view class='baseNews-title' bindtap='showToggle1'>
+      <text>基本信息</text>
+      <image src='../../../images/jiantou.png' style='transform: rotate({{rotateDeg1}}deg)'></image>
+    </view>
+    <!-- 内容 -->
+    <scroll-view class='baseNews-content' style='height:{{scrollViewHeight1}}'>
+      <view class='getHeight'>
+        <view class='baseNews-content-inner'>
+          <view>婚期</view>
+          <view>{{contentData.orderdate}}</view>
+        </view>
+        <view class='baseNews-content-inner'>
+          <view>场地</view>
+          <view>{{contentData.address}}</view>
+        </view>
+
+        <view class='baseNews-content-inner'>
+          <view>新郎</view>
+          <view>{{contentData.groom}}</view>
+        </view>
+
+        <view class='baseNews-content-inner'>
+          <view>新娘</view>
+          <view>{{contentData.brind}}</view>
+        </view>
+
+        <view class='baseNews-content-inner'>
+          <view>婚礼管家</view>
+          <view>{{contentData.modelList[0].FlowPath}}</view>
+        </view>
+
+        <view class='baseNews-content-inner'>
+          <view>全程督导</view>
+          <view>{{contentData.modelList[0].Personnel}}</view>
+        </view>
+        <view class='baseNews-content-inner'>
+          <view>执行时间</view>
+          <view>{{contentData.modelList[0].Article}}</view>
+        </view>
+        <view class='baseNews-content-inner baseNews-content-inner-last' bindtap='hideContent1'>
+          <image src='../../../images/shouqi.png'></image>
+          <text>收起</text>
+        </view>
+      </view>
+
+    </scroll-view>
+  </view>
+
+  <!-- 人员安排 -->
+  <view class='personnelNews' bindtap='showToggle2'>
+    <!-- 标题 -->
+    <view class='personnelNews-title' style='margin-top:20rpx'>
+      <text>人员安排</text>
+      <image src='../../../images/jiantou.png' style='transform: rotate({{rotateDeg2}}deg)'></image>
+    </view>
+  </view>
+
+  <!-- 内容 -->
+  <scroll-view class='personnelNews-content' style='height:{{scrollViewHeight2}}'>
+    <view class='getpersonnelNewsHeight'>
+      <block wx:for='{{contentData.modelList}}' wx:key>
+        <view class='personnelNews-content-inner' wx:if='{{item.Sort!=0}}'>
+          <view class='personnelNews-content-inner-top' data-id='{{item.Id}}' data-sort='{{item.Sort}}' bindtap='goChangePage'>
+            <view class='personnelNews-content-inner-text'>
+              <view>职务:</view>
+              <view>{{item.Personnel}}</view>
+            </view>
+            <view class='personnelNews-content-inner-text'>
+              <view>联系人:</view>
+              <view>{{item.FlowPath}}</view>
+            </view>
+            <view class='personnelNews-content-inner-text' style="border-bottom:{{showDelTips==1?'1rpx solid #eee':''}}">
+              <view>任务:</view>
+              <view>{{item.Article}}</view>
+            </view>
+          </view>
+          <view bindtap='delThisNews' data-id='{{item.Id}}' data-sort='{{item.Sort}}' class='personnelNews-content-inner-text personnelNews-content-inner-text-last' wx:if='{{showDelTips==1}}'>删除流程</view>
+        </view>
+      </block>
+      <view class='baseNews-content-inner baseNews-content-inner-last' bindtap='hideContent2' wx:if='{{dataLength==1}}'>
+        <image src='../../../images/shouqi.png'></image>
+        <text>收起</text>
+      </view>
+      <view class='baseNews-content-inner baseNews-content-inner-last' wx:if='{{dataLength==0}}'>
+        <text>无数据</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 编辑图标 -->
+  <view class='editBtnBox'>
+    <image src='../../../images/bianjibtn.png' bindtap='showAdd' style="display:{{editBtnIsShow?'':'none'}}" class="{{changeType1==1?'image1-show':'image1-hide'}}"></image>
+    <image src='../../../images/addbtn.png' bindtap='goToAddPage' class="{{changeType2==1?'image2-show':'image2-hide'}}"></image>
+    <image src='../../../images/yesbtn.png' bindtap='yesChangeLast' class="{{changeType2==1?'image2-show':'image2-hide'}}"></image>
+    <image src='../../../images/indexImg.png' bindtap='backIndex' style='bottom:{{backIndexBtnBottom}}rpx'></image>
+  </view>
+</view>

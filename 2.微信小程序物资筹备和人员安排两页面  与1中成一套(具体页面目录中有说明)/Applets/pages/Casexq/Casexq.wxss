@@ -1,0 +1,339 @@
+/* pages/Casexq/Casexq.wxss */
+page{
+  overflow-y:auto !important;
+}
+.parent{
+  width:100%;
+  height:100%;
+}
+ .Casexq{
+  height:92%;
+} 
+text{
+  display: block;
+}
+.color{
+  display: inline-block;
+  width:60rpx;
+  height:30rpx;
+  margin-right:2%;
+  border: 1px solid #eee;
+}
+.img image{
+  width:100%;
+}
+.colors .color{
+  margin-top:0;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+.fade_in {
+    animation: fadeIn 1s both;
+}
+.top,.content,.site{
+  margin-top:7%;
+  margin-right:2%;
+  margin-left:2%;
+}
+.top text{
+  font-size: 44rpx;
+  color:#222222;
+}
+.content text{
+  margin-top:3%;
+  font-size:30rpx;
+  color:#999999;
+}
+.site text{
+  font-size:32rpx;
+  line-height: 63rpx;
+  margin-bottom:3%;
+  color:#888;
+}
+.footer{
+  width: 100%;
+  height:98rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+ 
+}
+.left,.middle,.right{
+  float:left;
+  height:100%;
+}
+.left{
+  width:15%;
+  text-align: center;
+  box-sizing: border-box;
+   border-top: 1px solid #eee;
+  /*padding-top: 18rpx;*/
+}
+.middle{
+   border-top: 1px solid #eee;
+}
+.left text{
+  font-size:22rpx;
+  margin-top:4%;
+  display: block;
+  color:#B2B2B2;
+}
+.left image{
+  display: inline-block;
+  width: 36rpx;
+  height:36rpx;
+  margin-top:18rpx;
+}
+.middle,.right{
+  width:35%;
+}
+button{
+  width:100%;
+  height:100%;
+  line-height:100rpx;
+  color:white;
+  border:transparent;
+  border-radius: 0;
+}
+
+.btn:after{
+  border: none;
+}
+.footer .left .haveBorder{
+  border-right:1px solid  #ECECEC;
+}
+.middle button{
+  background:#fff;
+  font-size:32rpx;
+  color:#999999;
+}
+
+.right button{
+  background:#EB8778;
+  font-size:30rpx;
+}
+/*遮罩层  */
+.maskLayer{
+  width: 100%;
+  height:100%;
+  position:fixed;
+  top:0;
+  background:rgba(0,0,0,.4);
+}
+.dianpus,.placename{
+  font-size:33rpx;
+  color:#999999;
+}
+input{
+  color:#222222;
+}
+.choose{
+  position: fixed;
+  bottom:2%;
+  width:100%;
+  height:55%;
+}
+.choose_top{
+  width:100%;
+  height:80%;
+  background:white;
+  margin-bottom:2%;
+  /* border-radius: 5px; */
+  padding-top:3%;
+}
+.choose_top input,.dianpu{
+  width: 87%;
+  height:98rpx;
+  border:1px solid #e5e5e5;
+  margin:3% auto;
+  /* border-radius: 5px; */
+  padding-left:4%;
+  /*box-sizing: border-box;*/
+}
+.choose_top button{
+  width:91%;
+  height:100rpx;
+  background:#EB8778;
+  /* border-radius: 5px; */
+  line-height: 100rpx;
+  border:none;
+  font-size:33rpx;
+}
+button:after{
+  border: none;
+}
+.choose_close{
+  width:100%;
+  height:18%;
+  background:white;
+  /* border-radius: 5px; */
+  text-align: center;
+  line-height: 120rpx;
+  color:#666666;
+  font-size:33rpx;
+}
+.footer button::after{
+  border-radius: 0;
+}
+picker{
+  margin:auto;
+  width: 85%;
+  color:grey;
+  padding-left: 4%;
+  border:1px solid #d9d9d9;
+  height:100rpx;
+  /* border-radius: 5px; */
+  line-height: 100rpx;
+  margin-top:2%;
+  padding-right:2%;
+}
+/* .dianpu{
+  display: flex;
+  justify-content: center;
+} */
+/*电话沟通样式  */
+.choose_phone{
+  height:18%;
+}
+.top_phone{
+  height:50%;
+  text-align: center;
+  line-height: 80rpx;
+  color: #0054fe;
+}
+.phone_close{
+  height:40%;
+  line-height:93rpx;
+}
+/*分享样式  */
+.fx_choose{
+  height:25%;
+}
+.fx_choosetp{
+  height:60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: middle;
+  font-weight: 300;
+  font-size:35rpx;
+}
+
+.fx_close{
+  height:30%;
+}
+.fx_top_left,.fx_top_middle,.fx_right{
+  position: relative;
+}
+ .fx_tp_left button{
+  width:140rpx;
+  height:180rpx;
+  background: transparent;
+  display: block;  
+  position:absolute;
+  top:0;
+}
+.fx_tp_left button::after{
+  border:none;
+} 
+.fx_choosetp image{
+  width:100rpx;
+  height:100rpx;
+}
+.fx_tp_left image,.fx_tp_right image{
+  margin-left:11%;
+}
+.left{
+  position: relative;
+}
+.top{
+  margin-top:6%;
+}
+.footer .left button{
+  width:100%;
+  height: 100%;
+  border:0;
+  position: absolute;
+  background:transparent;
+  border-radius: 0;
+}
+/*立即预约  */
+picker-view-column{
+  height:50px;
+  line-height: 50px;
+}
+.bg
+{
+  width:100%;height:100%;z-index:9999; position:fixed;top:0px;
+}
+.bg image{
+  width:100%;height:100%
+}
+
+/*************************************修改样式******************************************************************/
+
+.case-detail-banner{
+  width: 100%;
+}
+.case-detail-main{
+  box-sizing: border-box;
+  padding: 15rpx 20rpx 50rpx;
+}
+.case-detail-title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top:14rpx;
+
+}
+.case-title-left,.case-title-right{
+  flex: 0.5;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+
+.case-title-word{
+  font-size: 38rpx;
+  margin: 0 30rpx;
+  color:#222;
+}
+.case-title-address{
+  font-size: 26rpx;
+  margin-top: 63rpx;
+  color:#aaa;
+  text-align: center;
+}
+.case-title-time{
+  font-size: 26rpx;
+  color:#aaa;
+  margin-top: 10rpx;
+  text-align: center;
+}
+.case-title-context{
+  text-align: justify;
+  font-size: 30rpx;
+  line-height: 50rpx;
+  color:#666;
+  margin-top: 60rpx;
+}
+.case-images{
+  margin-bottom:21%;
+}
+.logo-mark{
+  display: block;
+  box-sizing: border-box;
+  width: 208rpx;
+  margin: 40rpx auto;
+
+}
+.syIcon{
+  width:46rpx !important;
+}
+.hr_view{
+  height: 8px;
+  width: 100%;
+}

@@ -1,0 +1,122 @@
+/* pages/MyService/preparation/preparation.wxss */
+
+.jieduan{
+  padding-bottom:10px;
+  margin:10px;
+  border-bottom:1px solid #eee;
+}
+.jieduan text:last-child{
+  font-size: 13px;
+  color:#222;
+}
+.tag{
+  font-size: 11px;
+  padding: 0px 4px;
+  border: 1px solid red;
+  margin-right:10px;
+}
+.time .tag{
+   border: 1px solid #87CEFF;
+   color: #87CEFF;
+}
+.content .tag{
+   border: 1px solid 	#90EE90;
+   color: 	#90EE90;
+}
+.djs{
+  position: fixed;
+  bottom: 100rpx;
+  right:15px;
+
+}
+
+.djs image {
+    width: 15px;
+    height: 15px;
+    background-color: #cd1130;
+    padding: 6px;
+    border-radius: 50px;
+    margin-bottom: -9px;
+    margin-right: 67px;
+}
+.djs text{
+  background-color:#fff;
+  color:#cd1130;
+  font-size:11px;
+  padding:5px 5px 5px 30px;
+  border:1px solid #cd1130;
+  border-radius:51px;
+  margin-right:-96px;
+}
+
+
+/*ys 新增*/
+.fix-countDown{
+    position: fixed;
+    bottom: 100rpx;
+    right:15px;
+    width: 176rpx;
+    height: 64rpx;
+}
+.fix-countDown-image{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 2;
+}
+.fix-countDown-content{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.fix-countDown-day{
+    width: 60rpx;
+    text-align: center;
+}
+.fix-countDown-day image{
+    width: 30rpx;
+    position: absolute;
+    top:15rpx;
+    left: 20rpx;
+    z-index: 5;
+    height: 30rpx;
+    /*opacity: 1;*/
+    transition: all .4s linear;
+}
+.show{
+    opacity: 0;
+}
+
+.fix-countDown-daynum{
+    position: absolute;
+    top: 15rpx;
+    left: 20rpx;
+    z-index: 4;
+    font-size: 26rpx;
+    color:#fff;
+    opacity: 0;
+    transition: all .4s linear;
+}
+.fix-countDown-dayShow{
+    opacity: 1;
+}
+
+
+.fix-countDown-word{
+    flex:1;
+    color:red;
+    font-size: 20rpx;
+    text-align: right;
+    box-sizing: border-box;
+    padding-right: 10rpx;
+}
+

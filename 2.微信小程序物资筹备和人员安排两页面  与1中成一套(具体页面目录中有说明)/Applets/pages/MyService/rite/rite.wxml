@@ -1,0 +1,216 @@
+<nav bindchooseNav="chooseNav" two="{{isTwo}}"></nav>
+<!--流程基本信息-->
+
+<form wx:if="{{pages==1}}" action="" bindsubmit="formSubmit">
+    <scroll-view scroll-y class="scroll" style='height:{{height+40}}px'>
+        <view class="form-list">
+            <view class="li">
+                <view class="li-name">新人姓名</view>
+                <view class="li-value">
+                    <input type="text" value="{{basic.GROOM_NAME}}&{{basic.BRIDE_NAME}}" name="manName" disabled="true" />
+                </view>
+            </view>
+            <view class="li">
+                <view class="li-name">宴会地点</view>
+                <view class="li-value">
+                    <input type="text" data-type="Date" name="manAddress" bindblur='basicText' value="{{basicDataS.Date}}" disabled="true" />
+                </view>
+            </view>
+
+            <view class="li">
+                <view class="li-name">宴会时间</view>
+                <input type="text" name="manAddress" value="{{basic.OrderDate}}" disabled="true" />
+            </view>
+            <view class="li">
+                <view class="li-name">彩排时间</view>
+                <picker class=" li-value" data-type="Date" data-index="basicDataS" data-type="FlowPath" mode="date" value="{{basicDataS.FlowPath}}"
+                    bindchange="basicText" disabled="{{disable}}">
+                    <view class="li-value-width">
+                        <view class="input">{{basicDataS.FlowPath}}</view>
+                        <text class="zan-icon zan-icon-arrow" wx:if="{{!disable}}"></text>
+                    </view>
+                </picker>
+            </view>
+            <view class="li">
+                <view class="li-name">主 持 人</view>
+                <view class="li-value">
+                    <input type="text" data-index="basicDataS" name="marryAddress" data-type="FlowDetail" bindblur='basicText' value="{{basicDataS.FlowDetail}}"
+                        disabled="{{disable}}" placeholder="暂无" />
+                </view>
+            </view>
+            <view class="li">
+                <view class="li-name">宴会督导</view>
+                <view class="li-value">
+                    <input type="text" data-index="basicDataS" bindblur='basicText' name="marryAddress" data-type="Personnel" value="{{basicDataS.Personnel}}"
+                        disabled="{{disable}}" placeholder="暂无" />
+                </view>
+            </view>
+
+            <view class="li">
+                <view class="li-name">宴会顾问</view>
+                <view class="li-value">
+                    <input type="text" data-type="Article" bindblur='basicText' name="marryAddress" data-index="basicDataS" value="{{basicDataS.Article}}"
+                        disabled="{{disable}}" placeholder="暂无" />
+                </view>
+            </view>
+            <view class="li">
+                <view class="li-name">宴会管家</view>
+                <view class="li-value">
+                    <input type="text" data-index="basicDataS" name="peopleNum" data-type="Remarks" value="{{basicDataS.Remarks}}" bindblur='basicText'
+                        disabled="{{disable}}" placeholder="暂无" />
+                </view>
+            </view>
+            <view class="li">
+                <view class="li-name">宴会策划</view>
+                <view class="li-value">
+                    <input type="text" name="peopleNum" value="{{basic.designer}}" disabled="{{disable}}" placeholder="暂无" />
+                </view>
+            </view>
+            <view class="li">
+                <view class="li-name li-name-long">新人需准备物品及配合</view>
+                <view class="li-value">
+                    <input type="text" data-index="basicDataX" data-type="FlowPath" bindblur='basicText' name="peopleNum" value="{{basicDataX.FlowPath}}"
+                        disabled="{{disable}}" placeholder="暂无" />
+                </view>
+            </view>
+            <view class="li">
+                <view class="li-name li-name-long">督导需准备物品及配合</view>
+                <view class="li-value">
+                    <input type="text" data-index="basicDataX" data-type="FlowDetail" bindblur='basicText' name="peopleNum" value="{{basicDataX.FlowDetail}}"
+                        disabled="{{disable}}" placeholder="暂无" />
+                </view>
+            </view>
+            <view class="li">
+                <view class="li-name li-name-long">酒店需准备物品及配合</view>
+                <view class="li-value">
+                    <input type="text" data-index="basicDataX" data-type="Personnel" bindblur='basicText' name="peopleNum" value="{{basicDataX.Personnel}}"
+                        disabled="{{disable}}" placeholder="暂无" />
+                </view>
+            </view>
+            <view class="li">
+                <view class="li-name li-name-long">现场是否需要转播</view>
+                <picker class=" li-value" data-index="basicDataX" data-type="Article" bindblur='basicText' range="{{zhuanboObj}}" value="{{zhuanbo}}"
+                    bindchange="basicText" disabled="{{disable}}" placeholder="暂无">
+                    <view class="li-value-width li-value-short">
+                        <view class="input">{{zhuanbo}}</view>
+                        <text class="zan-icon zan-icon-arrow" wx:if="{{!disable}}"></text>
+                    </view>
+                </picker>
+            </view>
+            <view class="li">
+                <view class="li-name li-name-long">需要转播到哪里</view>
+                <view class="li-value">
+                    <input type="text" data-index="basicDataX" data-type="Remarks" bindblur='basicText' name="peopleNum" value="{{basicDataX.Remarks}}"
+                        disabled="{{disable}}" placeholder="暂无" />
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+    <view wx:if="{{isLoad}}">
+        <button class=" {{isShare&&!newbie?'liaojieBtn2':'liaojieBtn1'}} redBtn" wx:if="{{isShare}}" bindtap="backIndex">{{newbie?'回到首页':'了解喜来'}}</button>
+        <button class="redBtn  {{isShare&&newbie?'isShare':''}}" bindtap="edit2" wx:if="{{disable&&newbie}}">编辑</button>
+        <button class="redBtn  {{isShare&&newbie?'isShare':''}}" bindtap="edit2" wx:elif="{{!disable}}">保存</button>
+    </view>
+</form>
+
+<view wx:if="{{pages==2}}">
+    <picker class="team-select" range="{{personArray}}" bindchange="statusClick">
+        {{title==''?'全部人员':title}}
+        <image src="../../../images/icon/arrowDown.png" class="arrow-down"></image>
+    </picker>
+    <scroll-view scroll-y class="scroll2" style='height:{{height}}px'>
+        <view id='first'></view>
+        <view class="flow-card" wx:for="{{table2Data}}" wx:if="{{item.show}}">
+            <view class="card-header">
+                <view class="card-icon" bindtap="showCard" data-index="{{index}}">
+                    <image src="../../../images/icon/downRadio.png" class="card-image-icon" wx:if="{{item.isShow}}" mode="widthFix">
+                    </image>
+                    <image src="../../../images/icon/upRadio.png" class="card-image-icon" wx:else mode="widthFix">
+                    </image>
+                </view>
+                <view class="card-time" bindtap="showCard" data-index="{{index}}">{{item.FlowPath}}</view>
+                <!--<view class="card-flowname"> 新郎化妆</view>-->
+                <view class="card-point" bindtap="showPopup" hidden="{{showEdit}}" data-id="{{index}}">
+                    <image src="../../../images/icon/threePiont.png" class="card-image-point" mode="widthFix">
+                    </image>
+                </view>
+            </view>
+            <view class="card-main {{item.isShow?'animate1':'animate2'}} ">
+                <!--{{isBorder?'noBorder':''}}-->
+                <view class="card-li">
+                    <view class="card-down">流程：
+                        <input class="linput" bindblur='text' disabled="{{disable}}" data-type="FlowPath" data-index="{{index}}"
+                            type="text" value="{{item.FlowPath}}" />
+                    </view>
+                    <!--<view class="card-down">内容：<input  class="linput" type="text" value="{{value}}"/></view>-->
+                    <!-- <view class="card-down">内容：
+                        <view class="linput" bindtap="showArea" data-index="{{index}}">{{item.FlowDetail}}</view>
+                    </view> -->
+                    <view class="card-down">内容：
+                      <view class="linput" data-type="content" disabled="{{disable}}" bindtap="showArea" data-index="{{index}}">{{item.FlowDetail}}</view>
+                  </view>
+<!--                     
+                    <view class="card-up-right">人员：
+                        <input class="sinput" disabled="{{disable}}" bindblur='text' data-type="Personnel" data-index="{{index}}"
+                            type="text" value="{{item.Personnel}}" />
+                    </view>
+                    <view class="card-up-left">物品：
+                        <input class="sinput" disabled="{{disable}}" bindblur='text' data-type="Article" data-index="{{index}}"
+                            type="text" value="{{item.Article}}" />
+                    </view> -->
+                </view>
+                <view class="card-li">
+                  <view class="card-down">人员：
+                    <view class="linput" data-type="ry" disabled="{{disable}}" bindtap="showArea" data-index="{{index}}">{{item.Personnel}}</view>
+                  </view>
+                  <view class="card-down">物品：
+                    <view class="linput" data-type="wp" disabled="{{disable}}" bindtap="showArea" data-index="{{index}}">{{item.Article}}</view>
+                  </view>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+    <view wx:if="{{isLoad}}">
+        <button class=" {{isShare&&!newbie?'liaojieBtn2':'liaojieBtn1'}} redBtn" wx:if="{{isShare}}" bindtap="backIndex">{{newbie?'回到首页':'了解喜来'}}</button>
+        <button class="redBtn  {{isShare&&newbie?'isShare':''}}" bindtap="edit2" wx:if="{{disable&&newbie}}">编辑</button>
+        <button class="redBtn  {{isShare&&newbie?'isShare':''}}" bindtap="edit2" wx:elif="{{!disable}}">保存</button>
+    </view>
+    <view class="fixBtn">
+        <view class="allClose">
+            <image src="{{allClose?'../../../images/allClose.png':'../../../images/allOpen.png'}}" bindtap="{{allClose?'closeAll':'openAll'}}"></image>
+        </view>
+        <view class="goTop" catchtap="goTop">
+            <image src="../../../images/goTop.png"></image>
+        </view>
+    </view>
+</view>
+
+<view wx:if="{{pages==3}}" class="">
+    <view class="rited page3">
+        <view class="rited-left">仪式后安排</view>
+        <view class="rited-right">
+            <textarea class="textarea_1" bindinput="textareaChange" maxlength='-1' cols="100" disabled="{{disable}}" bindblur='basicText' fixed='true' value="{{planData.Date}}"
+                data-index="planData" data-type="Date" disabled="{{disable}}"></textarea>
+        </view>
+        
+        <!-- <view class="rited-right">
+            <view class="">1.安排主持人通知下午和晚上的安排安排主持人通知下午和晚上的安排</view>
+            <view>2.安排客户敬酒和换装</view>
+            <view>3.告知客户服务结束并填写评价表</view>
+        </view> -->
+    </view>
+    <view wx:if="{{isLoad}}">
+        <button class=" {{isShare&&!newbie?'liaojieBtn2':'liaojieBtn1'}} redBtn" wx:if="{{isShare}}" bindtap="backIndex">{{newbie?'回到首页':'了解喜来'}}</button>
+        <button class="redBtn  {{isShare&&newbie?'isShare':''}}" bindtap="edit2" wx:if="{{disable&&newbie}}">编辑</button>
+        <button class="redBtn  {{isShare&&newbie?'isShare':''}}" bindtap="edit2" wx:elif="{{!disable}}">保存</button>
+    </view>
+</view>
+<popup show="{{isPopup}}" bindshowPopup="showPopup" bindaddPrev="addPrev"></popup>
+<view class='shadw_box' wx:if="{{shadwShow}}">
+    <view class='shadw2'>
+        <text class='second_title shadw2_title'>{{input_title}}</text>
+        <textarea bindinput="textareaChange" maxlength='-1' fixed='true' value='{{input_content}}'></textarea>
+        <button hover-class='none' class='open_button save_button2' bindtap='inputSure'>确定</button>
+    </view>
+    <image class='shadw2_image' bindtap='hideShadw' src='https://xilai99.com/image/img/wj_close.png'></image>
+</view>

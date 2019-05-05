@@ -1,0 +1,99 @@
+/* pages/Administrators/scanStatistic/scanStatistic.wxss */
+
+.statisticMenu {
+  display: flex;
+  justify-content: space-around;
+  font-size: 30rpx;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.active {
+  color: #cd1130;
+  box-sizing: border-box;
+  border-bottom: 1px solid #cd1130;
+  padding-bottom: 30rpx;
+}
+
+.quickDate {
+  border: 1px solid #999;
+  color: #999;
+  font-size: 11px;
+  margin-left: 20px;
+  padding: 2px 8px;
+  border-radius: 21px;
+}
+
+.activedate {
+  color: #cd1130 !important;
+  border: 1px solid #cd1130 !important;
+}
+
+.selectBtn2 {
+  width: 14px;
+  height: 8px;
+  position: absolute;
+}
+.ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break:break-all;
+}
+.line_{
+  display: flex;
+  flex-direction: row;
+
+}
+.line_ .col_name{
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+.line_ .col_name .name_{
+  margin-right: 4px;
+  max-width:150px;
+}
+.line_ .col_name .userIdenriry{
+  font-size: 12px;
+  flex: 1;
+}
+.orange{
+  color: #FF6600
+}
+.green{
+  color: #26B300
+}
+.blue{
+  color: #0081DC
+}
+.gray{
+  color: #bb9860
+}
+.noContent{
+  color: #999;
+  padding-top: 20%;
+  text-align: center;
+}
+
+/*筛选*/
+.selectItem{
+  border: 1px solid #999;
+  color: #999;
+  font-size: 11px;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 21px;
+}
+.dateBox{
+  width:100px;
+  position:relative;
+}
+.selectBtn2{
+  right:0px;
+  position:absolute;
+  top:18px;
+}

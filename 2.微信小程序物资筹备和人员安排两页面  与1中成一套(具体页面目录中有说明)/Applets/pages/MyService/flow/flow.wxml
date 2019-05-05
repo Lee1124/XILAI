@@ -1,0 +1,168 @@
+<nav bindchooseNav="chooseNav" two="{{isTwo}}"> </nav>
+<!--流程基本信息-->
+<form wx:if="{{pages==1}}" action="" bindsubmit="formSubmit">
+    <view class="form-list">
+        <view class="li">
+            <view class="li-name">新郎名称</view>
+            <view class="li-value">
+                <input type="text" value="{{basic.GROOM_NAME}}" name="manName" disabled="true" />
+            </view>
+        </view>
+        <view class="li">
+            <view class="li-name">新郎地址</view>
+            <view class="li-value">
+                <input type="text" name="manAddress" value="{{Data.Date}}" disabled="{{disable}}" placeholder="暂无" bindblur='basicText' data-type="Date" />
+            </view>
+        </view>
+        <view class="li">
+            <view class="li-name">新娘姓名</view>
+            <view class="li-value">
+                <input type="text" name="womanName" value="{{basic.BRIDE_NAME}}" disabled="disable" />
+            </view>
+        </view>
+        <view class="li">
+            <view class="li-name">新娘地址</view>
+            <view class="li-value">
+                <input type="text" name="womanAddress" value="{{Data.FlowPath}}" disabled="{{disable}}" bindblur='basicText' placeholder="暂无"
+                    data-type="FlowPath" />
+            </view>
+        </view>
+        <view class="li">
+            <view class="li-name">婚宴时间</view>
+            <input class=" li-value" mode="date" value="{{basic.OrderDate}}" disabled="true" />
+        </view>
+        <view class="li">
+            <view class="li-name">婚宴酒店</view>
+            <view class="li-value">
+                <input type="text" name="marryAddress" value="{{Data.FlowDetail}}" disabled="{{disable}}" bindblur='basicText' placeholder="暂无"
+                    data-type="FlowDetail" />
+            </view>
+        </view>
+        <view class="li">
+            <view class="li-name">伴郎伴娘</view>
+            <view class="li-value">
+                <input type="text" name="peopleNum" value="{{Data.Personnel}}" disabled="{{disable}}" bindblur='basicText' placeholder='伴郎伴娘数量（对）'
+                    data-type="Personnel" />
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{isLoad}}">
+        <button class="{{isShare&&!newbie?'liaojieBtn2':'liaojieBtn1'}} redBtn" wx:if="{{isShare}}" bindtap="backIndex">{{newbie?'回到首页':'了解喜来'}}</button>
+        <button class="redBtn  {{isShare&&newbie?'isShare':''}}" bindtap="edit2" wx:if="{{disable&&newbie}}">编辑</button>
+        <button class="redBtn  {{isShare&&newbie?'isShare':''}}" bindtap="edit2" wx:elif="{{!disable}}">保存</button>
+    </view>
+</form>
+<!--/当天流程/-->
+
+<view wx:if="{{pages==2}}">
+    <picker class="team-select" range="{{personArray}}" bindchange="statusClick">
+        {{title==''?'全部人员':title}}
+        <image src="../../../images/icon/arrowDown.png" class="arrow-down"></image>
+    </picker>
+    <scroll-view scroll-y enable-back-to-top scroll-into-view="{{set?'first':''}}" class="scroll" style='height:{{height}}px'>
+        <view id='first'></view>
+        <block wx:for="{{table2Data}}">
+            <view data-id="index" class="flow-card" wx:if="{{item.show}}">
+                <view class="card-header">
+                    <view class="card-icon" bindtap="showCard" data-index="{{index}}">
+                        <image src="../../../images/icon/downRadio.png" class="card-image-icon" wx:if="{{!item.isShow}}" mode="widthFix">
+                        </image>
+                        <image src="../../../images/icon/upRadio.png" class="card-image-icon" wx:else mode="widthFix">
+                        </image>
+                    </view>
+                    <view class="card-time" bindtap="showCard" data-index="{{index}}">{{item.Date}}</view>
+                    <view class="card-flowname" bindtap="showCard" data-index="{{index}}">{{item.FlowPath}}</view>
+                    <view class="card-point" bindtap="showPopup" hidden="{{showEdit}}" data-id="{{index}}">
+                        <image src="../../../images/icon/threePiont.png" class="card-image-point" mode="widthFix">
+                        </image>
+                    </view>
+                </view>
+                <view class="card-main {{item.isShow?'animate1':'animate2'}} ">
+                    <!---{{isBorder?'noBorder':''}}-->
+                    <view class="card-li">
+                        <view class="card-up-left">时间：
+                            <!--<input class="sinput" disabled="{{disable}}" data-type="Date" data-index="{{index}}" type="text" value="{{item.Date}}" bindblur='text'  />-->
+                            <input class="sinput" disabled="true" data-type="Date" data-index="{{index}}" type="text" value="{{item.Date}}" bindtap="open"  />
+                        </view>
+                        <view class="card-up-right">流程：
+                            <input class="sinput" disabled="{{disable}}" data-type="FlowPath" data-index="{{index}}" type="text" value="{{item.FlowPath}}" bindblur='text' />
+                        </view>
+                        <view class="card-down">内容：
+                            <view class="linput" data-type="content" disabled="{{disable}}" bindtap="showArea" data-index="{{index}}">{{item.FlowDetail}}</view>
+                        </view>
+                    </view>
+                    <view class="card-li">
+                        <view class="card-down">人员：
+                          <view class="linput" data-type="ry" disabled="{{disable}}" bindtap="showArea" data-index="{{index}}">{{item.Personnel}}</view>
+                        </view>
+                        <view class="card-down">物品：
+                          <view class="linput" data-type="wp" disabled="{{disable}}" bindtap="showArea" data-index="{{index}}">{{item.Article}}</view>
+                        </view>
+                        <view class="card-down">备注：
+                            <view class="linput" data-type="remark" disabled="{{disable}}" bindtap="showArea" data-index="{{index}}">{{item.Remarks}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </scroll-view>
+    <view wx:if="{{isLoad}}">
+        <button class=" {{isShare&&!newbie?'liaojieBtn2':'liaojieBtn1'}} redBtn" wx:if="{{isShare}}" bindtap="backIndex">{{newbie?'回到首页':'了解喜来'}}</button>
+        <button class="redBtn  {{isShare&&newbie?'isShare':''}}" bindtap="edit2" wx:if="{{disable&&newbie}}">编辑</button>
+        <button class="redBtn  {{isShare&&newbie?'isShare':''}}" bindtap="edit2" wx:elif="{{!disable}}">保存</button>
+    </view>
+
+    <view class="fixBtn">
+        <view class="allClose">
+            <image src="{{allClose?'../../../images/allClose.png':'../../../images/allOpen.png'}}" bindtap="{{allClose?'closeAll':'openAll'}}"></image>
+        </view>
+        <view class="goTop" catchtap="goTop">
+            <image src="../../../images/goTop.png"></image>
+        </view>
+    </view>
+</view>
+<popup show="{{isPopup}}" bindshowPopup="showPopup" bindaddPrev="addPrev"></popup>
+<view class='shadw_box' wx:if="{{shadwShow}}">
+    <view class='shadw2'>
+        <text class='second_title shadw2_title'>{{input_title}}</text>
+        <textarea bindinput="textareaChange" maxlength='-1' fixed='true' value='{{input_content}}'></textarea>
+        <button hover-class='none' class='open_button save_button2' bindtap='inputSure'>确定</button>
+    </view>
+    <image class='shadw2_image' bindtap='hideShadw' src='https://xilai99.com/image/img/wj_close.png'></image>
+</view>
+
+<view class="pickerview" wx:if="{{pickerview}}">
+    <view class="mask"></view>
+    <view class="box_1">
+        <view class="title_1">
+            <text bindtap="close_1">取消</text>
+            <text>请等待时间停稳后再确定</text>
+            <text bindtap="close_2">确定</text>
+        </view>
+        <picker-view class="picker_view text_center" indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value1}}" bindchange="bindChange">
+                                <picker-view-column >
+                                    <view wx:for="{{xiaoshi}}" style="line-height: 50px">{{item}}</view>
+                                </picker-view-column>
+                                <picker-view-column>
+                                     <view wx:for="{{dian}}" style="line-height: 50px">{{item}}</view>
+                                </picker-view-column>
+                                <picker-view-column>
+                                    <view wx:for="{{fenzhong}}" style="line-height: 50px">{{item}}</view>
+                                </picker-view-column>
+                                <picker-view-column>
+                                     <view wx:for="{{zhi}}" style="line-height: 50px">{{item}}</view>
+                                </picker-view-column>
+                                <picker-view-column>
+                                    <view wx:for="{{xiaoshi_1}}" style="line-height: 50px">{{item}}</view>
+                                </picker-view-column>
+                                <picker-view-column>
+                                     <view wx:for="{{dian}}" style="line-height: 50px">{{item}}</view>
+                                </picker-view-column>
+                                <picker-view-column>
+                                    <view wx:for="{{fenzhong_1}}" style="line-height: 50px">{{item}}</view>
+                                </picker-view-column>
+        </picker-view>
+    </view>
+    
+</view>
+                            

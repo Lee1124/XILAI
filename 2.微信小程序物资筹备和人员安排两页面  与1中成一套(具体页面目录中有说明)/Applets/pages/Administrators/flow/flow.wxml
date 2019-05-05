@@ -1,0 +1,79 @@
+<!--pages/Administrators/flow/flow.wxml-->
+    <!--全部-->
+    <view wx:if="{{ismanage}}" class="li" bindtap="goMyFlow"  data-type='5' data-title="所有流量">
+        <view data-type='5' data-title="所有流量">
+            所有流量
+        </view>
+        <view data-type='5' data-title="所有流量">
+            {{managedata.allCount}}
+            <image data-type='5' data-title="所有流量" class="left_1" src="../../../images/right.png" />
+        </view>
+    </view>
+    <view wx:if="{{ismanage}}" class="li" bindtap="goMyFlow" data-type='4' data-title="非分享所得">
+        <view data-type='4' data-title="非分享所得">
+            非分享所得流量
+        </view>
+        <view data-type='4' data-title="非分享所得">
+            {{managedata.allCount-shop_obj.TotalTraffic}}
+            <image data-type='4' data-title="非分享所得" class="left_1" src="../../../images/right.png" />
+        </view>
+    </view>
+
+    <view wx:if="{{!ismanage}}" class="li" bindtap="goMyFlow" data-type='1' data-title="所有流量">
+        <view data-type='1' data-title="所有流量">
+            所有流量
+        </view>
+        <view data-type='1' data-title="所有流量">
+            {{shop_obj.TotalTraffic}}
+            <image data-type='1' data-title="所有流量" class="left_1" src="../../../images/right.png" />
+        </view>
+    </view>
+
+    <view class="list_1 {{item.BranchTrafficCount!=0 && !item.open ? 'border_bottom' : ''}}" wx:for="{{list}}" wx:key="index">
+        <view class="title_1" >
+            <view>
+                <text>{{item.BranchName}}</text>
+                <text>（{{item.BranchTrafficCount}}）</text>
+            </view>
+            <view wx:if="{{item.BranchTrafficCount!=0}}" bindtap="open" data-index="{{index}}" data-obj="{{item}}">
+                {{!item.open ? '收起' : '展开'}}
+            </view>
+        </view>
+        <view class="list_2" wx:if="{{item.BranchTrafficCount!=0}}" style="height:{{item.height}}rpx">
+            <view data-item="{{item}}" bindtap="gogoMyFlow_1">
+                <view data-item="{{item}}">
+                    全部人员
+                </view>
+                <view data-item="{{item}}">
+                    {{item.BranchTrafficCount}}
+                    <image class="left_1" src="../../../images/right.png" />
+                </view>
+            </view>
+            <view data-item="{{item}}" wx:for="{{item.userList}}" bindtap="gogoMyFlow_2">
+                <view data-item="{{item}}">{{item.UserName}}</view>
+                <view data-item="{{item}}">
+                    {{item.UserTrafficCount}}
+                    <image class="left_1" src="../../../images/right.png" />
+                </view>
+            </view>
+        </view>
+    </view>
+    <!--昨日-->
+    <!--<view class="list_1 {{item.open ? 'active' : ''}}" wx:for="{{list}}" wx:key="index">
+        <view class="title_1" >
+            <view>
+                <text>{{item.BranchName}}</text>
+                <text>（{{item.BranchTrafficYseCount}}）</text>
+            </view>
+            <view bindtap="tapname" data-index="{{index}}" data-obj="{{item}}">
+                展开
+            </view>
+        </view>
+        <view class="list_2">
+            <view wx:for="{{item.userYesList.UserLists}}">
+                <text>{{item.NickName}}</text>
+                <text>{{item.UserTrafficCount}}</text>
+            </view>
+        </view>
+    </view>-->
+    

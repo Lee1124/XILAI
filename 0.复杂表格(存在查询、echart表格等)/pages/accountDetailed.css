@@ -1,0 +1,274 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+select ,button,input{
+    outline: none!important;
+}
+
+
+select option {
+    border: 1px solid #DDDDDD;
+}
+
+body .demo-class .layui-layer-title {
+    background: linear-gradient(0deg, rgba(248, 248, 248, 1), rgba(248, 248, 248, 1));
+    height: 44px;
+}
+
+/*accountDetailed详情页面*/
+#accountDetailedBody {
+    padding: 0 20px 10px;
+}
+
+.header_search {
+    padding: 10px 0;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.header_search form {
+    display: flex;
+    align-items: center;
+}
+
+.header_search form label {
+    font-size: 13px;
+    margin: 0 10px 0 15px;
+}
+
+.header_search form label:first-child {
+    margin-left: 0;
+}
+
+.header_search form select {
+    width: 100px;
+    height: 28px;
+    border: 1px solid rgba(221, 221, 221, 1);
+}
+
+.header_search form input[type="text"] {
+    width: 180px;
+    height: 26px;
+    border: 1px solid rgba(221, 221, 221, 1);
+    outline: none;
+    margin: 0 15px;
+}
+
+.header_search form input[type="button"] {
+    width: 50px;
+    height: 28px;
+    color: #fff;
+    font-size: 13px;
+    background: linear-gradient(0deg, rgba(187, 152, 96, 1), rgba(214, 178, 121, 1));
+    border: 0;
+    cursor: pointer;
+}
+.header_search form {
+    position: relative;
+}
+.header_search form input.dataStatistics {
+    width: 76px;
+    height: 28px;
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    margin-top: -14px;
+}
+#app {
+    position: relative;
+}
+/*eChart图标*/
+#eChart-main {
+    width: 100%;
+    height: 740px;
+    position: absolute;
+    top: 50px;
+    background: #fff;
+}
+.hideEChart {
+    z-index: -1;
+    opacity: 0;
+    transition: all .1s;
+}
+.blockEChart {
+    z-index: 9999;
+    opacity: 1;
+    transition: all .2s;
+}
+
+/*数据列表部分*/
+.content_dataList {
+    margin: 20px 0;
+    cursor: pointer;
+    width: 400px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.content_dataList span {
+    font-size: 14px;
+    color: #BB9860;
+
+}
+
+.content_dataList span:nth-of-type(1) {
+    flex-basis: 25%;
+    text-align: left;
+}
+
+.content_dataList span:nth-of-type(2) {
+    flex-basis: 25%;
+    text-align: right;
+    margin: 0 15px 0 0;
+    /*padding-right: 10px;*/
+}
+
+.content_dataList span:nth-of-type(3) {
+    flex-basis: 22%;
+    text-align: right;
+    margin-right: 5px;
+}
+.content_dataList span:nth-of-type(4) {
+    flex-basis: 5%;
+}
+
+
+.tableData {
+    width: 100%;
+    border: 1px solid #D9D7D5;
+}
+
+.tableData thead tr {
+    height: 38px;
+    background: #AD9F87;
+    font-size: 14px;
+    color: #fff;
+}
+
+.tableData_box02 thead tr {
+    color: #666;
+}
+
+.tableData tbody tr {
+    height: 38px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.tableData_box02>table>tbody>tr:hover td{
+    color: #BB9860;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse!important;
+}
+
+.tableData tr th, .tableData tr td {
+    border: 1px solid #D9D7D5;
+}
+
+.downIcon {
+    transition: all .3s;
+}
+
+.table01_tr {
+    cursor: pointer;
+}
+
+    /*最内层表格*/
+.tableData_box02 {
+    padding: 5px 15px!important;
+    background: #F2F2F2;
+}
+
+.tableData_box02 .tableData thead tr {
+    background: #ECECEC;
+    height: 35px;
+    color: #666;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.tableData_box02 .tableData tbody tr {
+    height: 34px;
+    color: #444;
+    font-size: 13px;
+}
+
+.class-a {
+    color: red;
+}
+
+.class-b {
+    color: #000;
+}
+
+.noStyle {
+    background: #fff;
+}
+
+.yesStyle {
+    background: #F8F8F8;
+    display: none;
+    position: relative;
+}
+
+.showIsJiSuanJinE {
+    background: #F2F2F2;
+    height: 40px;
+    line-height: 40px;
+    color: #999999;
+    cursor: pointer;
+}
+
+.showIsJiSuanJinE img {
+    transform: rotate(180deg);
+    margin-top: -4px;
+    transition: all .3s
+}
+
+.showNoNum {
+    display: none;
+}
+
+.tableData_box > table > tbody > tr:nth-of-type(4n) {
+    background: #F1F0ED;
+}
+
+.tableData_box > table > tbody>tr>td {
+    font-size: 13px;
+    color: #222;
+}
+
+.isChaoQiBaoZhang {
+    color: #FF0000;
+}
+
+.showBox {
+    /*position: relative;*/
+    width: 143px;
+    position: absolute;
+    margin-top: -85px;
+    margin-left: 16%;
+}
+
+.showBox span {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    font-size: 12px;
+    width: 70%;
+    color: #222222;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.showBox img {
+    vertical-align: middle;
+}
+

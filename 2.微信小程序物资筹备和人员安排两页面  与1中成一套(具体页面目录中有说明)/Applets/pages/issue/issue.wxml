@@ -1,0 +1,44 @@
+<!--pages/issue/issue.wxml-->
+<view class="content">
+  <view class='top_view'>
+    <input type="text" placeholder="需要一个充满爱的标题..." bindinput="getTitle" />
+    <textarea placeholder="需要一段描述的文字" bindinput="getContent"></textarea>
+  </view>
+  <view class="bd8"></view>
+  <view class='footer_view'>
+    <view class="images-list" wx:if="{{type}}">
+      <block wx:for="{{imgList}}">
+        <view class="image-content">
+          <image bindtap='scan' data-src='{{item.img}}' src="{{item.img}}" class="add-image">
+          </image>
+          <image class="del-image" src="/images/icon/del.png" style="" catchtap="delImage" data-index="{{index}}"></image>
+        </view>
+      </block>
+      <view class="image-content">
+        <image src="/images/add.png" class="add-image" bindtap="chooseImage"></image>
+      </view>
+    </view>
+    <view class="video-list" wx:else>
+      <view wx:if="{{videoSrc!=''}}" class="video">
+        <video src="{{videoSrc}}"></video>
+        <cover-image bindtap='delVideo' class="del-image" src="/images/icon/del.png"></cover-image>
+      </view>
+      <view class="">
+        <image src="/images/add.png"  class="add-image-video" bindtap="chooseVideo"></image>
+      </view>
+    </view>
+    <view class="btn" bindtap="save">保存</view>
+     
+  </view>
+  <view class="bd8"></view>
+  <view class="labelContent">
+    <view>
+      <label class="title">标签搜索</label>
+      <!-- <label class="tips">自定义标签</label> -->
+    </view>
+    <view class="labelList">
+      <a class="lab {{item.ischoie ? 'isActiveLab': ''}}" wx:for="{{labelList}}" bindtap="choieLabel" data-item="{{item}}">{{ item.name }}</a>
+    </view>
+  </view>
+<canvas canvas-id="photo_canvas" style="width:800px;height:640px;position: absolute;top:-900px;"></canvas>
+</view>

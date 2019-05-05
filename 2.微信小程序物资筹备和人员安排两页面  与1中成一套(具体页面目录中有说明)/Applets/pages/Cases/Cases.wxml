@@ -1,0 +1,94 @@
+<!--pages/Cases/Cases.wxml-->
+<import src="../template/template.wxml" />
+<template is="userToggle" data="{{userToggle}}" />
+<template is="header" data="{{header}}" />
+<template is="tabbar" data="{{tabbar,unread}}" />
+<!--搜索-->
+<view class="search-div" bindtap='go_search' wx:if="{{ active=='new' }}" data-searchKey="{{searchKey}}">
+  <image src="/images/icon/search.png"></image>
+  <input placeholder='搜索...' value="{{ searchKey }}" disabled='disabled'></input>
+</view>
+<view class="nav" style='{{isXinRen?"margin-top:46px;":""}}'>
+  <view data-case="new" bindtap="togglepage" class="nav-new {{active=='new'?'active':''}}">最新案例</view>
+  <view data-case="old" bindtap="togglepage" class="nav-old {{active=='old'?'active':''}}">经典案例</view>
+</view>
+<!--回到顶部-->
+<view class="go_top" bindtap='goToHeader' wx:if="{{caseList.length > 1 && active=='new'}}">
+  <image src='/images/icon/up_.png'></image>
+  <view >顶部</view>
+</view>
+<!--暂无内容-->
+<view class="noContent" wx:if="{{caseList.length == 0 && active=='new'}}">
+    暂无“{{ searchKey }}”相关的案例
+</view>
+<view class="content" hidden="{{active!='old'}}" wx:if="{{ceshi}}">正在加载</view>
+<view class="content" hidden="{{active!='old'}}" wx:if="{{!ceshi}}" style='{{isXinRen?"padding-top:88px;":""}}'>
+  <!-- <loading wx:if="{{loading}}">加载中</loading> -->
+  <view wx:for="{{caseArr}}" wx:key="index">
+    <navigator url='../Casexq/Casexq?id={{item.id}}'>
+      <image mode="aspectFill" style="display: block; height:210px;" data-index='{{index}}' src='{{caseArr[index]?item.img:defaultimg}}' class='fade_in'></image>
+      <!-- bindload='loadimg' mode="aspectFill" data-urls='{{item.imglist}}' data-url='{{defaultimg}}' -->
+    </navigator>
+    <view class='case_content'>
+      <view class='case_bt'>
+        <text>{{item.title}}</text>
+      </view>
+      <view class='case_ct'>
+        <text>{{item.str}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="content-new" hidden="{{active=='old'}}" style="{{isXinRen?'padding-top:88px;':''}} {{isPermission?'padding-bottom:170rpx;':'padding-bottom:90rpx;'}}" >
+  <block wx:for="{{caseList}}">
+    <view class="case-list">
+      <view class="case-title">
+        <view class="case-text">{{item.title}}</view>
+        <view class="case-edit-image" bindtap='operation' data-index='{{index}}' wx:if="{{isPermission}}">
+          <image src="../../images/icon/threePiont.png" class="card-image-point" mode="widthFix">
+          </image>
+        </view>
+      </view>
+      <view class="case-content">
+        <view class="text">
+          <text>{{item.content}}</text>
+        </view>
+
+        <view class="video" wx:if="{{item.isvideo}}" data-id="{{item.id}}" bindtap="videoPlay">
+          <view wx:if="{{item.isFirstVideo && item.index == 0 && !item.userToggle}}">
+            <video wx:if="{{curr_id == item.id}}" id="myVideo" src="{{item.img}}" poster="/images/video_bg.png" objectFit="cover" controls></video>
+            <view wx:else class="showVideoImg">
+              <image class="model-img" mode="aspectFill" src="/images/video_bg.png"></image>
+              <view class="model-btn">
+                <view class="play-icon"></view>
+              </view>
+            </view>
+          </view>
+          <view wx:else>
+            <video src="{{item.img}}"> </video>
+          </view>
+        </view>
+        <view class="image-list" wx:else>
+          <!-- <block wx:for="{{item.imglist}}"> -->
+          <image data-url='{{x}}' data-urls='{{item.imglist}}' data-anliid='{{item.id}}' wx:for-item="x" bindtap='loadimg' wx:for='{{item.imglist}}' data-index='{{index}}' src='{{x?x:defaultimg}}' class='fade_in' mode="aspectFill" lazy-load='true'></image>
+          <!-- </block> -->
+        </view>
+      </view>
+      <view class="case-footer">
+        <view class="case-time">{{item.time}}
+        </view>
+        <view class="talk" bindtap='zixun' data-index='{{index}}' data-id='{{item.id}}'>
+          <image class='icon' src="/images/icon/message.png"></image>咨询</view>
+        <!-- <view class="case-share"><image class='icon'src="/images/caseShare.png"></image>分享</view> -->
+      </view>
+    </view>
+    <view class="border5"></view>
+  </block>
+
+  <button class="add-case-btn" bindtap="addCase" wx:if="{{isPermission}}">添加最新案例</button>
+  
+  <!--<popup show="{{addPopup}}"></popup>-->
+</view>
+
+<!-- 引入图片预加载组件 -->
+<import src="/pages/img-loader/img-loader.wxml" />

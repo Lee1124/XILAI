@@ -1,0 +1,279 @@
+/* pages/MyService/ designPlan/ designPlan.wxss */
+/* 图片样式 */
+@import "/pages/template/template.wxss";
+
+.header_box navigator{
+  margin-left:25%;
+
+}
+image
+{
+  width:48%;
+  height:170px;
+  margin-left:5px;
+}
+.header {
+  border-top:1px solid #ddd;
+padding-top:5px;
+padding-bottom:100rpx;
+
+}
+.footer{
+  border-top: 1px solid #eee;
+   display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 998;
+    width: 100%;
+    height: 100rpx;
+  background: white;
+}
+.sjyq image{
+ width:15px;
+height:18px;
+display:block;
+margin:auto;
+margin-top:10px;
+
+}
+.sjyq{
+  width: 20%;
+}
+.sjyq text{
+  font-size: 11px;
+  color:#222;
+  display: flex;
+  justify-content: center;
+}
+.xxg{
+  width: 45%;
+  background-color: #222;
+}
+.xxg text{
+  color: #eee;
+  font-size: 16px;
+    display: flex;
+  justify-content: center;
+  line-height: 100rpx;
+}
+.qr
+{
+  background-color: #cd1130;
+   width: 45%;
+}
+.qr text{
+  color: #eee;
+  font-size: 16px;
+    display: flex;
+  justify-content: center;
+  line-height: 100rpx;
+}
+.slide{
+  border: 1px solid red;
+  position: fixed;
+  bottom: 100rpx;
+  width: 100%;
+  height: 40%;
+  background: white;
+  z-index: 997;
+}
+.slide_head{
+  height: 20%;
+  border-bottom: 1px solid #eee;
+  margin:0px 10px;
+
+}
+.slide_head text{
+  font-size: 15px;
+  color:#222;
+  line-height: 50px;
+}
+#close{
+  color: #cd1130;
+  float: right;
+}
+.sjyq_slide text{
+  font-size: 13px;
+  color:#222;
+  margin-left:15px;
+
+}
+.sjyq_slide text:first-child{
+border:1px solid red;
+color:#cd1130;
+padding:3px 10px;
+font-size:12px;
+    box-sizing: border-box;
+}
+.sjyq_slide view{
+  margin-top: 25px;
+}
+.sjyq_slide,.xxg_slide{
+  height:80%;
+
+}
+.zz{
+  width:100%;
+height:100%;
+position:absolute;
+top:0;
+background:rgba(0,0,0,.7);
+z-index: 99;
+}
+.noscroll {
+  position: fixed;
+}
+.textarea
+{
+  font-size:13px;
+  color: #999;
+}
+textarea
+{
+  width:92%;
+  height: 160px;
+  padding:15px;
+  padding-right:15px;
+  font-size:14px;
+  color: #222;
+  box-sizing: border-box;
+}
+.shuru{
+  background-color: #eee;
+  line-height: 20px;
+  position:fixed;
+width:100%;
+bottom:100rpx;
+
+}
+.shuru image{
+width:30px;
+height:30px;
+margin:8px;
+}
+.shuru input{
+  display:inline-block;
+background-color:#fff;
+border-radius:5px;
+width:310px;
+margin-bottom:10px;
+}
+
+
+
+
+
+
+
+/*杨森增加样式*/
+.toast{
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 60rpx;
+    background: #DDDDDD;
+    font-size: 26rpx;
+    display: flex;
+    flex-direction: row;
+    z-index: 999;
+}
+.swiper-height{
+    height: 400rpx;
+}
+.toast-title{
+    margin-left: 20rpx;
+    margin-right: 10rpx;
+    text-align: center;
+    color:red;
+    line-height: 60rpx;
+}
+.toast-text{
+    color:#222;
+    text-align: left;
+    line-height: 60rpx;
+    flex: 1;
+}
+.zan-icon{
+    width: 40rpx;
+    margin-right: 20rpx;
+    line-height: 60rpx;
+}
+
+.swiper-image{
+  width: 710rpx;
+  margin:20rpx 20rpx 0;
+  height: 400rpx;
+}
+.plan-title{
+    width: 100%;
+    margin-top: 20rpx;
+    margin-bottom: 16rpx;
+    height: 52rpx;
+    box-sizing: content-box;
+    padding-left: 20rpx;
+    font-size: 32rpx;
+    line-height: 52rpx;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.plan-content{
+    font-size:28rpx;
+    line-height: 28rpx;
+    box-sizing: border-box;
+    padding-left: 20rpx;
+    text-align: left;
+    color: #888;
+    box-sizing: border-box;
+}
+
+
+.footer-master,.footer-guest{
+    width: 100%;
+    height: 98rpx;
+    line-height: 98rpx;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+ .footer-master .talk{
+     box-sizing: border-box;
+     border-top: 1px solid #ddd;
+    width: 220rpx;
+     height: 98rpx;
+     background: #FFFFFF;
+     color:#222222;
+     font-size: 30rpx;
+}
+.footer-master .confirmDesign{
+    flex: 1;
+    background: #CD1130;
+    color:#fff;
+    font-size: 30rpx;
+}
+.footer-guest .know,.footer-guest .talk{
+    box-sizing: border-box;
+    border-top: 1px solid #ddd;
+    width: 220rpx;
+    height: 98rpx;
+    background: #FFFFFF;
+    color:#222222;
+    font-size: 30rpx;
+
+}
+.know{
+    border-right: 1px solid #ddd;
+}
+.footer-guest .confirmDesign{
+    flex: 1; background: #CD1130;
+    color:#fff;
+    font-size: 30rpx;
+}
+.sheji{
+border-bottom:3px solid #f3f3f3;
+padding-bottom:10px;
+
+}

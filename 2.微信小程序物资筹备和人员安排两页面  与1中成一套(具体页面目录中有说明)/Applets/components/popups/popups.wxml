@@ -1,0 +1,12 @@
+<!--components/popups/popups.wxml-->
+<view class="popup {{show?'hidden':''}}"  >
+    <view class="popup-mask" bindtap="showPopup"></view>
+    <view class="popup-container {{show?'showpopup':''}}">
+        <view class="popup-list ">
+            <view bindtap="addPrev">在上方添加新流程</view>
+            <view bindtap="addNext">在下方添加新流程</view>
+            <view bindtap="delThis">删除流程</view>
+        </view>
+        <view class="popup-btn">取消</view>
+    </view>
+</view>

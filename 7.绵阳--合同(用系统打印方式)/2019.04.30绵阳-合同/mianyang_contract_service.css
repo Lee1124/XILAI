@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: '微软雅黑';
+}
+
+input {
+    outline: none;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid #000;
+    text-align: center;
+    /*font-weight: 700;*/
+    font-size: 15px;
+}
+
+#app {
+    position: relative;
+}
+
+.shadow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+}
+
+body {
+    padding: 10px 120px 100px;
+}
+
+.radioInput {
+    width: 16px;
+    height: 16px;
+    -webkit-appearance: none;
+    border: 1px solid #000;
+    outline: none;
+    vertical-align: -2px;
+    cursor: pointer;
+}
+
+.before {
+    position: relative;
+}
+
+.radio01, .radio02 {
+    font-size: 16px;
+    position: absolute;
+    font-weight: 700;
+}
+
+.radio01 {
+    left: -8px;
+}
+
+.radio02 {
+    left: 55px;
+}
+
+.radioInput:nth-child(1)::after {
+    visibility: hidden;
+}
+
+.clearfloat:after {
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0
+}
+
+#app .width240 {
+    width: 240px;
+}
+
+#app .width165 {
+    width: 228px;
+}
+
+#app .width230 {
+    width: 230px;
+}
+
+#app .width200 {
+    width: 200px;
+}
+
+#app .width150 {
+    width: 150px;
+}
+
+#app .width110 {
+    width: 165px;
+}
+
+#app .width100 {
+    width: 100px;
+}
+
+#app .width55 {
+    width: 90px;
+}
+
+#app .width55 {
+    width: 90px;
+}
+
+#app .width45 {
+    width: 60px;
+}
+
+#app .marginBottomDisplayBlock {
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+#app .marginTop20 {
+    margin-top: 20px;
+}
+
+#app .textIndent2em {
+    text-indent: 2em;
+}
+
+.textRight {
+    text-align: right;
+}
+
+.marginTop50 {
+    margin-top: 50px;
+}
+
+#app .fontWeight700 {
+    font-weight: 700;
+}
+
+.editable {
+    display: inline-block;
+    border-bottom: 1px solid #000 !important;
+    outline: none;
+    text-align: center;
+}
+
+.header_top {
+    padding: 50px 0 30px;
+    border-bottom: 1px solid #000;
+    text-align: center;
+    position: relative;
+}
+
+.header_top .num {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    color: #bbbbbb;
+}
+
+.header_bottom {
+    color: #222;
+    font-size: 21px;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: 700;
+}
+
+.content-01-inner, .content-02-inner, .content-03-inner,
+.content-04-inner, .content-06-inner, .content-07-inner,
+.content-08-inner, .content-09-inner，.content-10-inner {
+    margin-bottom: 10px;
+}
+
+.content-inner label {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.content-01-inner input {
+    width: 200px;
+}
+
+.content-01 span {
+    font-size: 16px;
+}
+
+.content-01-inner-yi-01 {
+    padding-left: 2em;
+}
+
+.common-text {
+    text-indent: 2em;
+    display: inline-block;
+    line-height: 26px;
+}
+
+.common-text-noIndent {
+    text-indent: 0;
+    display: inline-block;
+    line-height: 26px;
+}
+
+/*打印按钮*/
+.all_float {
+    position: fixed;
+    right: 63px;
+    top: 65px;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    line-height: 48px;
+    background: #BB9860;
+    border-radius: 100%;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+}
+
+@media print {
+
+    .header_top {
+        position: fixed;
+        top: 0;
+        left: 40px;
+        right: 40px;
+    }
+
+    .header_bottom {
+        padding: 20px 0 0;
+    }
+
+    body {
+        padding: 120px 50px 0;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .all_float {
+        display: none;
+    }
+
+    #app .width55 {
+        width: 55px;
+    }
+
+    #app .width45 {
+        width: 40px;
+    }
+
+    #app .width165 {
+        width: 165px;
+    }
+
+    #app .width150 {
+        width: 160px;
+    }
+
+    #app .width110 {
+        width: 110px;
+    }
+
+    .marginTop140 {
+        margin-top: 140px;
+        display: inline-block;
+    }
+
+}

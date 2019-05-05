@@ -1,0 +1,92 @@
+/* pages/Administrators/pointList/pointList.wxss */
+
+.balance {
+  position: absolute;
+  top: 100rpx;
+  height: 140px;
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  margin: 0 65rpx;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  padding: 30rpx;
+}
+
+.rightImg {
+  display: inline-block;
+  margin-left: 5px;
+  width: 16rpx;
+  height: 26rpx;
+}
+
+.amount {
+  display: flex;
+  justify-content: center;
+  color: #333;
+  font-weight: bold;
+}
+
+.rechargeBtn {
+  text-align: center;
+  font-size: 28rpx;
+  color: #eb8778;
+  margin: 0rpx 200rpx;
+  border: 1px solid;
+  padding: 6rpx 0;
+}
+
+.content {
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  background: #fff;
+  position: absolute;
+  top: 22vh;
+  width: 100%;
+}
+
+.detailTitle {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px 10px;
+  font-size: 30rpx;
+  color: #666;
+  margin-top: 200rpx;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0;
+}
+
+.active {
+  color: #eb8778;
+  padding-bottom: 30rpx;
+  border-bottom: 1px solid#EB8778;
+}
+
+.listInfo {
+  display: flex;
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.pointDetail {
+  line-height: 36px;
+  position: absolute;
+  right: 32rpx;
+  color: #888;
+}
+
+.rightBtn {
+  width: 20rpx;
+  height: 32rpx;
+  position: absolute;
+  right: 0px;
+  top: 46rpx;
+}
+
+.noContent {
+  text-align: center;
+  margin-top: 90px;
+  font-size: 30rpx;
+  color: #999;
+}

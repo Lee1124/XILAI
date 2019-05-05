@@ -1,0 +1,136 @@
+<!--pages/personInfo/personInfo.wxml-->
+<!-- <import src="../template/template.wxml" /> -->
+<view class="wrap">
+  <!--个人资料-->
+  <view class="personInfo">
+    <view class="title_">个人信息</view>
+    <view class="info_">
+      <view>
+        昵称：
+        <label wx:if='userInfo_.UserNickName'>{{userInfo_.UserNickName}}</label>
+      </view>
+      <view>
+        性别：
+        <label wx:if='userInfo_.UserGender'>{{userInfo_.UserGender}}</label>
+      </view>
+      <view>
+        城市：
+        <label wx:if='userInfo_.UserCity'>{{userInfo_.UserCity}}</label>
+      </view>
+      <view>
+        手机：
+        <label wx:if='userInfo_.UserPhone'>{{userInfo_.UserPhone}}</label>
+      </view>
+      <view>
+        来源：
+        <label wx:if='userInfo_.FromStr'>{{userInfo_.FromStr}}</label>
+      </view>
+      <view>
+        类型：
+        <label wx:if='userInfo_.UserType'>{{userInfo_.UserType}}</label>
+      </view>
+    </view>
+    <view class="border2"></view>
+  </view>
+  <!--浏览足迹-->
+  <view class="browseContent" wx:if="{{userLookDetail && userLookDetail.length !=0 }}">
+    <view class="title_">浏览足迹</view>
+    <view class="contents" wx:for="{{userLookDetail}}">
+      <view class="time_ color999">{{item.LookTime}}</view>
+      <view class="words" wx:for="{{item.lookDetailType}}">
+        <!--拨打电话-->
+        <view wx:if="{{item.Type=='3'}}">
+          <view class="title_ tit_">
+            <label class="point"></label>
+            <label class="tit_lab">{{item.TypeStr}}</label>
+          </view>
+          <view class="paddingL contentWords">
+            <view wx:for="{{item.lookDetail}}">{{item.Content}}</view>
+          </view>
+        </view>
+        <!--店铺 - 获取位置-->
+        <view wx:if="{{item.Type=='5'}}">
+           <view class="title_ tit_">
+            <label class="point"></label>
+            <label class="tit_lab">{{item.TypeStr}}</label>
+          </view>
+          <view class="paddingL contentWords">
+            <view wx:for="{{item.lookDetail}}">{{item.Content}}</view>
+          </view>
+        </view>
+        <!--最新案例-->
+        <view wx:if="{{item.Type==1}}">
+          <view class="title_ tit_">
+            <label class="point"></label>
+            <label class="tit_lab">{{item.TypeStr}}</label>
+          </view>
+          <scroll-view scroll-x="{{hasscroll}}" style='margin-left:12px'>
+            <view scroll-x="{{hasscroll}}" class="paddingL itemBox">
+              <view class="item zxal" wx:for="{{item.lookDetail}}" bindtap='showCase' data-item="{{item}}">
+                <view class="itemLab ellipsis">{{item.Title}}</view>
+                <view class="left_right">
+                  <view class="wordLeft color999 ellipsis3">{{item.Content}}</view>
+                  <!--图片-->
+                  <image src="{{item.ImgUrl[0].ImgUrl}}" wx:if="{{item.IsVideo==false}}"></image>
+                  <!--视频-->
+                  <image src="/images/isvideo.jpg" wx:if="{{item.IsVideo}}"></image>
+                </view>
+                <video wx:if="{{curr_id == item.NewGuid}}" id="myVideo" class="myVideo" webkit-playsinline="true" x-webkit-airplay="true" 
+                playsinline="true" bindended="videoEnd"
+                preload="auto" src="{{item.ImgUrl[0].ImgUrl}}" objectFit="cover" controls></video>
+
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+        <!--经典案例-->
+        <view wx:if="{{item.Type == 2}}">
+          <view class="title_ tit_">
+            <label class="point"></label>
+            <label class="tit_lab">{{item.TypeStr}}</label>
+          </view>
+          <scroll-view scroll-x="true" style='margin-left:12px'>
+            <view scroll-x="true" class="paddingL itemBox">
+              <view class="item gs_jdal" wx:for="{{item.lookDetail}}" data-appid="{{item.AppId}}" bindtap="go_classicCase">
+                <image src="{{item.ImgUrl[0].ImgUrl}}"></image>
+                <view class="itemLab ellipsis">{{item.Title}}</view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+        <!--故事-->
+        <view wx:if="{{item.Type == 6}}">
+          <view class="title_ tit_">
+            <label class="point"></label>
+            <label class="tit_lab">{{item.TypeStr}}</label>
+          </view>
+          <scroll-view scroll-x="true" style='margin-left:12px'>
+            <view scroll-x="true" class="paddingL itemBox">
+              <view class="item gs_jdal" wx:for="{{item.lookDetail}}" data-url="{{item.BackUrl}}" bindtap="go_store">
+                <image src="{{item.ImgUrl[0].ImgUrl}}"></image>
+                <view class="itemLab ellipsis">{{item.Title}}</view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+        <!--进入小程序-->
+        <view wx:if="{{item.Type=='4'}}">
+          <view class="title_ tit_">
+            <label class="point"></label>
+            <label class="tit_lab">{{item.TypeStr}}</label>
+          </view>
+          <view class="paddingL contentWords">
+            <view wx:for="{{item.lookDetail}}">{{item.Content}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--没有浏览记录-->
+  <view class="noContent" wx:if="{{ isNoContent }}">
+    暂无浏览足迹!
+  </view>
+</view>
+<view class="addBlackBtn" bindtap='addBlackList' wx:if="{{isBlackUser}}">从黑名单移除</view>
+<view class="addBlackBtn" bindtap='addBlackList' wx:if="{{!isBlackUser}}">加入黑名单</view>
+

@@ -1,0 +1,27 @@
+<!--pages/changeMaterialManage/changeMaterialManage.wxml-->
+<view class='changePage'>
+  <view class='changePage_inner_top'>
+    <view class='changePage_inner'>
+      <text>职务</text>
+      <input placeholder="请输入职务" placeholder-style="color:#999999" bindinput="addInputContent1" />
+    </view>
+
+    <view class='changePage_inner'>
+      <text>联系人</text>
+      <input placeholder="请输入联系人" placeholder-style="color:#999999" bindinput="addInputContent2" />
+    </view>
+
+    <view class='changePage_inner_textarea'>
+      <text>任务</text>
+      <textarea placeholder="请输入任务" placeholder-style="color:#999999" bindinput="addTextareaContent" />
+    </view>
+
+    <view class='changePage_inner changePage_inner_last'>
+      <text>位置</text>
+      <input placeholder='数字越小越靠前(最小数字为1)' type="number" placeholder-style="color:#999999" bindinput="addInputContent3" />
+    </view>
+  </view>
+  <view class='yesBtnBox'>
+    <button catchtap='keepChange'>保存</button>
+  </view>
+</view>

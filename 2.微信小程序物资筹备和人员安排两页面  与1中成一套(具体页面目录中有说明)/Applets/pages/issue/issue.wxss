@@ -1,0 +1,129 @@
+/* pages/issue/issue.wxss */
+.content{
+    /* width: 710rpx;
+    margin: 0 auto; */
+}
+input{
+    border-bottom: 1px solid #B2B2B2;
+    width: 100%;
+    height: 97rpx;
+    font-size: 28rpx;
+}
+
+textarea{
+    border: none;
+    font-size: 28rpx;
+    padding-top: 20rpx;
+    width: 100%;
+}
+.bd8{
+    height: 8rpx;
+    width: 100%;
+    background: #F2F2F2;
+}
+.images-list{
+    width: 650rpx;
+    margin: 20rpx auto;
+    display: flex;    
+    flex-wrap: wrap;
+    margin-top: 30rpx;
+    position:relative;
+}
+.image-content{
+    width: 180rpx;
+    height: 180rpx;
+    position: relative;
+    margin-bottom: 30rpx;
+    margin:0px 9px 9px 9px;
+
+}
+.add-image{
+    width: 180rpx;
+    height: 180rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.del-image{
+    width: 42rpx;
+    height: 44rpx;
+    position: absolute;
+    top:-22rpx;
+    right: -21rpx;
+}
+.btn{
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    color:#fff;
+    font-size: 30rpx;
+    text-align: center;
+    background: #EB8778;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+
+/*视频*/
+.video-list{
+    width: 650rpx;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 30rpx;
+}
+.video{
+    position: relative;
+}
+.video video{
+    width: 400rpx;
+    height: 180rpx;
+}
+.add-image-video{
+    width: 180rpx;
+    height: 180rpx;
+    margin-left: 9px;
+}
+.top_view{
+  margin:0 auto;
+  padding:0px 30rpx;
+}
+/*标签选择*/
+.labelContent{
+  padding: 0px 30rpx 100px 30rpx;
+  margin-top:30rpx;
+  letter-spacing: 1rpx;
+}
+.labelContent .title{
+  font-size:16px;
+}
+.labelContent .tips{
+  float: right;
+  font-size: 13px;
+  color: #EB8778;
+  line-height:30px;
+}
+.labelContent .labelList{
+  display:flex;
+  width:100%;
+  box-sizing:border-box;
+  flex-wrap:wrap;
+  justify-content: flex-start;
+  margin-top:20rpx;
+}
+.labelContent .labelList .lab{
+  padding:10rpx 20rpx;
+  width: auto;
+  border: 1px solid #efefef;
+  font-size: 14px;
+  text-align: center;
+  margin:5px 8px 5px 0px;
+  cursor: pointer;
+}
+.isActiveLab{
+  color: #EB8778;
+  border: 1px solid #EB8778 !important;
+}

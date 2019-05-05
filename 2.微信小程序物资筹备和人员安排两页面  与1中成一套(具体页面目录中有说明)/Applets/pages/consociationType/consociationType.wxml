@@ -1,0 +1,9 @@
+<!--pages/consociationType/consociationType.wxml-->
+<scroll-view>
+    <view class='hzList' wx:for="{{list}}" wx:for-index="i"  wx:for-item="data">
+       <navigator url='../consociationDetails/consociationDetails'>      
+        <image src='{{data.imgUrl}}' mode='scaleToFill'></image>
+      </navigator>
+      <text>{{data.title}}</text>
+    </view>
+</scroll-view>

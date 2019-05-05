@@ -1,0 +1,9 @@
+<!--pages/Administrators/shops/shops.wxml-->
+<view class="list">
+    <!--<view bindtap="Selection_shop">
+        喜来全部店
+    </view>-->
+    <view wx:for="{{shop_list}}" data-item="{{item}}" bindtap="Selection_shop">
+        {{item.Branch_Name}}
+    </view>
+</view>

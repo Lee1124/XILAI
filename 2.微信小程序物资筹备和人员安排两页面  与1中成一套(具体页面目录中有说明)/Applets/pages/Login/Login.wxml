@@ -1,0 +1,76 @@
+<!--pages/Reserve/Login.wxml-->
+<import src="../template/template.wxml"/>
+<template is="userToggle" data="{{userToggle}}"/> 
+<template is="tabbar" data="{{tabbar,unread}}"/> 
+
+<view class='loginView'>
+    <image src='/images/bg_login.png' class='backimage' mode='aspectFill'></image>
+    <view class="userInfo">
+      <image class='txImage' src='{{userInfo.avatarUrl}}'></image>
+      <view class="uname">Hello!！{{ userInfo.nickName }}。</view>
+      <view wx:if="{{userType==-1}}">Welcome to Wedding Planning</view>
+      <view wx:if="{{userType==0}}">您是喜来的一员，喜来以您为荣</view>
+      <view wx:if="{{userType==1}}">您是喜来尊贵的客户，请验证登录</view>
+      <view wx:if="{{userType==2}}">预约进店了解更多婚礼细节</view>
+    </view>
+    <view class='content'>
+      <!-- 第一步-手机号 -->
+      <view class="step1" wx:if="{{ userType == -1 }}">
+        <view class="phoneBox">
+          <image class="icons icon-phone" src="/images/icon/phone.png"></image>
+          <input placeholder='请输入手机号码' placeholder-style="color: #ddd;" bindinput="getPhoneVal" value="{{phone}}"></input>
+          <view class="tips" >{{showTips}}</view>
+        </view>
+      </view>
+      <!-- 第二步-区分身份 -->
+      <view class="step2">
+        <!-- 游客 -->
+        <view class="youKeBox" wx:if="{{ userType == 2 }}">
+          <view class="itemView">
+            <image class="icons icon-dian" src="/images/icon/dian.png"></image>
+            <input bindtap='listenchange' placeholder='请选择离您最近的店铺' placeholder-style='color:#ddd;' value="{{dianName}}"></input>
+            <!-- <picker mode="selector" range='{{array}}' value='{{index}}' range-key="{{'name'}}" bindchange='listenchange'>
+                  <text>{{array[index].name}}</text>
+            </picker> -->
+          </view>
+          <view class="itemView" style='margin-top: 30rpx;'>
+            <image class="icons icon-user" src="/images/icon/user.png"></image>
+            <input placeholder='您贵姓' placeholder-style='color: #ddd;' class="inputName" bindinput='getUserName_' value="{{userName_yk}}"></input>
+            <view class="sexBox">
+              <button class="{{userSex==1 ? 'red' : ''}}" bindtap='changeSex' data-type='1'>女士</button>
+              <button class="{{userSex==2 ? 'red' : ''}}" bindtap='changeSex' data-type='2'>先生</button>
+            </view>
+          </view>
+          <view class="tips">{{showTips}}</view>
+        </view>
+        <!-- 客户和员工 -->
+        <view class="keHuBox"  wx:if="{{ userType == 1 || userType == 0}}">
+          <view class="itemView">
+            <image class="icons icon-dian" src="/images/icon/dian.png"></image>
+            <input placeholder='请输入验证码' placeholder-style='color: #ddd;' value="{{yzmNumber}}" class="inputYZM" bindinput='getinputYZM'></input>
+            <view class="yzmBox">
+              <button class="getYZM red" bindtap='getYZMClick'>{{getYZMTips}}</button>
+            </view>
+          </view>
+          <view class="yzmTips">{{ isGetYZMOkTips }}</view>
+        </view>
+
+      </view>
+      <button class="{{!phoneIsOk ? 'nextBtn' : 'nextBtn bgred'}}" bindtap='nextStep'>{{nextBtnWords}}</button>
+      <view class="bottom_tips" wx:if="{{ userType==-1 }}">输入手机号码可以预约进店或身份验证</view>
+    </view>
+</view>
+
+<!--电话号码授权-->
+<view wx:if="{{isGetPhone}}">
+  <view catchtouchmove="myCatchTouch" class='getPhoneMask' >
+    <view class='my_content1 tips_view'>
+      <view style='padding-top:25px;font-size:16px;font-weight:bold;'>授权提示</view>
+      <view class='title'>需要您授权手机号，是否授权</view>
+      <view class='btn-group' style='display: flex;'>
+        <button bindtap='cancleGetPhone' class="cancle_" style="color:#999;">取消</button>
+        <button class="isOK_" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" style='color:#009F07;font-size:16px;'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>

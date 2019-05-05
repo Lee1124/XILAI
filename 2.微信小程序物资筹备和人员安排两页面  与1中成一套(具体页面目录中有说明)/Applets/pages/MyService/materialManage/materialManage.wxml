@@ -1,0 +1,39 @@
+<!-- 列表 -->
+<view class='delTips' wx:if='{{isShowTips==1}}'>物资筹备条目侧滑可删除
+  <image src='../../../images/closebtn.png' bindtap='closeTips'></image>
+</view>
+<view class='bigBox'>
+  <block wx:for="{{titleData}}" wx:key>
+    <!-- =====标题列表 主菜单===== -->
+    <view class='planList' bindtap='showToggle' data-id='{{item.data_id}}' data-zt='{{item.windowHeight}}'>
+      <view class='planList_left'>
+        <text>{{item.titleName}}</text>
+      </view>
+      <view class='planList_right'>
+        <button plain="true">{{item.text1}}</button>
+      </view>
+    </view>
+    <!-- ===详情 二级菜单=== -->
+    <!-- <scroll-view scroll-y="{{isScroll}}" style='height:{{item.windowHeight}}px'> -->
+    <scroll-view style='height:{{item.windowHeight}}px' scroll-y='false'>
+      <block wx:key="item" wx:for="{{item.startData}}">
+        <view data-index='{{index}}' data-name='{{item.FlowPath}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{item.right}}">
+          <view class='planList_inner' data-name='{{item.FlowPath}}' catchtap='goChangePage' data-Sort='{{item.Sort}}' data-id='{{item.Id}}'>
+            <view class="planList_inner-title01" style="color:{{item.Personnel=='备注'?'#FF002A':''}}">{{item.Personnel}}</view>
+            <view class="planList_inner-title02">{{item.Article}}</view>
+          </view>
+          <view class="remove" bindtap="delItem" data-Sort='{{item.Sort}}' data-id='{{item.Id}}' data-name='{{item.FlowPath}}'>删除 </view>
+        </view>
+      </block>
+    </scroll-view>
+
+    <!-- </view> -->
+  </block>
+</view>
+<!-- 编辑图标 -->
+<view class='editBtnBox'>
+  <image src='../../../images/bianjibtn.png' bindtap='showAdd' style="display:{{editBtnIsShow?'':'none'}}" class="{{changeType1==1?'image1-show':'image1-hide'}}"></image>
+  <image src='../../../images/addbtn.png' bindtap='goToAddPage' class="{{changeType2==1?'image2-show':'image2-hide'}}"></image>
+  <image src='../../../images/yesbtn.png' bindtap='yesChangeLast' class="{{changeType2==1?'image2-show':'image2-hide'}}"></image>
+  <image src='../../../images/indexImg.png' bindtap='backIndex' style='bottom:{{backIndexBtnBottom}}rpx'></image>
+</view>

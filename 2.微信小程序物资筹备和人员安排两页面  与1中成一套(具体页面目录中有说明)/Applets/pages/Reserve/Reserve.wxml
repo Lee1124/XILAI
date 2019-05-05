@@ -1,0 +1,119 @@
+<!--pages/Reserve/Reserve.wxml-->
+<import src="../template/template.wxml"/>
+ <template is="userToggle" data="{{userToggle}}"/> 
+ <template is="tabbar" data="{{tabbar,unread}}"/> 
+<view class="reserve-title-total">
+    <view class="reserve-title-border"></view>
+    <view class="reserve-title">
+ 
+        <view class="reserve-title-new {{active==1?'active':''}}"
+              data-index="1"
+              bindtap="chooseType">
+            <text>新人咨询</text>
+        </view>
+        <view class="reserve-title-login {{active==2?'active':''}}"
+              data-index="2"
+              bindtap="chooseType"
+        >
+            <text>客户登录</text>
+        </view>
+        <view class="reserve-title-partner {{active==3?'active':''}}"
+              data-index="3"
+              bindtap="chooseType"
+        >
+            <text>身份验证</text>
+        </view>
+    </view>
+</view>
+<view class='reserve'>
+    <image src='{{imgUrl}}' class='backimage' mode='aspectFill'></image>
+    <view class='content'>
+        <image src='../../images/icon/logo.png' class='logo' mode='aspectFit'></image>
+ 
+            <view class='yuyue'>
+                <view class="yuyue-left-line"></view>
+                <view class="yuyue-word">{{welcome}}</view>
+                <view class="yuyue-rigth-line"></view>
+            </view>
+        
+        <!--客户登录-->
+        <form bindsubmit="submint2" wx:if="{{showCard==1}}" >
+            <view class='centent'>
+                <input type='text'
+                       placeholder='您的名字'
+                       placeholder-class='placecolor'
+                       value="{{value}}"
+                       name="name"
+                       bindblur='username'>
+                </input>
+                <input type='number'
+                       placeholder='您的手机号'
+                       value="{{value}}"
+                       placeholder-class='placecolor'
+                       name="phone"
+                       bindblur='verification'>
+                </input>
+            </view>
+            <button hover-class='none'
+                    formType="submit"
+                    class="login">
+                立即登录
+            </button>
+        </form>
+        <!--合作商-->
+        <form bindsubmit="submint3" wx:elif="{{showCard==2}}">
+            <view class='centent'>
+                <input type='text'
+                       placeholder='账号'
+                       placeholder-class='placecolor'
+                       value="{{value}}"
+                       name="userName">
+                </input>
+                <input type='password'
+                       placeholder='密码'
+                       value="{{value}}"
+                       name="password"
+                       placeholder-class='placecolor'
+                       password='true'>
+                </input>
+            </view>
+            <button hover-class='none'
+                    formType="submit"
+                    class="login-parnert">
+                立即登录
+            </button>
+        </form>
+        <!--//新人咨询-->
+        <form  bindsubmit='submint1' wx:else>
+            <view class='input' >
+                <picker mode="selector"
+                        range='{{array}}'
+                        value='{{index}}'
+                        style='color:{{color}}'
+                        range-key="{{'name'}}"
+                        bindchange='listenchange'>
+                    <text>{{array[index].name}}</text>
+                </picker>
+                <input type='text'
+                       placeholder='您的姓名'
+                       placeholder-class='placecolor'
+                       value="{{value}}"
+                       name="name"
+                       bindblur='username'>
+                </input>
+                <input type='number'
+                       placeholder='您的手机号'
+                       value="{{value}}"
+                       placeholder-class='placecolor'
+                       name="phone"
+                       bindblur='verification'>
+                </input>
+            </view>
+            <button hover-class='none'
+                    formType="submit"
+            >
+                立即预约
+            </button>
+        </form>
+    </view>
+</view>

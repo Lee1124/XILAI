@@ -1,0 +1,8 @@
+<!--pages/Blacklist/Blacklist.wxml-->
+<view class="blackList">
+  <image class="hmdImg" src="/images/ishmd.png"></image>
+  <view class="words">
+    <view>抱歉！ </view>
+    <view>访问受限，请联系管理员</view>
+  </view>
+</view>

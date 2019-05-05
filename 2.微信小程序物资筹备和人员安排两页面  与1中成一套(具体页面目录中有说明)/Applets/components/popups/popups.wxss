@@ -1,0 +1,68 @@
+/* components/popups/popups.wxss */
+.popup{
+    visibility: hidden;
+}
+.hidden{
+    visibility: visible;
+}
+.popup-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.7);
+    display: block;
+}
+.popup-container{
+    position: fixed;
+    width: 710rpx;
+
+    height: 230rpx;
+    left: 20rpx;
+    bottom: 0;
+    background: #fff;
+    transform: translate3d(0, 100%, 0);
+    transform-origin: center;
+    transition: all 0.4s ease;
+    z-index: 11;
+    opacity: 0;
+    background: rgba(0,0,0,0);
+}
+.popup-list{
+    background: #fff;
+    width: 100%;
+    min-height: 116rpx;
+    border-radius: 5rpx;
+    padding: 10rpx 56rpx 6rpx;
+    box-sizing: border-box;
+}
+.popup-list view{
+    height: 98rpx;
+    line-height: 98rpx;
+    text-align: center;
+    width: 100%;
+    font-size: 28rpx;
+    color:#222;
+}
+.popup-list view:nth-child(2){
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
+.popup-btn{
+    background: #fff;
+    margin-top: 10rpx;
+    width: 100%;
+    height: 98rpx;
+    line-height: 98rpx;
+    text-align: center;
+    border-radius: 5rpx;
+    font-size: 26rpx;
+    color:#666;
+}
+
+.showpopup{
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+}

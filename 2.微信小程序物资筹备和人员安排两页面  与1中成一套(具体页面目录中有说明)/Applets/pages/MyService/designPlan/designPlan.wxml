@@ -1,0 +1,110 @@
+<!--pages/MyService/ designPlan/ designPlan.wxml noscroll-->
+<!--<import src="../../template/template.wxml"/>-->
+<!--<template is="header" data="{{header}}"/>-->
+
+<!--<scroll-view class='header' >-->
+<!--<image src='https://xilai99.com/image/96/fa78d902-94a8-48d9-9994-8fa82203b8ef.jpg'></image>-->
+<!--<image src='https://xilai99.com/image/96/fa78d902-94a8-48d9-9994-8fa82203b8ef.jpg'></image>-->
+<!--<image src='https://xilai99.com/image/96/fa78d902-94a8-48d9-9994-8fa82203b8ef.jpg'></image>-->
+<!--<image src='https://xilai99.com/image/96/fa78d902-94a8-48d9-9994-8fa82203b8ef.jpg'></image>-->
+<!--<image src='https://xilai99.com/image/96/fa78d902-94a8-48d9-9994-8fa82203b8ef.jpg'></image>-->
+<!--<image src='https://xilai99.com/image/96/fa78d902-94a8-48d9-9994-8fa82203b8ef.jpg'></image>-->
+<!--<image src='https://xilai99.com/image/96/fa78d902-94a8-48d9-9994-8fa82203b8ef.jpg'></image>-->
+<!--<image src='https://xilai99.com/image/96/fa78d902-94a8-48d9-9994-8fa82203b8ef.jpg'></image>-->
+<!--<image src='https://xilai99.com/image/96/fa78d902-94a8-48d9-9994-8fa82203b8ef.jpg'></image>-->
+<!--<image src='https://xilai99.com/image/96/fa78d902-94a8-48d9-9994-8fa82203b8ef.jpg'></image>-->
+<!--</scroll-view>-->
+
+<view class="toast" wx:if="{{showToast}}">
+  <view class="toast-title">当前状态：</view>
+  <view class="toast-text">{{toastText}}</view>
+  <view class="zan-icon zan-icon-close" catchtap="closeToast"></view>
+</view>
+<!--<view style="height: 40rpx" wx:if="{{showToast}}"></view>-->
+<view>
+  <view  class='sheji'wx:for="{{Data}}" wx:for-index="index">
+    <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiper" style="height: 400rpx" circular="{{circular}}">
+      <block wx:if="{{item.arr[0]==''}}">
+        <swiper-item class="swiper-height">
+          <image class="swiper-image" data-index="{{current1}}" data-idx="{{index}}" src="../../../images/sheji.jpg" mode="aspectFill">
+          </image>
+        </swiper-item>
+      </block>
+      <block wx:for="{{item.arr}}" wx:for-index="idx" wx:for-item="item2" wx:if="{{item.arr[0]!=''}}">
+        <swiper-item class="swiper-height">
+          <image class="swiper-image" data-index="{{current1}}" data-idx="{{index}}" src="{{item2}}" mode="aspectFill" bindtap="preview">
+
+          </image>
+        </swiper-item>
+      </block>
+
+    </swiper>
+    <view class="plan-title">{{item.Title}}</view>
+    <view class="plan-content">{{item.Remark}}</view>
+  </view>
+  <!-- <view wx:if="{{index%2!=0}}" class='sheji'>
+    <swiper autoplay="{{autoplay}}" interval="{{interval2}}" duration="{{duration}}" bindchange="swiper2" style="height: 400rpx" circular="{{circular}}">
+      <block wx:for="{{item.arr}}" wx:for-index="idx" wx:for-item="item2">
+        <swiper-item>
+          <image class="swiper-image" data-idx="{{index}}" data-index="{{current2}}" bindtap="preview" mode="aspectFill" src="{{item2}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="plan-title">{{item.Title}}</view>
+    <view class="plan-content">{{item.Remark}}</view>
+  </view> -->
+</view>
+
+<view style="height: 100rpx" wx:if="{{show==1}}"></view>
+
+<view class="footer-master" wx:if="{{show==1}}">
+  <view class="talk">交流</view>
+  <view class="confirmDesign" bindtap="confirmDesign">确认设计</view>
+</view>
+
+<view class="footer-guest" wx:if="{{show==2}}">
+  <view class="know" bindtap="goIndex">了解喜来</view>
+  <view class="talk">交流</view>
+  <view class="confirmDesign">确认设计</view>
+</view>
+
+
+<!--<view class='footer'>-->
+<!--<view class='sjyq' bindtap='openslide' id='sjyq'>-->
+<!--<image src='../../../images/myIcon/sjyq.png'></image>-->
+<!--<text>设计要求</text>-->
+<!--</view>-->
+<!--<view class='xxg' bindtap='openslide' id='xxg'>-->
+<!--<text>需修改</text>-->
+<!--</view>-->
+<!--<view class='qr'>-->
+<!--<text>确认</text>-->
+<!--</view>-->
+<!--</view>-->
+<view class='zz' wx:if='{{slideStatus}}'></view>
+<view class='slide' wx:if='{{slideStatus}}'>
+  <view class='slide_head'>
+    <text>{{slideType=="sjyq"?"设计要求":"修改说明"}}</text>
+    <text id='close' bindtap='close'>关闭</text>
+  </view>
+  <view class='sjyq_slide' wx:if='{{slideType=="sjyq"}}'>
+    <view>
+      <text>宴会风格</text>
+      <text>简约时尚</text>
+      <text>梦幻</text>
+    </view>
+    <view>
+      <text>现场气氛</text>
+      <text style='color:#999;'>暂无</text>
+    </view>
+    <view>
+      <text>宴会色调</text>
+      <text>金色</text>
+      <text>红色</text>
+    </view>
+  </view>
+  <view class='xxg_slide' wx:if='{{slideType=="xxg"}}'>
+    <textarea placeholder-class='textarea' disabled='false' maxlength='-1' placeholder='输入婚礼设计修改信息，也可以和策划师约见时间具体细谈...'></textarea>
+  </view>
+</view>
+

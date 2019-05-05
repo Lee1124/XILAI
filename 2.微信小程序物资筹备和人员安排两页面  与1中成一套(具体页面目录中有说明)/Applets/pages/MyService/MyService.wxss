@@ -1,0 +1,138 @@
+/* pages/MyService/MyService.wxss */
+@import "/pages/template/template.wxss";
+/**授权**/
+.mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 999;
+}
+.my_content{
+  position: relative;
+  top: 50%;
+  left: 0px;
+  transform: translateY(-50%);
+  width:70%;   
+  background-color: #ffffff;
+  font-size: 28rpx;
+  text-align: center;
+  margin:0 auto;
+  border-radius: 10rpx;
+}
+.title{
+  padding:40rpx 0;
+}
+.btn-group{ 
+  padding: 30rpx 0;
+  border-top: 1px solid #bbb; 
+}
+.btn-group button{
+  width: 100%;
+  background-color: #ffffff;
+  font-size: 30rpx;
+  color: #0B70EF;
+  border-radius: inherit;
+  position: inherit;
+  line-height: normal;  
+} 
+/***/
+.html{
+  /* height:700px; */
+  min-height: 100%;
+  background-color: #eee;
+    padding: 0px 0px 1px;
+}
+.bgImage{
+  width: 100%;
+  height:100%;
+  position:absolute;
+}
+.txImage
+{
+  width:60px;
+height:60px;
+display:block;
+margin:auto;
+border-radius:50px;
+
+}
+.userInfo
+{
+  position: absolute;
+  justify-content:center;
+  margin-left: 315rpx;
+  margin-top: 40rpx;
+}
+._header
+{
+  width: 100%;
+  height:185px;
+   position: relative;
+}
+.userInfo text{
+  font-size:30rpx;
+  color:white;
+  text-align: center;
+  display: block;
+  margin-top:5px;
+}
+.userWedding{
+  position: absolute;
+  width: 100%;
+  top:65%;
+}
+.userWedding text{
+  display: flex;
+  font-size: 26rpx;
+  color:white;
+  align-content: center;
+  justify-content: center;
+  margin-top: 4px;
+  letter-spacing:0.8px;
+}
+.view_right{
+ width:17rpx;
+height:30rpx;
+right:0px;
+top:35%;
+position: absolute;
+}
+.tubiao{
+   width: 46rpx;
+  height: 46rpx;
+  top:20rpx;
+  position: absolute;
+}
+.service {
+ background: white;
+}
+.service_view{
+  margin: 0 15rpx;
+  height: 86rpx;
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+.service_view.active text{
+    color: #a0a0a0;
+}
+.service_view text{
+    font-size:15px;
+    color:#222;
+    line-height: 45px;
+    left:8%;
+    position: absolute;
+}
+
+.zhuxiao{
+    border:1px solid #bb9860;
+    padding:5px 40px;
+    line-height:30px;
+    /* margin-left:33%; */
+    bottom:-52px;
+    color:#bb9860;
+    font-size:15px;
+
+}

@@ -1,0 +1,28 @@
+<!--pages/changeMaterialManage/changeMaterialManage.wxml-->
+<view class='changePage'>
+  <view class='changePage_inner_top'>
+    <view class='changePage_inner'>
+      <text>分类</text>
+      <picker bindchange="bindPickerChange" value="{{index0}}" range="{{array}}">
+        <view class="picker">
+           {{array[index0]}}
+        </view>
+      </picker>
+    </view>
+
+    <view class='changePage_inner' wx:if="{{defalutData.Personnel!='备注'}}">
+      <text>物品</text>
+      <input value="{{defalutData.Personnel}}" bindinput="getInputContent" />
+    </view>
+
+    <view class='changePage_inner_textarea'>
+      <text wx:if="{{defalutData.Personnel!='备注'}}">用途</text>
+      <text wx:if="{{defalutData.Personnel=='备注'}}">备注</text>
+      <textarea value="{{defalutData.Article}}" bindinput="getTextareaContent"/>
+    </view>
+
+  </view>
+  <view class='yesBtnBox'>
+    <button catchtap='keepChange'>保存</button>
+  </view>
+</view>

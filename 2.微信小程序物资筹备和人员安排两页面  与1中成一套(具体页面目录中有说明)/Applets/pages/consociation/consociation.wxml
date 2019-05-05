@@ -1,0 +1,19 @@
+<!--pages/consociation/consociation.wxml-->
+<import src="../template/template.wxml"/>
+<template is="tabbar" data="{{tabbar}}"/>
+<scroll-view>
+<view class='hzview' wx:for="{{hzDataList}}" wx:key="index">
+  <view>
+    <text class='title'>{{item.title}} <text>▪ {{item.en_title}}</text></text>
+     <navigator url='../consociationType/consociationType'>      
+    <image class='view_right' src='../../images/right.png'></image>
+    </navigator>
+    </view>
+    <view class='hzList' wx:for="{{item.list}}" wx:for-index="i" style="{{i==1?'float:right':''}}" wx:for-item="data">
+     <navigator url='../consociationDetails/consociationDetails'>      
+        <image src='{{data.imgUrl}}' mode='scaleToFill'></image>
+      </navigator>
+      <text>{{data.title}}</text>
+    </view>
+</view>
+</scroll-view>

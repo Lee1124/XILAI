@@ -1,0 +1,15 @@
+/* pages/Blacklist/Blacklist.wxss */
+.blackList{
+  text-align: center
+}
+.hmdImg{
+  width: 100px;
+  height: 70px;
+  margin: 32% auto 30px auto;
+}
+.words{
+  text-align: center;
+  line-height: 26px;
+  font-size: 14px;
+  color: #666;
+}

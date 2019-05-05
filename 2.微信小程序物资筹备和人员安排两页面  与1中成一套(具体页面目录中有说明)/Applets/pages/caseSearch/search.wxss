@@ -1,0 +1,84 @@
+/* pages/caseSearch/search.wxss */
+/*头部搜索*/
+.header{
+  padding:5rpx 10rpx;
+  width: 90%;
+  border-bottom: 1px solid #efefef;
+  box-sizing: border-box;
+  height:55px;
+  margin: 10px auto;
+  font-size: 14px;
+  position: relative;
+}
+
+.header input{
+  width:78%;
+  display:inline-block;
+  height:38px;
+  line-height:30px;
+  background-color:rgba(242,242,242,1);
+  position: absolute;
+  left: 0px;
+  padding-left: 35px;
+}
+.header image{
+  width:38rpx;
+  height:38rpx;
+  position:absolute;
+  left: 10px;
+  z-index: 111;
+  top: 12px;
+}
+.header a.cancel{
+  color:#666;
+  vertical-align:middle;
+  display:inline-block;
+  height:38px;
+  line-height:38px;
+  position:absolute;
+  right: 0px;
+}
+.content{
+  padding: 0px 20rpx 10px 20rpx;
+
+}
+.content .title{
+  font-size:16px;
+}
+.content .labelList{
+  display:flex;
+  width:100%;
+  box-sizing:border-box;
+  flex-wrap:wrap;
+  justify-content: flex-start;
+  margin-top:15rpx;
+}
+.content .labelList .lab{
+  padding:10rpx 20rpx;
+  width: auto;
+  border: 1px solid #efefef;
+  font-size: 14px;
+  text-align: center;
+  margin:5px 10px 5px 0px;
+}
+.isActiveLab{
+  color: #EB8778;
+  border: 1px solid #EB8778 !important;
+}
+.btnBox{
+  margin:auto;
+  text-align: center;
+  background: transparent;
+  margin-top: 80px;
+}
+.btnBox .searchBtn{
+  width:66%;
+  font-size:14px;
+  /* border:1px solid #EB8778; */
+  border-radius:0px !important;
+  border: 0px !important; 
+  background:#EB8778;
+  color:#fff;
+  outline:none;
+  line-height: 40px;
+}

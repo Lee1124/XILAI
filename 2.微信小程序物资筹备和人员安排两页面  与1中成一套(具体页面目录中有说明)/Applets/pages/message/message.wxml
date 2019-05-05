@@ -1,0 +1,213 @@
+<import src="../template/template.wxml" />
+<template wx:if="{{tabToggle}}" is="tabbar" data="{{tabbar}}" />
+<!-- <view class="socketLoad" wx:if="{{getApp().globalData.connectSuccess}}" style="background:{{isLoginUser?'#cd1130':'#fff'}}">
+  <view class='loadView1' wx:if='{{!isError && !isConnect }}'>
+    <image class='load' src='../../images/loading.gif'></image>
+    <text style="color:{{isLoginUser?'#FFF':'#999'}}"> 正在连接</text>
+  </view>
+  <view class='loadView1' wx:if='{{isError}}'>
+    <image class='load' src='../../images/warning.png'></image>
+    <text style="color:{{isLoginUser?'#FFF':'#999'}}"> 连接异常</text>
+  </view>
+</view> -->
+<view class='lod initLoad' wx:if="{{isFirstInitChat}}">
+  <view class='loadView' >
+    <image class='load' src='../../images/bigLoad.gif'></image>
+  </view>
+</view>
+<view style="bottom:{{tabToggle?'102rpx':0}}; top: {{getApp().globalData.connectSuccess ? '30px': '0px'}}" class='wrap'>
+  <!--聊天对话框-->
+  <view class='scoll' bindtap='closeModal'>
+    <scroll-view class="scrollView" scroll-y='true' scroll-with-animation="true" bindscrolltoupper="refresh" bindscroll="scroll" scroll-top="{{scrollTop}}" id="scrollView" scroll-with-animation="true">
+      <view class="header" wx:if="{{hideHeader}}">
+        <view>
+          <image wx:if='{{!isLast}}' src='../../images/loading.gif' class='loadding'></image>
+          {{loadText}}
+        </view>
+      </view>
+      <view class="contentBox" id="j_page">
+        <!--当前显示的这一页-->
+        <view bindtap='closeModal'>
+          <view wx:if="{{!isConnect}}" wx:for="{{chatList}}" class="chatListItem" wx:for-index="id">
+            <!-- <view wx:if="showTime2(id)">
+              <view class="timeShow" >
+                <text>{{ item.AddTimeStr }}</text>
+              </view>
+            </view> -->
+
+            <view class="{{item.SendUser==openid?'self':'self part'}}">
+              <view class='part-item2' wx:if='{{item.SendUser!=openid}}'>
+                <image src='../../images/icon.png' class='avatar'></image>
+              </view>
+              <!-- 默认第一条推送的消息 -->
+              <view wx:if="{{item.MessageContentType=='0'}}" class='self-item1'>
+                <view class='chat-name'>{{ item.SendUserName }}</view>
+                <view style='display:flex;'>
+                  <view class="msg firstMsg">
+                    <view class="arrow1"></view>
+                    <view class="first_msg">
+                      <text class="first_title">{{ item.Message.title }}</text>
+                      <text class="first_Content" space="nbsp">{{ item.Message.message }}</text>
+                      <text class="text_indent">关注官方微博：@喜来婚礼</text>
+                    </view>
+                    <view class="links_box">
+                      <text bindtap='previewImage' class="text_indent" data-src="https://xilai99.com/image/img/qrCode.jpg">微信公众号\n</text>
+                      <navigator url="../Stores/Stores">
+                        <text class="text_indent">附近门店\n</text>
+                      </navigator>
+                      <text bindtap="phonecallevent" class="text_indent">电话咨询\n</text>
+                      <navigator url="../Reserve/Reserve">
+                        <text class="text_indent">新人预约\n</text>
+                      </navigator>
+                    </view>
+                    <view class="click_box">
+                      <image src="../../images/icon-click.png"></image>
+                      <image src="../../images/icon-click.png"></image>
+                      <image src="../../images/icon-click.png"></image>
+                      (点击蓝色文字进入)
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <!-- 纯文本 -->
+              <view wx:if="{{item.MessageContentType=='1'}}" class='self-item1'>
+                <view class='chat-name' wx:if="{{item.SendUser!=openid}}">{{item.SendUserName}}</view>
+                <view style='display:flex;'>
+                  <view class="tip {{item.IsRead?'yidu':'weidu'}}" wx:if='{{item.isError}}'>异常</view>
+                  <!-- {{item.IsRead?'已读':'未读'}} -->
+                  <view class="{{item.SendUser==openid?'msg selfbg':'msg'}}">
+                    <view class="{{item.SendUser==openid?'arrow':'arrow1'}}"></view>
+                    <text selectable="true" wx:if="{{item.MessageContentType=='1'}}">{{ item.Message }}</text>
+                  </view>
+                </view>
+              </view>
+              <!-- 地址 -->
+              <view wx:if="{{item.Type=='address'}}" style='flex:0 0 500rpx' class='self-item1'>
+                <view class='chat-name' wx:if='{{item.SendUser!=openid}}'>{{item.SendUserName}}</view>
+                <view class="tip weidu" wx:if='{{item.isError}}'>异常
+                  <!-- {{item.IsRead?'已读':'未读'}} -->
+                </view>
+                <view bindtap='map' data-params='{{item.Message}}' style='flex:1' class="{{item.SendUser==openid?'msg':'msg'}}">
+                  <view style='background-color:#fff;' class="{{item.SendUser==openid?'arrow':'arrow1'}}"></view>
+                  <view style='font-size:28rpx'>{{item.Message.name}}</view>
+                  <view style='font-size:22rpx;color:#999999'>{{item.Message.address}}</view>
+                  <view class='map'>
+                    <!-- <map id="map" markers="{{[{iconPath: '../../images/location.png',id: 0,latitude: item.Message.latitude,longitude: item.Message.longitude, width: 20,height: 30}]}}" longitude="{{item.Message.longitude}}" latitude="{{item.Message.latitude}}" scale="18"
+              style="width: 100%; height: 100%;"></map> -->
+                    <image mode='aspectFill' style="width:100%;height:100%" src='{{item.Message.img}}'></image>
+                  </view>
+                </view>
+              </view>
+              <!-- 图片 -->
+              <view wx:if="{{item.MessageContentType=='3'}}" class='self-item1'>
+                <view wx:if='{{item.SendUser!=openid}}' class='chat-name'>{{item.SendUserName}}</view>
+                <view style='display:flex;position:relative'>
+                  <view class="tip weidu" wx:if='{{item.isError}}'>异常
+                    <!-- {{item.IsRead?'已读':'未读'}} -->
+                  </view>
+                  <view class="imgBox">
+                    <image bindtap="listenerButtonPreviewImage" data-src="https://xlfile-1256392453.cos.ap-chengdu.myqcloud.com{{item.Message.key}}" style="width: 200rpx;" src="https://xlfile-1256392453.cos.ap-chengdu.myqcloud.com{{item.Message.yskey}}" mode="widthFix"></image>
+                  </view>
+                </view>
+              </view>
+              <!-- 经典案例咨询链接 -->
+              <view wx:if="{{item.MessageContentType=='4'}}" style='flex-flow:row' class='self-item1 other'>
+                <view class="tip weidu" wx:if='{{item.isError}}'>异常
+                  <!-- {{item.IsRead?'已读':'未读'}}{{item.IsRead?'yidu':'weidu'}} -->
+                </view>
+                <view bindtap='toDetail' data-id='{{item.Message.id}}' style="width:220px;" class='msg imgLink expale'>
+                  <view style='background-color:#fff' class='arrow'></view>
+                  <view class='aa'>
+                    <view class='mytitle'>{{item.Message.Cname}}</view>
+                    <view class='content'>{{item.Message.describe}}</view>
+                  </view>
+                  <view>
+                    <image class='fj' src='{{item.Message.Cimg}}'></image>
+                  </view>
+                </view>
+                <view class='top_view'>
+                  <image class='top_img' src='../../images/icon.png'></image>
+                  <text class='top_text'>喜来婚礼源自爱</text>
+                </view>
+              </view>
+              <!--最新案例咨询链接-->
+              <view wx:if="{{item.MessageContentType=='5'}}" style='flex-flow:row;' class='self-item1'>
+                <view class="tip weidu" wx:if='{{item.isError}}'>异常
+                  <!-- {{item.IsRead?'已读':'未读'}}{{item.IsRead?'yidu':'weidu'}} -->
+                </view>
+                <view style="width:220px;" class='msg imgLink'>
+                  <view style='background-color:#fff' class='arrow'></view>
+                  <view class='expale'>
+                    <view class='aa'>
+                      <view class='mytitle'>{{item.Message.Cname}}</view>
+                      <view class='content'>{{item.Message.describe}}</view>
+                    </view>
+                    <view style='margin-top:-4px;'>
+                      <image class='fj' src='{{item.Message.Cimg}}'></image>
+                    </view>
+                  </view>
+                </view>
+                <view class='top_view'>
+                  <image class='top_img' src='../../images/icon.png'></image>
+                  <text class='top_text'>喜来婚礼源自爱</text>
+                </view>
+              </view>
+              <view class='self-item2' wx:if='{{item.SendUser==openid}}'>
+                <!--需要版本1.9.90 才能支持-->
+                <open-data class='avatar' wx:if="{{isVersion==1}}" type="userAvatarUrl"></open-data>
+                <image class='avatar' wx:if="{{isVersion!=1}}" src="{{userInfo.avatarUrl}}" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <!--上传图片-->
+  <view class='chat-wrap'>
+    <view class='chat'>
+      <view class='chat-item1'>
+        <input bindinput='chatContent' value='{{content}}' adjust-position="true" disabled='{{isConnect}}' fixed="true" cursor-spacing='16' show-confirm-bar="{{false}}" focus="{{jiao}}" bindTap="bindButtonTap" confirm-type="true" confirm-hold="true" confirm-type="send" bindconfirm="getFormIdOrSend" bindfocus="textFocus" />
+
+      </view>
+      
+      <view class='chat-item2'>
+        <image wx:if="{{content==''}}" bindtap='open' class='add' src='../../images/icon/add.png'></image>
+        <view style="position:relative;" wx:if="{{content!=''}}">
+          <view class='send'>发送</view>
+          <form bindsubmit="getFormIdOrSend" bindreset="formReset" report-submit="true" style='position:absolute;left:0;right:0;bottom:0;top:0;opcity:0;'>
+            <button formType="submit" >Submit</button>
+          </form>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{!toggle}}" class='action'>
+      <view bindtap='camera' class='icon-group'>
+        <image class='icon' src='../../images/pho.png'></image>
+        <view>拍照</view>
+      </view>
+      <view bindtap='chooseImage' class='icon-group'>
+        <image class='icon' src='../../images/pic.png'></image>
+        <view>相册</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view catchtouchmove="myCatchTouch" wx:if="{{isGetPhone}}" class='mask'>
+  <view class='my_content tips_view'>
+    <view class='tips_title'>需要获取你的手机号</view>
+    <view class='btn-group'>
+      <button bindtap='back' class="cancle_">取消</button>
+      <button class="isOK_" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">授权</button>
+    </view>
+  </view>
+</view>
+<view>
+  <canvas canvas-id="photo_canvas" style="width:800px;height:640px;position: absolute;top:-900px;"></canvas>
+</view>
+<!-- 弹框关注的二维码 -->
+<!-- <modal hidden="{{!hiddenmodalput}}" no-cancel bindconfirm="closeModal">  
+  <view>
+    <image bindtap='previewImage' src="../../images/123.png" data-src="../../images/123.png"></image>
+  </view>
+</modal> -->

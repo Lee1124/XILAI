@@ -1,0 +1,29 @@
+<!--pages/Tourist/Tourist.wxml-->
+<import src="../template/template.wxml" />
+<template is="tabbar" data="{{tabbar}}" />
+
+<view class="wrapper">
+  <view class="content">
+    <image class='txImage' src='{{userInfo.avatarUrl}}' mode='aspectFill'></image>
+    <view class="font16 color000 uname">{{uname}}</view>
+    <view class="color999 font12">您已预约</view>
+    <view class="font22 dianpu color000">『{{dianpuName}}』</view>
+    <view class="font12 color999 tips">
+      <view>稍后会有顾问与您联系</view>
+      <view>您也可以致电我们</view>
+    </view>
+    <view class="phone_ font22 colorEB8778" bindtap='callPhone'>
+      <text>{{dianpuPhone}}</text>
+      <image class="icon" src="/images/phone.png"></image>
+    </view>
+    <view class="borderL"></view>
+    <view class="borderR"></view>
+    <view class="showWords color666">
+        <view>我们从爱的角度出发</view>
+        <view>创作出令人赏心的，可以传播爱的婚礼</view>
+        <view>我们重视婚礼</view>
+        <view>因为它是所有情感表达的窗口</view>
+    </view>
+    <image class="logo" src="/images/logo_.png"></image>
+  </view>
+</view>

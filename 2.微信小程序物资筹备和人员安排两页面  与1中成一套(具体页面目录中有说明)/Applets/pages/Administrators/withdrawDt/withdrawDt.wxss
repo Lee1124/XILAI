@@ -1,0 +1,99 @@
+/* pages/Administrators/withdrawDt/withdrawDt.wxss */
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px;
+  padding: 25rpx 0;
+  font-size: 30rpx;
+  border-bottom: 1px solid #ddd;
+  line-height: 72rpx;
+}
+
+.disagree {
+  border: 1px solid;
+  color: #eb8778;
+  border-radius: 54rpx;
+  padding: 22rpx 95rpx;
+}
+
+.agree {
+  border: 1px solid;
+  padding: 22rpx 95rpx;
+  border-radius: 54rpx;
+  background: #eb8778;
+  color: #fff;
+}
+
+.shadow {
+  opacity: 0.5;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  background: #000;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.layout {
+  z-index: 222;
+  top: 20%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  position: fixed;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 20rpx;
+  font-size: 28rpx;
+}
+
+.money {
+  display: flex;
+  margin:68rpx 145rpx 0 38rpx;
+  white-space: nowrap;
+  border-bottom: 1px solid #676767;
+  padding-bottom:10rpx;
+}
+
+.verify {
+  display: flex;
+  margin: 38rpx;
+  border-bottom: 1px solid #676767;
+  white-space: nowrap;
+  padding: 10px 0;
+  margin-bottom: 0;
+  justify-content: space-between;
+}
+
+.codeBtn {
+  border: 1px solid;
+  line-height: 25px;
+  background: #06b706;
+  color: #fff;
+  padding: 0 10rpx;
+  border-radius: 5px;
+}
+
+.cancel {
+  border-right: 1px solid #e3e3e3;
+  width: 50%;
+  text-align: center;
+  padding: 30rpx 0;
+  color: #999;
+}
+
+.makesure {
+  width: 50%;
+  text-align: center;
+  padding: 30rpx 0;
+  color: #1fa600;
+}
+
+.btnList {
+  display: flex;
+  justify-content: space-around;
+  font-size: 32rpx;
+  border-top: 1px solid #e3e3e3;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="details_of_royalty.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="content_data">
+        <div class="tableData_box">
+            <div class="tableData thead">
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="width: 58px;"></th>
+                        <th style="width: 558px;">婚礼</th>
+                        <th style="width: 290px;">签单金额</th>
+                        <th>提成金额</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tableData tbody">
+                <table>
+                    <tbody>
+                    <tr v-if="isShowNoNum">
+                        <td colspan="4" style="color: #999;height: 100px;">无数据</td>
+                    </tr>
+                    <template v-for="(items,index) in contentData">
+                        <tr class="table01_tr" onclick="showAndHideTableData_box02(this)">
+                            <td style="width: 58px;"><img src="jiantou02.png" alt="图标" class="downIcon02"
+                                                          style="transform: rotate(180deg)" width="13px" width="15px">
+                            </td>
+                            <td style="width: 558px;">{{items.OrderTitle}}</td>
+                            <td style="width: 290px;">{{items.QianDanJinE}}</td>
+                            <td>{{items.TiChengJinE}}</td>
+                        </tr>
+                        <tr class="inner_table" style="display: none;"> <!--style="display: none;"-->
+                            <td colspan="8">
+                                <div class="tableData_box02">
+                                    <table
+                                            style="border: 0"
+                                            class="tableData">
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>用户名</th>
+                                            <th>提成金额</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <template v-for="(items2,index) in items.mxList">
+                                            <tr>
+                                                <td>{{index+1}}</td>
+                                                <td>{{items2.UserName}}</td>
+                                                <td>{{items2.Amount}}</td>
+                                                <td @click="showFineDetail(items2.UserId,items.OrderId)">详情</td>
+                                            </tr>
+                                        </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../View/new_designWorksList_ly_kxt/newpage/js/jquery-1.11.1.min.js"></script>
+<script src="../../View/new_designWorksList_ly_kxt/newpage/js/vue.js"></script>
+<script src="../../xlSystem/XL/js/main.js"></script>
+<script src="../../xlSystem/XL/layer/layer.js"></script>
+<script src="details_of_royalty.js"></script>
+</body>
+</html>

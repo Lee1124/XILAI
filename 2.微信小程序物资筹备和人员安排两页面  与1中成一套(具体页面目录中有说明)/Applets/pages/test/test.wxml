@@ -1,0 +1,6 @@
+<!--pages/test/test.wxml-->
+
+<block wx:if="url==''"></block>
+<include src="../Cases/Cases.wxml"/>
+<import src="../template/template.wxml" />
+<template is="tabbar" data="{{tabbar,unread}}" />

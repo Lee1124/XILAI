@@ -1,0 +1,5 @@
+<!--pages/test1/test1.wxml-->
+
+<template name="ceshi">
+    <text class="test_1">pages/test1/test1.wxml</text>
+</template>

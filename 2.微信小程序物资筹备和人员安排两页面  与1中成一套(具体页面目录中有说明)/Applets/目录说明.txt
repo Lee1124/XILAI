@@ -1,0 +1,77 @@
+1、validation 加载中动画页面
+进入小程序时 会先进入validation验证页面进行身份的验证	
+（1）	微信登陆根据res.code 获取用户的openid（/xlapi/Mini/Ins/Anli/GetOpenID）
+（2）	判断是否有获取用户基本信息的权限
+
+（3）	打开websocket连接 先获取到聊天组的人员信息（/xlapi/Chat/UserList/UserList/GetChatUser）
+
+（4）	验证身份判断用户的角色（Authentication/AppletUser/Authentication/OpenIdVerify）
+
+（5）	如果是验证过的新人用户则获取orderid 并跳转掉新人页面，如果是空用户则跳转到案列页面
+
+2、Cases 案例页面 
+
+3、Casesxq 案列详情
+
+4、MyService 新人页面——我的
+
+5、designPlan 新人页面——婚礼设计
+
+6、flow 新人页面——婚礼当天流程
+
+7、preparation 新人页面——婚礼筹备（未开发）
+
+8、rite 新人页面——婚礼仪式流程
+
+9、weddingTeam 新人页面——婚礼团队（未开发）
+
+10、question 新人页面——婚礼问卷表
+
+11、feedback 新人页面——婚礼反馈
+
+12、community 新人页面——新人聊天
+
+13、consociation 新人页面——喜来合作
+
+14、consociationDetails 新人页面——喜来合作商详情
+
+15、consociationType 新人页面——喜来合作商分类
+
+16、gushi 故事跳转
+
+17、issue 添加最新案列
+
+18、message 聊天消息
+
+19、template 模块
+
+20、Reserve 预约
+
+21、Stores 店铺
+
+22、brands 故事
+
+23、personnelArrangement 人员安排表
+
+24、materialManage 物资统筹
+
+注释：后添加的每个页面如果有分享 都需要配置分享（参考之前页面）
+
+Administrators 管理者
+————Personal 个人中心
+————flow 流量统计
+————QRcode 二维码
+
+
+wx.setStorageSync('adminuser', JSON.stringify(res)) //保存用户信息
+var adminuser = wx.getStorageSync('adminuser')
+wx.setStorageSync('shop', shopobj) //保存用户信息
+var shop = wx.getStorageSync('shop')
+
+wx.setStorageSync('shoplist', shopobj) //保存选择的店铺
+var shoplist = wx.getStorageSync('shoplist')
+
+wx.setStorageSync('flowjson', shopobj) //保存所选的店铺或者人员
+var flowjson= wx.getStorageSync('flowjson')
+
+wx.removeStorageSync('key')

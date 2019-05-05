@@ -1,0 +1,35 @@
+<!--pages/Stores/Stores.wxml-->
+ <import src="../template/template.wxml"/> 
+<template is="tabbar" data="{{tabbar,unread}}"/>
+<template is="header" data="{{header}}" />
+<view style='padding-bottom:50px;{{isXinRen?"padding-top:45px;":""}}'>
+   <view class='Storess' wx:for="{{storeArr}}" wx:key="{{index}}" wx:if="{{content}}">
+      <image src='{{loaded?item.img:defaultimg}}' mode='widthFix' class='bt_image fade_in' value="{{index}}" lazy-load='true' ></image>
+      <view class='content'>
+        <view class='content_node'>
+            <view class='content_left'>
+                <text>{{item.name}}</text>
+                <text class='hunli'>{{item.title}}</text>
+            </view>
+            <view class='content_right'>
+                <text bindtap='map' data-lng="{{item.j}}" data-lat="{{item.w}}"  data-branchid="{{item.id}}" data-item="{{item}}">Address</text>
+                <text data-text="{{item.tel}}" bindtap='phone' data-phonebranchid="{{item.id}}" >Telephone</text>
+            </view>
+        </view>
+      </view>
+   </view> 
+</view>
+    <loading wx:if="{{loading}}">加载中</loading>
+ <!--电话沟通隐藏区域  -->
+    <view class='maskLayer' catchtouchmove="true" wx:if="{{phonesize}}"></view>
+    <view class='choose choose_phone' wx:if="{{phonesize}}" animation='{{animationData}}'>
+      <view class='choose_top top_phone' >
+          <text data-phone="{{phoneNumber}}" bindtap='callphone'>{{phoneNumber}}</text>
+      </view>
+      <view class='choose_close phone_close' bindtap='ph_hideModal'>
+          取消
+      </view>
+    </view>
+<!-- 引入图片预加载组件 -->
+<import src="/pages/img-loader/img-loader.wxml"/>
+<template is="img-loader" data="{{ imgLoadList }}"></template>

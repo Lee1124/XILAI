@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<link rel="stylesheet" href="../../Scripts/layer/theme/default/layer.css">-->
+    <link rel="stylesheet" href="accountDetailed.css">
+    <style>
+
+        /*滑槽样式*/
+        ::-webkit-scrollbar {
+            width: 5px;
+            background: rgba(234, 234, 234, 1);
+            border-radius: 2px;
+            margin-right: 15px;
+        }
+
+        /*滑块样式*/
+        ::-webkit-scrollbar-thumb {
+            border-radius: 2px;
+            width: 3px;
+            background: rgb(206, 206, 206);
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body id="accountDetailedBody">
+<div id="app">
+    <div class="header_search">
+        <form action="">
+            <label for="">是否人员费用:</label>
+            <select name="" id="select01" v-model="selectText01">
+                <template v-for="(items,index) in select01Data">
+                    <option :value="items.value">{{items.name}}</option>
+                </template>
+            </select>
+
+            <label for="">是否手动调整:</label>
+            <select name="" id="select02" v-model="selectText02">
+                <template v-for="(items,index) in select02Data">
+                    <option :value="items.value">{{items.name}}</option>
+                </template>
+            </select>
+
+            <label for="">是否超期报账:</label>
+            <select name="" id="select03" v-model="selectText03">
+                <template v-for="(items,index) in select03Data">
+                    <option :value="items.value">{{items.name}}</option>
+                </template>
+            </select>
+            <input type="text" placeholder="输入支付对象查询" style="padding-left: 5px;" v-model="searchText">
+            <input type="button" value="查询" @click="searchBth()">
+        </form>
+    </div>
+
+    <div class="content_data">
+        <template v-for="(items,index) in contentData">
+            <div class="content_dataList" onclick="showAndHideTableData_box(this)">
+                <span>{{items.TypeName}}</span>
+                <span>{{items.NowTypeJiSuanJinE}}元</span>
+                <span><img src="down.png" alt="下拉" width="11px" height="6px" class="downIcon"></span>
+            </div>
+            <div class="tableData_box" style="display: none;"><!--style="display: none;"-->
+                <table style="height: 0;" cellpadding="0" cellspacing="0" border="1"
+                       class="tableData">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>编号</th>
+                        <th>标题</th>
+                        <th>状态</th>
+                        <th>金额</th>
+                        <th>计算金额</th>
+                        <th>提交人</th>
+                        <th>添加时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr :class="{'showNoNum':items.AmountApplyList.length!=0}">
+                        <td colspan="8" style="color: #999;">无数据</td>
+                    </tr>
+                    <template v-for="(items2,index) in items.AmountApplyList">
+                        <tr class="table01_tr" onclick="showAndHideTableData_box02(this)">
+                            <td width="60px"><img src="jiantou02.png" alt="图标" class="downIcon02"
+                                                  style="transform: rotate(180deg)" width="13px" width="15px"></td>
+                            <td>{{items2.NO}}</td>
+                            <td>{{items2.Title}}</td>
+                            <td>{{items2.State}}</td>
+                            <td>{{items2.Amount}}</td>
+                            <td style="color: #FF8400;">{{items2.JiSuanJinE}}</td>
+                            <td>{{items2.addusername}}</td>
+                            <td>{{items2.AddTimeStr}}</td>
+                        </tr>
+                        <tr class="inner_table" style="display: none;"> <!--style="display: none;"-->
+                            <td colspan="8">
+                                <div class="tableData_box02">
+                                    <table
+                                            style="border: 0"
+                                            class="tableData">
+                                        <thead>
+                                        <tr>
+                                            <th>标题</th>
+                                            <th>支付对象</th>
+                                            <th>金额</th>
+                                            <th>计算金额</th>
+                                            <th>超期报账</th>
+                                            <th>添加时间</th>
+                                            <th>类型</th>
+                                            <th>提交人</th>
+                                            <th>是否摊销</th>
+                                            <th>操作</th>
+                                            
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <template v-for="(items3,index) in items2.projectlist">
+                                            <tr :class="{'noStyle':items3.IsJiSuanJinE==true,'yesStyle':items3.IsJiSuanJinE!=true}"
+                                                @mouseenter="items3.IsJiSuanJinE!=true?showJiSuanJinE($event):''">
+                                                <td>{{items3.Name}}</td>
+                                                <td>{{items3.payAddressStr}}</td>
+                                                <td>{{items3.TX_ShiJiJinE}}</td>
+                                                <td>{{items3.Amoumt}}</td>
+                                                <td :class="{'isChaoQiBaoZhang':items3.IsYc==true}"
+                                                    v-if="items3.IsYc==true">是
+                                                </td>
+                                                <td v-if="items3.IsYc==false">否</td>
+                                                <td>{{items3.AddTimeStr}}</td>
+                                                <td>{{items3.typename}}</td>
+                                                <td>{{items3.addusername}}</td>
+                                                <td>{{items3.TanXiaoDateOrFeiTanXiaoDate}}</td>
+                                                <td style="cursor:pointer;" onclick="openXiangQing(this)"><span
+                                                        style="display: none">{{items3.ID}}</span> 详情
+                                                </td>
+
+                                                <td v-if="items3.IsJiSuanJinE!=true" class="showTd" style="height: 0;border: 0;position: absolute; margin-left: -78%;margin-top: 3%;display: none;">
+                                                    <div class="showBox">
+                                                        <span>该记录不计算</span>
+                                                        <img src="showJSJE.png">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!--<tr v-if="items3.IsJiSuanJinE!=true" style="position: absolute;border: 0;height: 0;">-->
+                                            <!---->
+                                            <!--</tr>-->
+                                        </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="showIsJiSuanJinE" onclick="isShowIsJiSuanJinE(this)">
+                                    <span>显示 同一条报账中不计入该分类明细</span>
+                                    <img src="show.png" alt="展开">
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="../../View/new_designWorksList_ly_kxt/newpage/js/jquery-1.11.1.min.js"></script>
+<script src="../../View/new_designWorksList_ly_kxt/newpage/js/vue.js"></script>
+<script src="../../xlSystem/XL/js/main.js"></script>
+<!--<script src="../../xlSystem/XL/layer/layer.js"></script>-->
+<!--<script src="layui/layui.js"></script>-->
+<script src="../../xlSystem/XL/layer/layer.js"></script>
+<script src="accountDetailed.js"></script>
+
+<script>
+    var selectText_01;
+    var selectText_02;
+    var selectText_03;
+    var searchText88;
+    var myWatch = {//查询方式监听
+        selectText01(val) {
+            if (val == '0') {
+                selectText_01 = '嘻嘻,不能进入'
+            } else if (val == '1') {
+                selectText_01 = true
+            } else if (val == '2') {
+                selectText_01 = false
+            }
+
+        },
+        selectText02(val) {
+            if (val == '0') {
+                selectText_02 = '嘻嘻,不能进入'
+            } else if (val == '1') {
+                selectText_02 = true
+            } else if (val == '2') {
+                selectText_02 = false
+            }
+        },
+        selectText03(val) {
+            if (val == '0') {
+                selectText_03 = '嘻嘻,不能进入'
+            } else if (val == '1') {
+                selectText_03 = true
+            } else if (val == '2') {
+                selectText_03 = false
+            }
+        },
+        searchText(val) {
+            searchText88 = val
+        }
+    };
+    var myMethods = {
+        searchBth() {
+            loadStartData(selectText_01, selectText_02, selectText_03, searchText88)
+        },
+        showJiSuanJinE(event) {
+            $('.showTd').hide();
+            $(event.target).children('.showTd').show();
+        }
+    };
+
+
+    //加载初始数据
+    var getkevalue = getkevalue();
+    var api = getkevalue.apiurl;//IP地址
+    var SearchDate = GetQueryString('SearchDate');//获取传的年月
+    var Branch = GetQueryString('Branch');//获取传的店ID
+    var SearchType = GetQueryString('SearchType');//获取传的查询类型
+    //Enter查询事件
+    $(document).keydown(function (e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            loadStartData(selectText_01, selectText_02, selectText_03, searchText88)
+        }
+    });
+
+    function loadStartData(val01, val02, val03, val04) {
+        console.log(SearchDate)
+        var selectVal01 = val01;
+        var selectVal02 = val02;
+        var selectVal03 = val03;
+        var searchText88 = val04;
+        // console.log(selectVal01,selectVal02,selectVal03,searchText88)
+        var url1 = api + "/xlapi/Homepage/Cost/CostStatistics/GetBZAmountByMonth";
+        // console.log(url1)
+        var data1 = {
+            SearchDate: SearchDate,
+            Branch: Branch,
+            SearchType: SearchType
+        };
+        $.ajax({
+            type: "post",
+            url: url1,
+            data: data1,
+            beforeSend: function (XHR) {
+                showLoading();
+                XHR.setRequestHeader('Authorization', localStorage.userinfo);
+            },
+            complete: function () {
+                hideLoading();
+            },
+            success: res => {
+                console.log(res.data.TypeDetailList);
+
+                if (res.data.TypeDetailList.length == 0) {
+                    var html = "<div style='position: absolute;top: 40%;left: 48%;z-index: 9999;color: #999;'>无数据</div>";
+                    $("body").append(html)
+                }
+
+                //重新排序
+                var newArr = rearrangement(res.data.TypeDetailList);
+
+                //保存AmountApplyList长度为0的对象
+                var noAmountApplyListArr = noAmountApplyList(newArr);
+
+                if (selectVal01 == true || selectVal01 == false) {
+                    // console.log("进入第1个函数")
+                    newArr = showSelectTextData(selectVal01, newArr).concat(noAmountApplyListArr);
+                }
+                if (selectVal02 == true || selectVal02 == false) {
+                    // console.log("进入第2个函数")
+                    newArr = showSelectText02Data(selectVal02, newArr).concat(noAmountApplyListArr);
+                }
+                if (selectVal03 == true || selectVal03 == false) {
+                    // console.log("进入第3个函数")
+                    newArr = showSelectText03Data(selectVal03, newArr).concat(noAmountApplyListArr);
+                }
+
+                if (searchText88 != undefined) {
+                    // console.log("进入函数第1层")
+                    if (searchText88 != "") {
+                        // console.log("进入函数第2层")
+                        newArr = showSearchText88Data(searchText88, newArr).concat(noAmountApplyListArr);
+                    }
+                }
+
+                //加总金额
+                var newArr = addAllJiSuanJinEPrice(newArr);
+
+                Vue.contentData = newArr;
+                loadTable01Data(res);
+            }
+        })
+    }
+
+
+    function openXiangQing(obj) {
+        var id = $(obj).find("span").text();
+        layer.open({
+            type: 2,
+            skin: 'demo-class',
+            title: "信息",
+            area: ['700px', '450px'],
+            content: "../../Amount/EditProject.aspx?id=" + id
+        })
+    }
+
+    //加总金额
+    function addAllJiSuanJinEPrice(selectArr) {
+        for (var i = 0; i < selectArr.length; i++) {
+            var allPrice = 0;
+            for (var j = 0; j < selectArr[i].AmountApplyList.length; j++) {
+                var allPrice2 = 0;
+                for (var k = 0; k < selectArr[i].AmountApplyList[j].projectlist.length; k++) {
+                    if (selectArr[i].AmountApplyList[j].projectlist[k].IsJiSuanJinE == true) {
+                        allPrice += selectArr[i].AmountApplyList[j].projectlist[k].Amoumt;
+                        allPrice2 += selectArr[i].AmountApplyList[j].projectlist[k].Amoumt;
+                    }
+                }
+                selectArr[i].AmountApplyList[j].JiSuanJinE = allPrice2.toFixed(2);
+            }
+            selectArr[i].NowTypeJiSuanJinE = allPrice.toFixed(2);
+        }
+        var newArr = selectArr;
+        return newArr;
+    }
+
+    //保存AmountApplyList长度为0的对象的函数
+    function noAmountApplyList(arr) {
+        var newNoAmountApplyListArr = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].AmountApplyList.length == 0) {
+                newNoAmountApplyListArr.push(arr[i])
+            }
+        }
+        return newNoAmountApplyListArr;
+    }
+
+
+    //是否人员费用过滤函数
+    function showSelectTextData(selectVal, selectArr) {
+        for (var i = selectArr.length - 1; i >= 0; i--) {
+            for (var j = selectArr[i].AmountApplyList.length - 1; j >= 0; j--) {
+                for (var k = selectArr[i].AmountApplyList[j].projectlist.length - 1; k >= 0; k--) {
+                    if (selectArr[i].AmountApplyList[j].projectlist[k].isPerson != selectVal) {
+                        selectArr[i].AmountApplyList[j].projectlist.splice(k, 1);
+                    }
+                }
+                if (selectArr[i].AmountApplyList[j].projectlist.length == 0) {
+                    selectArr[i].AmountApplyList.splice(j, 1);
+                }
+            }
+            if (selectArr[i].AmountApplyList.length == 0) {
+                selectArr.splice(i, 1);
+            }
+        }
+        var newArr = selectArr;
+        return newArr;
+    }
+
+    //是否手动整理过滤函数
+    function showSelectText02Data(selectVal, selectArr) {
+        for (var i = selectArr.length - 1; i >= 0; i--) {
+            for (var j = selectArr[i].AmountApplyList.length - 1; j >= 0; j--) {
+                for (var k = selectArr[i].AmountApplyList[j].projectlist.length - 1; k >= 0; k--) {
+                    if (selectArr[i].AmountApplyList[j].projectlist[k].IsOrder == selectVal) {
+                        selectArr[i].AmountApplyList[j].projectlist.splice(k, 1);
+                    }
+                }
+                if (selectArr[i].AmountApplyList[j].projectlist.length == 0) {
+                    selectArr[i].AmountApplyList.splice(j, 1);
+                }
+            }
+            if (selectArr[i].AmountApplyList.length == 0) {
+                selectArr.splice(i, 1);
+            }
+        }
+        var newArr = selectArr;
+        return newArr;
+    }
+
+    //是否超期报账过滤函数
+    function showSelectText03Data(selectVal, selectArr) {
+        for (var i = selectArr.length - 1; i >= 0; i--) {
+            for (var j = selectArr[i].AmountApplyList.length - 1; j >= 0; j--) {
+                for (var k = selectArr[i].AmountApplyList[j].projectlist.length - 1; k >= 0; k--) {
+                    if (selectArr[i].AmountApplyList[j].projectlist[k].IsYc != selectVal) {
+                        selectArr[i].AmountApplyList[j].projectlist.splice(k, 1);
+                    }
+                }
+                if (selectArr[i].AmountApplyList[j].projectlist.length == 0) {
+                    selectArr[i].AmountApplyList.splice(j, 1);
+                }
+            }
+            if (selectArr[i].AmountApplyList.length == 0) {
+                selectArr.splice(i, 1);
+            }
+        }
+        var newArr = selectArr;
+        return newArr;
+    }
+
+
+    //模糊查询
+    function showSearchText88Data(searchText, selectArr) {
+        for (var i = selectArr.length - 1; i >= 0; i--) {
+            for (var j = selectArr[i].AmountApplyList.length - 1; j >= 0; j--) {
+                for (var k = selectArr[i].AmountApplyList[j].projectlist.length - 1; k >= 0; k--) {
+                    if (selectArr[i].AmountApplyList[j].projectlist[k].payAddressStr.indexOf(searchText) == -1) {
+                        selectArr[i].AmountApplyList[j].projectlist.splice(k, 1);
+                    }
+                }
+                if (selectArr[i].AmountApplyList[j].projectlist.length == 0) {
+                    selectArr[i].AmountApplyList.splice(j, 1);
+                }
+            }
+            if (selectArr[i].AmountApplyList.length == 0) {
+                selectArr.splice(i, 1);
+            }
+        }
+        var newArr = selectArr;
+        return newArr;
+    }
+
+    //冒泡排序
+    function rearrangement(arr) {
+        var len = arr.length;
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len - 1 - i; j++) {
+                if (arr[j].NowTypeJiSuanJinE > arr[j + 1].NowTypeJiSuanJinE) {//相邻元素两两对比
+                    var temp = arr[j + 1]; //元素交换
+                    arr[j + 1] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        var reArr = arr.reverse();
+        return reArr;
+    }
+
+    function loadTable01Data(resData) {//判断是否离职
+        for (var i = 0; i < resData.data.TypeDetailList.length; i++) {
+            for (var j = 0; j < resData.data.TypeDetailList[i].AmountApplyList.length; j++) {
+                if (resData.data.TypeDetailList[i].AmountApplyList[j].addusername.indexOf("离职") != -1) {
+                    resData.data.TypeDetailList[i].AmountApplyList[j].addusername = resData.data.TypeDetailList[i].AmountApplyList[j].addusername.split("<")[0] + "（离职）"
+                }
+                for (var k = 0; k < resData.data.TypeDetailList[i].AmountApplyList[j].projectlist.length; k++) {
+                    if (resData.data.TypeDetailList[i].AmountApplyList[j].projectlist[k].addusername.indexOf("离职") != -1) {
+                        resData.data.TypeDetailList[i].AmountApplyList[j].projectlist[k].addusername = resData.data.TypeDetailList[i].AmountApplyList[j].projectlist[k].addusername.split("<")[0] + "（离职）"
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    var Vue = new Vue({
+        el: "#app",
+        data() {
+            return {
+                select01Data: [{value: '0', name: '全部'},
+                    {value: '1', name: '是'},
+                    {value: '2', name: '否'}],
+                select02Data: [{value: '0', name: '全部'},
+                    {value: '1', name: '是'},
+                    {value: '2', name: '否'}],
+                select03Data: [{value: '0', name: '全部'},
+                    {value: '1', name: '是'},
+                    {value: '2', name: '否'}],
+                contentData: [],//content数据
+                selectText01: 0,
+                selectText02: 0,
+                selectText03: 0,
+                searchText: "",
+            }
+        },
+        methods: myMethods,
+        watch: myWatch,
+        created() {
+            //加载初始数据
+            loadStartData();
+        }
+    });
+
+    //展开第一个表格
+    function showAndHideTableData_box(obj) {
+        var $tableData_box = $(obj).next();
+        var $downIcon = $(obj).find(".downIcon");
+        if ($tableData_box.is(":hidden")) {
+            $(".downIcon").css({
+                transform: ""
+            });
+            $tableData_box.slideDown(200).siblings(".tableData_box").slideUp(200);
+            $downIcon.css({
+                transform: "rotate(180deg)"
+            });
+            $(".inner_table").hide();
+        } else {
+            $tableData_box.slideUp(200);
+            $downIcon.css({
+                transform: ""
+            });
+        }
+    }
+
+    //展开第二个表格
+    function showAndHideTableData_box02(obj) {
+        var $tableData_box02 = $(obj).next();
+        var $downIcon = $(obj).find(".downIcon02");
+        if ($tableData_box02.is(":hidden")) {
+            $(".downIcon02").css({
+                transform: "rotate(180deg)"
+            });
+            $tableData_box02.slideDown(0).siblings(".inner_table").slideUp(0);
+            $downIcon.css({
+                transform: "rotate(0deg)"
+            });
+            var $yesStyle = $tableData_box02.children().children(".tableData_box02").children().children("tbody").children(".yesStyle");
+            if ($yesStyle.length == 0) {
+                var ff = $tableData_box02.children().children(".tableData_box02").next(".showIsJiSuanJinE");
+                ff.hide();
+            }
+            var $span = $tableData_box02.children().children(".tableData_box02").next(".showIsJiSuanJinE").find("span");
+            $span.text("显示 同一条报账中不计入该分类明细");
+
+            var $img = $tableData_box02.children().children(".tableData_box02").next(".showIsJiSuanJinE").find("img");
+            $img.css({
+                transform: "rotate(180deg)"
+            });
+            $yesStyle.hide();
+        } else {
+            $tableData_box02.slideUp(0);
+            $downIcon.css({
+                transform: "rotate(180deg)"
+            });
+        }
+    }
+
+    //展开
+    function isShowIsJiSuanJinE(obj) {
+        var $IsJiSuanJinE = $(obj).prev().children().children().eq(1).children(".yesStyle");
+        if ($IsJiSuanJinE.length != 0 && $IsJiSuanJinE.is(":hidden")) {
+            $IsJiSuanJinE.show();
+            $(obj).find("span").text("隐藏 同一条报账中不计入该分类明细");
+            $(obj).find("img").css({
+                transform: "rotate(0deg)"
+            })
+        } else {
+            $IsJiSuanJinE.hide();
+            $(obj).find("img").css({
+                transform: "rotate(180deg)"
+            });
+            $(obj).find("span").text("显示 同一条报账中不计入该分类明细");
+        }
+    }
+
+    //加载图标
+    function showLoading() {
+        var html = "<img src=\"../images/loading.gif\" alt=\"正在加载...\" class='loadImg' style=\"position: absolute;top: 50%;left: 50%;z-index: 999;width: 40px;height: 40px;-webkit-transform: translate(-50%,-50%);-moz-transform: translate(-50%,-50%);-ms-transform: translate(-50%,-50%);-o-transform: translate(-50%,-50%);transform: translate(-50%,-50%);\">";
+        $("body").append(html)
+    }
+
+    function hideLoading() {
+        $(".loadImg").hide();
+    }
+
+
+</script>
+</body>
+</html>

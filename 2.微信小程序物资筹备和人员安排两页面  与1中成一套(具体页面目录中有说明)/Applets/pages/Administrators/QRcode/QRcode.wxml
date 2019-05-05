@@ -1,0 +1,27 @@
+<!--pages/Administrators/QRcode/QRcode.wxml-->
+<view class="img_box" bindtap="downloadFile_1">
+  <image src="{{img_url}}" />
+</view>
+
+<view wx:if="{{!writePhotosAlbum}}">
+  <button open-type="openSetting" bindopensetting="handler">打开授权</button>
+  <button open-type="writePhotosAlbum" bindopensetting="writePhotosAlbum_1">授权使用图片保存功能</button>
+  <button open-type="getUserInfo" bindgetuserinfo="getuserinfo_1">获取授权</button>
+</view>
+
+<canvas class="canvas1" canvas-id="canvas1"></canvas>
+
+<view class="Tips_1">
+  点击可保存及分享个人名片
+</view>
+<view class="text_1">
+  <view>
+    分享小程序到微信群或者微信好友，或者点击二维码 预览后转发到朋友圈或者微信朋友、微信群。
+  </view>
+  <view>
+    通过你分享的二维码进入小程序的访客，系统将自动 锁定为您的客户，他们在公司所有的消费你都可以获 得一定的提成。
+  </view>
+  <view>
+    你可以在“我的”页面进入【我的流量】和【昨日新增】 的页面查看新增的访客。
+  </view>
+</view>

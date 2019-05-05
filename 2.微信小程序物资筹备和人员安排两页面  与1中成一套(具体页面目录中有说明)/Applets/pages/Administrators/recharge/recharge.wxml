@@ -1,0 +1,11 @@
+<!--pages/Administrators/recharge/recharge.wxml-->
+<view style='background: #F7F7F7; height: 100vh;'>
+  <view style='background:#fff;padding:40rpx;'>
+    <view style='color:#888888;font-size:34rpx;'>充值金额</view>
+    <view style='display: flex;padding:40rpx 0;font-size:56rpx;'>
+      <view style='color:#888888;font-size:56rpx;'>￥</view>
+      <input type='number' bindinput='getNumber' value="{{number}}" style='margin-top:5px;margin-left:20rpx;'></input>
+    </view>
+  </view>
+  <view class='nextStep' bindtap='chongzhi'>下一步</view>
+</view>

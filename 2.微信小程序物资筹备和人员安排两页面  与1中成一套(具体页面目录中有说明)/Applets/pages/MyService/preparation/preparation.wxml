@@ -1,0 +1,26 @@
+<!--pages/MyService/preparation/preparation.wxml-->
+<view>
+  <view class='jieduan' wx:for='{{dataList}}'>
+    <view class='time'>
+      <text class='tag'>时间</text>
+      <text>{{item.time}}</text>
+    </view>
+    <view class='content'>
+      <text class='tag'>内容</text><text>{{item.content}}</text>
+    </view>
+  </view>
+  <view class='fix-countDown'>
+    <!--<text>婚礼倒计时</text>-->
+    <!--<image src='../../../images/myIcon/lb.png'></image>-->
+    <image src="../../../images/count-image.png" class="fix-countDown-image"></image>
+    <view class="fix-countDown-content">
+      <view class="fix-countDown-day">
+        <image  class="{{isDay?'show':''}}" src="../../../images/trumpet.png"  ></image>
+        <view class="fix-countDown-daynum  {{isDay?'fix-countDown-dayShow':''}}"  >93</view>
+      </view>
+      <view class="fix-countDown-word">
+          婚礼倒计时
+      </view>
+    </view>
+  </view>
+</view>

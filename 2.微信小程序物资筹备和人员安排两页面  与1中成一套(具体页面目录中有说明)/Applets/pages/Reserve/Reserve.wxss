@@ -1,0 +1,166 @@
+/* pages/Reserve/Reserve.wxss */
+@import "/pages/template/template.wxss";
+/*设置背景图  */
+.backimage{
+  width: 100%;
+  height:100%;
+  position: fixed;
+  top:0;
+  z-index: -1;
+}
+.reserve{
+  width: 100%;
+  /*height:100%;*/
+  overflow: hidden;
+  /* margin-bottom:120rpx; */
+}
+.content{
+  width:660rpx;
+  height:938rpx;
+  margin:40rpx 45rpx 0;
+  background-color:rgba(255,255,255,.9);
+    position: relative;
+  text-align:center;
+}
+.logo{
+  width:272rpx;
+  height:58rpx;
+  display: inline-block;
+  margin-top:105rpx;
+    margin-bottom: 43rpx;
+}
+.yuyue{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+.yuyue-word{
+    margin: 0 20rpx;
+}
+.yuyue-left-line,.yuyue-rigth-line{
+    width: 30rpx;
+    border-bottom: 1px solid #B2B2B2;
+}
+.yuyue-word{
+  font-size:26rpx;
+  position: relative;
+  color:#B2B2B2;
+}
+.yuyue text::after{
+  content:"";
+  display: inline-block;
+  width:30rpx;
+  height:2rpx;
+  background:#B2B2B2;
+  border-radius: 55rpx;
+  position: absolute;
+  top:50%;
+  left:120%;
+}
+.yuyue text::before{
+  content:"";
+  display: inline-block;
+  width:30rpx;
+  height:2rpx;
+  background:#B2B2B2;
+  border-radius: 55rpx;
+  position: absolute;
+  top:50%;
+  right:120%;
+}
+input{
+  margin:auto;
+  width:428rpx;
+    font-size: 28rpx;
+  margin-top:10%;
+  border-bottom:1px solid grey;
+  padding-bottom: 3%;
+}
+picker{
+  margin:auto;
+  width: 428rpx;
+    font-size: 28rpx;
+  margin-top:10%;
+  color:#999999;
+  padding-bottom: 3%;
+  border-bottom:1px solid grey;
+}
+.placecolor{
+  color:#999999!important;
+}
+button{
+  width:428rpx;
+  background:#EB8778;
+  color:white;
+    height: 90rpx;
+    font-size: 34rpx;
+    border-radius: 0;
+    position: absolute;
+    left:116rpx;
+    bottom: 106rpx;
+}
+
+
+
+/********************************新增页面*************************************************/
+.reserve-title-total{
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    position: relative;
+}
+.reserve-title-border{
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    box-sizing: border-box;
+    border-top:1px solid #eee;
+    border-bottom:1px solid #eee;
+    z-index: 1;
+    position: absolute;
+    top:0;
+    left: 0;
+    background: #fff;
+}
+.reserve-title{
+    z-index: 10;
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    background: rgba(255,255,255,0);
+    display: flex;
+    text-align: center;
+    font-size: 28rpx;
+    color:#666666;
+
+}
+.reserve-title-new,.reserve-title-login,.reserve-title-partner{
+    flex: 1;
+    text-align: center;
+    height: 88rpx;
+    line-height: 88rpx;
+    box-sizing: border-box;
+    margin-bottom: -1px;
+}
+.active text{
+    box-sizing: border-box;
+    display: inline-block;
+    height: 88rpx;
+    color:#EB8778;
+    border-bottom: 1px solid #EB8778;
+}
+
+.login,.login-parnert{
+    margin-top:160rpx;
+}
+button:after{
+    border:none;
+}
+.centent{
+  margin-top:50px
+}

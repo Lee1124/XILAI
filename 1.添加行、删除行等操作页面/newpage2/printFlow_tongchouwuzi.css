@@ -1,0 +1,239 @@
+/*=====公共样式=====*/
+body {
+    padding: 40px 60px 0;
+}
+
+/*清除浮动*/
+.clearFloat:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.imgBox {
+    text-align: center;
+}
+
+.imgBox img {
+    width: 270px;
+    height: 58px;
+}
+
+.titleText {
+    color: #222;
+    font-size: 18px;
+    text-align: center;
+    padding: 40px 0 15px;
+}
+
+.base_news_inner, .personnel_time_inner {
+    color: #E8738C;
+    font-size: 14px;
+}
+
+.base_news_inner::before, .personnel_time_inner::before {
+    content: "";
+    width: 3px;
+    height: 12px;
+    margin-right: 8px;
+    display: inline-block;
+    border-left: 3px solid #E8738C;
+}
+
+.base_news_inner, .personnel_time_inner {
+    margin: 0 0 20px;
+}
+
+table input {
+    color: #222222;
+    outline: none;
+    font-size: 12px;
+    width: 100%;
+}
+
+table tfoot span {
+    color: #E8738C;
+}
+
+.textArea, .textArea2 {
+    outline: none;
+    width: 100%;
+    word-wrap: break-word;
+    color: #222222;
+}
+
+.textArea2 {
+    margin-top: 8px;
+}
+
+.floatLeft {
+    float: left;
+    width: 48%;
+}
+
+.floatRight {
+    float: right;
+    width: 48%;
+}
+
+table {
+    border-collapse: collapse !important;
+    border: 1px dashed #DDDDDD;
+    width: 100%;
+    font-size: 12px;
+}
+
+table tr td {
+    padding: 9px 15px;
+    border: 1px dashed #DDDDDD;
+}
+
+table thead {
+    color: #367EB5;
+    font-weight: 400;
+}
+
+@media (max-width: 870px) {
+    .textArea {
+        width: 140px;
+    }
+
+    .textArea2 {
+        width: 320px;
+    }
+}
+
+/*页脚*/
+.footer {
+    display: none;
+}
+
+.footer img {
+    width: 100%;
+}
+
+/*右击菜单*/
+#menu {
+    width: 133px;
+    height: 79px;
+    box-shadow: 0 1px 1px #888, 1px 0 1px #ccc;
+    position: fixed;
+    padding: 10px;
+    z-index: 999;
+    background: #fff;
+    user-select: none;
+    cursor: pointer;
+    display: none;
+}
+
+.menu {
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;
+    color: #666;
+    font-size: 13px;
+    text-align: center;
+}
+
+/*打印按钮*/
+.all_float {
+    position: fixed;
+    right: 63px;
+    top: 65px;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    line-height: 48px;
+    background: #BB9860;
+    border-radius: 100%;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+}
+
+
+
+.beiZhu>td>.textArea{
+    color: red;
+}
+
+.miniIcon{
+    position: fixed;
+    right:133px;
+    top: 65px;
+}
+.codeImage{
+    position: absolute;
+    top:65px;
+    margin-left: -78px;
+    width: 200px;
+    height: 200px;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,.27);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+     opacity: 0;
+    overflow: hidden;
+    text-align: center;
+    display: none;
+}
+.codeImage img{
+    margin-bottom: 15px;
+}
+.show{
+     opacity: 1;
+    overflow: visible;
+    display: block;
+    transition: all 0.3s linear;
+}
+
+@media print {
+    body {
+        padding: 0 10px 0;
+    }
+
+    .titleText {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .footer {
+        display: block;
+        position: fixed;
+        bottom: 0;
+    }
+
+    .bigLengthFoot tr {
+        height: 80px;
+    }
+
+    .footer img {
+        width: 100%;
+        height: 70%;
+    }
+
+    @page {
+        size: auto;
+        margin-top: 12mm;
+        margin-left: 6mm;
+        margin-right: 6mm;
+        margin-bottom: 0mm;
+    }
+
+    .all_float{
+    display: none;
+    }
+    .miniIcon{
+    display: none;
+    }
+}
+

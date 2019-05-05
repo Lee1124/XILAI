@@ -1,0 +1,26 @@
+/* components/flow-nav.wxss */
+.nav-list{
+    width: 100%;
+    height: 87rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eee;
+}
+.nav-li{
+    flex: 1;
+    height: 87rpx;
+    font-size: 28rpx;
+    box-sizing: border-box;
+    margin: 0 25px;
+    line-height: 87rpx;
+    text-align: center;
+}
+.nav-li-two{
+    margin: 0 52px;
+}
+.nav-li-active{
+    border-bottom: 1px solid #BB9860;
+    color:#bb9860;
+}

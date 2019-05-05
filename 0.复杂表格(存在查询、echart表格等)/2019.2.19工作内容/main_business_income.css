@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+select ,button,input{
+    outline: none!important;
+}
+
+
+select option {
+    border: 1px solid #DDDDDD;
+}
+
+body .demo-class .layui-layer-title {
+    background: linear-gradient(0deg, rgba(248, 248, 248, 1), rgba(248, 248, 248, 1));
+    height: 44px;
+}
+
+
+/* 1. 给tbody的表格固定高度（也可以flex:1）, 并添加overflow-y:scroll */
+.tbody {
+    /*max-height: 660px;*/
+    overflow-y: auto;
+}
+
+
+/*滑槽样式*/
+.tbody::-webkit-scrollbar {
+    width: 5px;
+    background: rgba(234, 234, 234, 1);
+    border-radius: 2px;
+    margin-right: 15px;
+}
+
+/*滑块样式*/
+.tbody::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    width: 3px;
+    background: rgb(206, 206, 206);
+    margin-right: 15px;
+}
+
+/*数据列表部分*/
+
+.tableData {
+    width: 100%;
+}
+
+.tableData thead tr {
+    height: 38px;
+    background: #AD9F87;
+    font-size: 14px;
+    color: #fff;
+}
+
+.tableData_box02 thead tr {
+    color: #666;
+}
+
+.tableData tbody tr {
+    height: 38px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.tableData_box02>table>tbody>tr:hover td{
+    color: #BB9860;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse!important;
+    width: 100%;
+}
+
+
+.tableData tr th, .tableData tr td {
+    border: 1px solid #D9D7D5;
+}
+.tableData tr th{
+    border-bottom: 0;
+}
+
+.table01_tr {
+    cursor: pointer;
+}
+
+.tableData_box > .tableData>table > tbody > tr:nth-of-type(4n-1) {
+    background: #F1F0ED;
+}
+
+.tableData_box > table > tbody>tr>td {
+    font-size: 14px;
+    color: #222;
+}
+
+
+    /*最内层表格*/
+.tableData_box02 {
+    padding: 5px 15px!important;
+    background: #F2F2F2;
+}
+
+.tableData_box02 .tableData thead tr {
+    background: #ECECEC;
+    height: 35px;
+    color: #666;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.tableData_box02 .tableData tbody tr {
+    height: 34px;
+    color: #444;
+    font-size: 13px;
+}
+
+.tableData_box02 .tableData tbody tr:nth-of-type(2n+1){
+    background: #fff;
+}
+.tableData_box02 .tableData tbody tr:nth-of-type(2n){
+    background: #f4f4f4;
+}
+
+
+.showIsDSK {
+    background: #F2F2F2;
+    height: 40px;
+    line-height: 40px;
+    color: #999999;
+    cursor: pointer;
+}
+
+.showIsDSK img {
+    transform: rotate(180deg) translateY(2px);
+    transition: all .1s
+}
+
+.showNoNum {
+    display: none;
+}
+
+/*操作样式*/
+.noHidden {
+    background: #fff!important;
+}
+.yesHidden {
+    display: none;
+    background: #F8F8F8!important;
+
+}
+
+.yesHidden td {
+    color: #888!important;
+}
+
+
+/*提示样式*/
+.showBox {
+    width: 143px;
+    position: absolute;
+    margin-top: -85px;
+    margin-left: 16%;
+}
+
+.showBox span {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    font-size: 12px;
+    width: 70%;
+    color: #222222;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.showBox img {
+    vertical-align: middle;
+}
+
+
+

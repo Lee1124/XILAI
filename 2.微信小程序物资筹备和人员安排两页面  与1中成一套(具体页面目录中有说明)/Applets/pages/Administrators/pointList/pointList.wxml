@@ -1,0 +1,79 @@
+<!--pages/Administrators/pointList/pointList.wxml-->
+<view>
+  <loading wx:if="{{!hidden}}">
+    <view style='font-size:30rpx;'>加载中</view>
+  </loading>
+  <view wx:else>
+    <view style='background: #EB8778; height: 25vh;'></view>
+    <view class='balance'>
+      <picker bindchange="typeChange" style='width: 120px;display:inline-block;color:#999999;font-size:28rpx;' value="{{index}}" range="{{branchArray}}" range-key='Value'>
+        <span>{{branchArray[index].Value}}</span>
+        <span>余额</span>
+        <image src='../../../images/right.png' class='rightImg'></image>
+      </picker>
+      <view class='amount'>
+        <view style='font-size: 45rpx; line-height:78px;'>￥</view>
+        <view style='font-size: 90rpx;'>{{balance}}</view>
+      </view>
+      <view class='rechargeBtn' bindtap='goRecharge'>充值金额</view>
+    </view>
+    <view class='content'>
+      <view class='detailTitle'>
+        <view data-case="audit" bindtap="togglepage" class="{{active=='audit'?'active':''}}">待审核提现</view>
+        <view data-case="record" bindtap="togglepage" class="{{active=='record'?'active':''}}">已提现记录</view>
+        <view data-case="nowithdraw" bindtap="togglepage" class="{{active=='nowithdraw'?'active':''}}">未提现积分</view>
+      </view>
+      <view wx:if="{{active=='audit'}}" style='height: 50vh; overflow-y: auto;margin:0 10px;'>
+        <view class='listInfo' wx:for="{{auditList}}" data-id="{{item.id}}" data-money="{{item.Integral}}" bindtap='goWithDt'>
+          <image src='{{item.icon}}' style='width: 35px; height: 35px;border-radius: 50%;'></image>
+          <view style='margin-left: 10px;'>
+            <view style='font-size:28rpx;'>{{item.name}}
+              <span style='color: #999999; font-size: 26rpx;'>({{item.bname}})</span>
+            </view>
+            <view style='color:#999999;font-size:11px;margin-top:3px;'>{{item.instime}}</view>
+          </view>
+          <view class='pointDetail'>{{item.Integral}}</view>
+          <image src='../../../images/right.png' class='rightBtn'></image>
+        </view>
+        <view wx:if="{{auditTotal == 0}}" class='noContent'>暂无数据</view>
+      </view>
+      <view wx:if="{{active=='record'}}" style='height: 50vh; overflow-y: auto;margin:0 10px;'>
+        <view style='padding-top: 10px; display: flex;'>
+          <picker mode="date" value="{{startDate}}" start="1900-09-01" end="2222-09-01" style='width: 220rpx;height:62rpx; border:1px solid #DDDDDD;padding:0 10px;' bindchange="startDateChange">
+            <input placeholder-style="color:#999999;" disabled="true" class="picker" value="{{startDate}}" placeholder='2018/12/12' style='font-size: 13px;height:62rpx;'></input>
+          </picker>
+          <view style=' margin: 0 10px; width:13px;height:1px;background:#DDDDDD;margin-top:15px;'></view>
+          <picker mode="date" value="{{endDate}}" start="1900-09-01" end="2222-09-01" style='width: 220rpx;height:62rpx; border:1px solid #DDDDDD;padding:0 10px;' bindchange="endDateChange">
+            <input placeholder-style="color:#999999;" disabled="true" class="picker" value="{{endDate}}" placeholder='2018/12/12' style='font-size: 13px;height:62rpx;'></input>
+          </picker>
+        </view>
+        <view class='listInfo' wx:for="{{recordList}}" data-from="record" data-id="{{item.id}}" bindtap='goWithDt'>
+          <image src='{{item.icon}}' style='width: 35px; height: 35px; border-radius: 50%;'></image>
+          <view style='margin-left: 10px;'>
+            <view style='font-size:28rpx;'>{{item.name}}
+              <span style='color: #999999; font-size: 26rpx;'>({{item.bname}})</span>
+            </view>
+            <view style='color:#999999;font-size:11px;margin-top:3px;'>{{item.instime}}</view>
+          </view>
+          <view class='pointDetail'>{{item.Integral}}</view>
+          <image src='../../../images/right.png' class='rightBtn'></image>
+        </view>
+        <view wx:if="{{recordList == 0}}" class='noContent'>暂无数据</view>
+      </view>
+      <view wx:if="{{active=='nowithdraw'}}" style='height: 50vh; overflow-y: auto;margin:0 10px;'>
+        <view style='font-size: 28rpx; color: #666666;padding: 10px;'>未提现金额总计：
+          <span style='color: #222222;'>{{listTotal}}元</span>
+        </view>
+        <view class='listInfo' wx:for="{{noWithdrawList}}">
+          <image src='{{item.icon}}' style='width: 35px; height: 35px;border-radius: 50%;'></image>
+          <view style='margin-left: 10px;'>
+            <view style='font-size:28rpx;'>{{item.name}}</view>
+            <view style='color:#999999;font-size:11px;margin-top:3px;'>({{item.bname}})</view>
+          </view>
+          <view class='pointDetail' style='right:0rpx;'>{{item.Integral}}</view>
+        </view>
+        <view wx:if="{{noWithdrawList == 0}}" class='noContent'>暂无数据</view>
+      </view>
+    </view>
+  </view>
+</view>

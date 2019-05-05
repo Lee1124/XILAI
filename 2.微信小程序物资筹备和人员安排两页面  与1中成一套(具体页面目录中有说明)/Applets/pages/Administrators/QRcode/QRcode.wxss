@@ -1,0 +1,36 @@
+/* pages/Administrators/QRcode/QRcode.wxss */
+.img_box{
+    text-align: center;
+}
+.img_box>image{
+    margin: 40rpx auto 0px;
+    width:380rpx;
+    height:520rpx;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 0px 16px rgba(0,0,0,0.1);
+}
+.canvas1{
+    margin: 40rpx auto 0px;
+    width:190px;
+    height:260px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 0px 16px rgba(0,0,0,0.1);
+    position: fixed;
+    bottom: 100%;
+    left: 100%;
+}
+
+.Tips_1{
+    color: #FF0000;
+    font-size: 24rpx;
+    margin: 48rpx 0px 0px 0px;
+    text-align: center;
+}
+.text_1{
+    padding: 82rpx 45rpx 0px;
+    color: #777777;
+    font-size: 28rpx;
+}
+.text_1>view{
+    margin-bottom: 56rpx;
+}

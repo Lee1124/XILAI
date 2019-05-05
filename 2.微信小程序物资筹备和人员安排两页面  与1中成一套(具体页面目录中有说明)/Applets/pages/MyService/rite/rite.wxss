@@ -1,0 +1,449 @@
+/* pages/MyService/rite/rite.wxss */
+
+.scroll{
+    height: 1000rpx;
+}
+#first{
+    width: 100%;
+    height: 1px;
+}
+.scroll2{
+    height: 960rpx;
+}
+.form-list{
+    padding: 0 20rpx;
+}
+
+input{
+    font-size: 26rpx;
+    color:#222;
+}
+.li{
+    display: flex;
+    width: 100%;
+    height: 103rpx;
+    line-height: 103rpx;
+    border-bottom: 1px solid #DDDDDD;
+    align-items: center;
+}
+.li-name{
+    width: 220rpx;
+    color:#666;
+    font-size: 26rpx;
+    text-align: left;
+}
+.li-name-long{
+    width: 300rpx;
+}
+.li-value{
+    flex: 1;
+    font-size: 26rpx;
+    color:#222;
+}
+.li-value-width{
+    width:490rpx;
+    display: flex;
+    align-items: center;
+}
+.li-value-short{
+    width:410rpx;
+}
+.li-value .input{
+    width:440rpx;
+    font-size: 26rpx;
+    color:#222;
+    text-align: left;
+}
+.zan-icon{
+    color:#CCCCCC;
+}
+
+/*流程开始*/
+/*当天流程*/
+.team-select{
+    width: 100%;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    color:#BB9860;
+    font-size: 24rpx;
+    background: #ddd;
+}
+
+/*一张卡片*/
+.flow-card{
+    width: 690rpx;
+    margin: 0 auto;
+}
+/*卡片头部*/
+.card-header{
+    width: 100%;
+    height: 82rpx;
+    line-height: 82rpx;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background: #F6F6F6;
+    margin-top: 10rpx;
+}
+.card-icon{
+    width: 40rpx;
+    height: 40rpx;
+    line-height: 38rpx;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+}
+.card-image-icon{
+    width: 38rpx;
+    height: 38rpx;
+}
+.card-time,.card-flowname{
+    font-size: 26rpx;
+    color:#000;
+}
+.card-flowname{
+    margin-left: 30rpx;
+}
+.card-point{
+    flex: 1;
+    height: 38rpx;
+    line-height: 38rpx;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.card-image-point{
+    width: 36rpx;
+    float: right;
+    margin-right: 30rpx;
+}
+
+
+.arrow-down{
+    width: 16rpx;
+    height: 10rpx;
+    margin-left: 10rpx;
+}
+.card-main{
+    padding:0 30rpx 30rpx;
+    border: 1px solid #DDDDDD;
+    border-top: none;
+}
+.card-li{
+    margin-top: 15rpx;
+    margin-bottom: 15rpx;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 24rpx;
+    color:#666666;
+}
+.card-li:first-child{
+    margin-top: 0;
+}
+.card-li:last-child{
+    margin-bottom: 0;
+}
+.card-up-left,.card-up-right{
+    display: flex;
+    align-items: center;
+    width: 313rpx;
+    color:#666666;
+    line-height: 62rpx;
+}
+.card-down{
+    width: 630rpx;
+    line-height: 62rpx;
+    display: flex;
+    align-items: center;
+    color:#666;
+    margin-top: 10rpx;
+}
+.sinput{
+    border-bottom: 1px solid #ddd;
+    font-size: 24rpx;
+    color:#666;
+    height: 50rpx;
+    width: 70%;
+    display: inline-block;
+    padding-left: 10rpx;
+}
+/*.linput{*/
+    /*border-bottom: 1px solid #ddd;*/
+    /*font-size: 24rpx;*/
+    /*color:#666;*/
+    /*height: 50rpx;*/
+    /*width: 85%;*/
+    /*display: inline-block;*/
+    /*padding-left: 10rpx;*/
+/*}*/
+.linput{
+    border-bottom: 1px solid #ddd;
+    font-size: 24rpx;
+    color:#666;
+    min-height: 50rpx;
+    line-height: 40rpx;
+    width: 85%;
+    display: inline-block;
+    padding-left: 10rpx;
+}
+.ltextarea{
+    border-bottom: 1px solid #ddd;
+    font-size: 24rpx;
+    color:#666;
+    min-height: 50rpx;
+    width: 85%;
+    display: inline-block;
+    padding-left: 10rpx;
+    line-height: 40rpx;
+}
+.animate1{
+    /* height: 208rpx; */
+    /* height: 420rpx; */
+    transition:height 0.4s;
+    overflow: hidden;
+    transition-timing-function: linear;
+}
+.animate2{
+    height: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+    transition:height 0.4s;
+    transition-timing-function: linear;
+}
+.mt{
+    margin-top: 30rpx;
+}
+/*一张卡片end*/
+
+
+/*固定位置*/
+.allClose{
+    width: 88rpx;
+    height: 88rpx;
+    position: fixed;
+    bottom: 240rpx;
+    right: 38rpx;
+}
+.goTop{
+    width: 88rpx;
+    height: 88rpx;
+    position: fixed;
+    bottom: 140rpx;
+    right: 38rpx;
+}
+.allClose image,.goTop image{
+    width: 88rpx;
+    height: 88rpx;
+}
+/*流程end*/
+
+
+/*仪式后*/
+.page3{
+    padding: 0 20rpx;
+    box-sizing: border-box;
+}
+.rited{
+    width: 100%;
+    /* border-bottom: 1px solid #ddd; */
+    display: flex;
+    /* flex-direction: row; */
+    margin-top: 40rpx;
+    font-size: 26rpx;
+}
+.rited-right{
+    flex-grow: 1;
+}
+.rited-left{
+    /* width: 144rpx; */
+    color:#666;
+    margin-right:10px;
+    white-space: nowrap
+}
+.textarea_1{
+    width: 100%;
+}
+.rited-right{
+    flex: 1;
+    color:#222;
+    line-height: 40rpx;
+    margin-bottom: 20rpx;
+}
+
+
+
+
+/*引用输入框样式*/
+.shadw_box {
+    background: rgba(0, 0, 0, 0.80);
+    position: fixed;
+    width: 100%;
+    top:0;
+    left: 0;
+    height: 100%;
+    z-index: 1000;
+}
+
+.shadw_box>view {
+    background: white;
+    height: 562rpx;
+    width: 390rpx;
+    position: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 70rpx 55rpx 0 55rpx;
+    left: 0;
+    right: 0;
+    bottom: 400rpx;
+    border-radius: 5px;
+}
+
+.shadw_box>image {
+    width: 70rpx;
+    height: 70rpx;
+    position: fixed;
+    bottom: 295rpx;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
+.shadw2 {
+    height: 662rpx !important;
+    bottom: 300rpx !important;
+    padding-top: 50rpx !important;
+    overflow: visible;
+}
+
+.shadw2_image {
+    bottom: 195rpx !important;
+}
+
+.shadw2 label {
+    font-size: 30rpx;
+    padding-bottom: 20rpx;
+    padding-left: 4%;
+    border-bottom: 1px dashed #ddd;
+    width: 96%;
+    display: block;
+    margin-bottom: 20rpx;
+}
+
+.shadw2 label radio {
+    width: 33px;
+}
+
+/* .shadw2>label:last-child {
+  border: none;
+} */
+
+.shadw_box>view>text {
+    font-size: 30rpx;
+    text-align: center;
+    color:#bb9860;
+    padding-bottom: 20rpx;
+    padding-left: 4%;
+    border-bottom: 1px solid #ddd;
+    width: 96%;
+    display: block;
+    margin-bottom: 20rpx;
+}
+button:after{
+    border:none
+}
+.shadw_box>view>text:last-child {
+    border: none;
+}
+
+.change_click {
+    color: #ce1131;
+}
+
+.second_data_img {
+    width: 36rpx;
+    height: 30rpx;
+    position: absolute;
+    right: 20rpx;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 1000;
+}
+
+.upload_img {
+    width: 135rpx;
+    height: 90rpx;
+    margin: 20rpx 10rpx 0 10rpx;
+    position: relative;
+}
+
+.upload_img image {
+    width: 33rpx;
+    height: 35rpx;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.langtext {
+    display: inline-block;
+    width: 70%;
+    min-height: 15px;
+    color: #666;
+    vertical-align: top;
+}
+
+.shadw2 textarea {
+    width: 100%;
+    height: 70%;
+    font-size: 30rpx;
+}
+.open_button {
+    border: 1px solid #ce1131;
+    border-radius: 0;
+    background: white;
+    display: block;
+    color: #ce1131;
+    width: 60%;
+    font-size: 31rpx;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 150rpx;
+}
+.save_button2 {
+    bottom: 35rpx;
+    width: 47%;
+    height: 59rpx;
+    line-height: 2;
+    font-size: 27rpx;
+}
+.noBorder{
+    border-bottom: none;
+}
+.redBtn{
+  position: absolute;
+  bottom: 0px;
+}
+
+.liaojieBtn1{
+  background-color:#fff;
+  width:50%;
+  color:#000;
+}
+.liaojieBtn2{
+  background-color:#CD1130;
+  width:100%;
+  color:#fff;
+}
+.isShare{
+  right:0px;width:50%;
+}

@@ -1,0 +1,137 @@
+<!--pages/Administrators/scanStatistic/scanStatistic.wxml-->
+<view>
+  <cover-view class='statisticMenu' style='margin-bottom:10px; padding-top: 10px;position:fixed;width:100%; background:#FFF;z-index:999;font-size:14px;'>
+    <cover-view data-case="recentScan" bindtap="togglepage" class="{{active=='recentScan'?'active':''}}">最近浏览</cover-view>
+    <cover-view data-case="visitStatistic" bindtap="togglepage" class="{{active=='visitStatistic'?'active':''}}">访问统计</cover-view>
+    <cover-view data-case="doStatistic" bindtap="togglepage" class="{{active=='doStatistic'?'active':''}}">操作统计</cover-view>
+  </cover-view>
+  <view wx:if="{{active=='recentScan'}}" style='padding-top: 46px;font-size:30rpx;color:#222222;margin:0 15px; padding-bottom: 10px;'>
+    <!-- 筛选 -->
+    <view style='margin-bottom:12px;'>
+      <view style='margin-top:20px;'>
+        <span style='color:#666666;font-size:13px;'>访客身份</span>
+        <span data-case=""  bindtap="toggleIdentity" class="selectItem {{identity_==''?'activedate':''}}">全部</span>
+        <span data-case="0" bindtap="toggleIdentity" class="selectItem {{identity_=='0'?'activedate':''}}">订单</span>
+        <span data-case="2" bindtap="toggleIdentity" class="selectItem {{identity_=='2'?'activedate':''}}">机会</span>
+        <span data-case="3" bindtap="toggleIdentity" class="selectItem {{identity_=='3'?'activedate':''}}">游客</span>
+        <span data-case="4" bindtap="toggleIdentity" class="selectItem {{identity_=='4'?'activedate':''}}">黑名单</span>
+      </view>
+      <view style='margin-top:20px;'>
+        <span style='color:#666666;font-size:13px;'>联系电话</span>
+        <span data-case=""  bindtap="togglePhoneNumber" class="selectItem {{phoneNumber==''?'activedate':''}}">全部</span>
+        <span data-case="0" bindtap="togglePhoneNumber" class="selectItem {{phoneNumber=='0'?'activedate':''}}">包含联系电话</span>
+        <span data-case="1" bindtap="togglePhoneNumber" class="selectItem {{phoneNumber=='1'?'activedate':''}}">不含联系电话</span>
+      </view>
+    </view>
+    <view wx:if="{{scanList.length > 0}}" class="line_" style='padding: 13px 0; border-bottom: 1px dashed #DDDDDD;' wx:for="{{scanList}}" bindtap='go_personInfo' data-openid='{{item.OpenId}}' data-sf="{{item.UserIdenriry}}">
+      <image class="col" src='{{item.WeChatIcon}}' style='width: 30px; height: 30px; vertical-align:middle;'></image>
+      <view class="col_name ellipsis" style='margin-left: 15px; line-height:32px; font-size: 13px;'>
+        <view class="name_ ellipsis">{{item.NickName}}</view>
+        <!--  0订单 2机会 3游客  4 黑名单 -->
+        <view wx:if="{{ item.UserIdenriry == 0 }}" class="userIdenriry green">[订单]</view>
+        <view wx:if="{{ item.UserIdenriry == 2 }}" class="userIdenriry orange">[机会]</view>
+        <view wx:if="{{ item.UserIdenriry == 3 }}" class="userIdenriry blue">[游客]</view>
+        <view wx:if="{{ item.UserIdenriry == 4 }}" class="userIdenriry gray">[黑名单]</view>
+      </view>
+      <span class="col" style='float: right; color: #999999; font-size:12px; line-height:32px;'>{{item.IntoTime}}</span>
+    </view>
+    <view wx:if="{{scanList.length == 0}}">
+      <view class="noContent">暂无数据！</view>
+    </view>
+  </view>
+  <view wx:if="{{active=='visitStatistic'}}" style='padding-top: 46px;font-size:30rpx;color:#222222;margin:0 15px;padding-bottom: 10px;'>
+    <view style='margin-top:20px;'>
+      <span style='color:#666666;font-size:13px;'>访客身份</span>
+      <span data-case=""  bindtap="toggleIdentity" class="selectItem {{identity_==''?'activedate':''}}">全部</span>
+      <span data-case="0" bindtap="toggleIdentity" class="selectItem {{identity_=='0'?'activedate':''}}">订单</span>
+      <span data-case="2" bindtap="toggleIdentity" class="selectItem {{identity_=='2'?'activedate':''}}">机会</span>
+      <span data-case="3" bindtap="toggleIdentity" class="selectItem {{identity_=='3'?'activedate':''}}">游客</span>
+      <span data-case="4" bindtap="toggleIdentity" class="selectItem {{identity_=='4'?'activedate':''}}">黑名单</span>
+    </view>
+    <view style='margin-top:20px;'>
+      <span style='color:#666666;font-size:13px;'>联系电话</span>
+      <span data-case=""  bindtap="togglePhoneNumber" class="selectItem {{phoneNumber==''?'activedate':''}}">全部</span>
+      <span data-case="0" bindtap="togglePhoneNumber" class="selectItem {{phoneNumber=='0'?'activedate':''}}">包含联系电话</span>
+      <span data-case="1" bindtap="togglePhoneNumber" class="selectItem {{phoneNumber=='1'?'activedate':''}}">不含联系电话</span>
+    </view>
+    <view style='margin-top:20px;'>
+      <span style='color:#666666;font-size:13px;'>日期范围</span>
+      <span data-case="seven" bindtap="toggleselect2" class="selectItem {{currentDay=='seven'?'activedate':''}}" >近7天</span>
+      <span data-case="thirty" bindtap="toggleselect2" class="selectItem {{currentDay=='thirty'?'activedate':''}}" >近30天</span>
+    </view>
+    <view>
+      <view style='padding-top: 10px; display: flex;'>
+        <picker class="dateBox" mode="date" value="{{startDate}}" start="1900-09-01" end="2222-09-01" bindchange="startDateChange">
+          <input placeholder-style="color:#999999" disabled="true" class="picker" value="{{startDate}}" placeholder='请选择' style='font-size: 13px;height:42px;'></input>
+          <image src='../../../images/selectBtn.png' class='selectBtn2' ></image>
+        </picker>
+        <view style='line-height: 43px; margin: 0 20px; color:#666666;font-size:13px;'>到</view>
+        <picker class="dateBox" mode="date" value="{{endDate}}" start="1900-09-01" end="2222-09-01" bindchange="endDateChange">
+          <input placeholder-style="color:#999999" disabled="true" class="picker" value="{{endDate}}" placeholder='请选择' style='font-size: 13px;height:42px;'></input>
+          <image src='../../../images/selectBtn.png' class='selectBtn2' ></image>
+        </picker>
+      </view>
+    </view>
+    <view wx:if="{{ visitList.length > 0}}" class="line_" style='padding: 13px 0; border-bottom: 1px dashed #DDDDDD;' wx:for="{{visitList}}" bindtap='go_personInfo' data-openid='{{item.OpenId}}' data-sf="{{item.UserIdenriry}}">
+      <image class="col" src='{{item.WeChatIcon}}' style='width: 30px; height: 30px; vertical-align:middle;'></image>
+      <view class="col_name ellipsis" style='margin-left: 15px; line-height:32px; font-size: 13px;'>
+        <text class="name_ ellipsis">{{item.NickName}}</text>
+        <!--  0订单 2机会 3游客  4 黑名单 -->
+        <text wx:if="{{ item.UserIdenriry == 0 }}" class="userIdenriry green">[订单]</text>
+        <text wx:if="{{ item.UserIdenriry == 2 }}" class="userIdenriry orange">[机会]</text>
+        <text wx:if="{{ item.UserIdenriry == 3 }}" class="userIdenriry blue">[游客]</text>
+        <text wx:if="{{ item.UserIdenriry == 4 }}" class="userIdenriry gray">[黑名单]</text>
+      </view>
+      
+      <span class="col" style='float: right; color: #999999; font-size:12px; line-height:32px;'>访问次数：{{item.AccessNum}}</span>
+    </view>
+    <view wx:if="{{ visitList.length == 0}}">
+      <view class="noContent">暂无数据！</view>
+    </view>
+  </view>
+  <view wx:if="{{active=='doStatistic'}}" style='padding-top: 46px;font-size:30rpx;color:#222222;'>
+    <view style='display: flex;margin:0 15px;'>
+      <span style='line-height: 42px; color:#666666; font-size: 13px;'>店铺选择</span>
+      <picker bindchange="branchChange" style='width: 120px;display:inline-block;' value="{{index}}" range="{{branchArray}}" range-key='Value'>
+        <input placeholder-class="place-holder" disabled="true" class="picker" value="{{branchArray[index].Value}}" placeholder='请选择店铺' style='width: 120px;margin-left: 30px; font-size:14px;height:42px;font-size: 13px;'></input>
+        <image src='../../../images/selectBtn.png' class='selectBtn2' style='top: 64px; left: 200px;'></image>
+      </picker>
+    </view>
+    <view style='display: flex;margin:0 15px;'>
+      <span style='line-height: 42px; color:#666666;font-size: 13px;'>类型选择</span>
+      <picker bindchange="typeChange" style='width: 120px;display:inline-block;' value="{{typeIndex}}" range="{{typeArray}}" range-key='Value'>
+        <input placeholder-class="place-holder" disabled="true" class="picker" value="{{typeArray[typeIndex].Value}}" placeholder='请选择类型' style='width: 120px;margin-left: 30px; font-size:14px;height:42px;font-size: 13px;'></input>
+        <image src='../../../images/selectBtn.png' class='selectBtn2' style='top: 105px; left: 200px;'></image>
+      </picker>
+    </view>
+    <view style='margin:0 15px; padding-top: 10px;'>
+      <span style='color:#666666;font-size: 13px;'>日期范围</span>
+      <span data-case="seven" bindtap="toggleselect" class="{{currentSelect=='seven'?'activedate':''}}" style='border: 1px solid #999;color: #999;font-size: 11px;margin-left: 30px;padding: 2px 8px;border-radius: 21px;'>近7天</span>
+      <span data-case="thirty" bindtap="toggleselect" class="{{currentSelect=='thirty'?'activedate':''}}" style='border: 1px solid #999;color: #999;font-size: 11px;margin-left: 20px;padding: 2px 8px;border-radius: 21px;'>近30天</span>
+    </view>
+    <view style='padding: 10px 0px; display: flex; margin:0 15px;'>
+      <picker mode="date" value="{{doStart}}" start="1900-09-01" end="2222-09-01" style='width: 100px;' bindchange="startChange">
+        <input placeholder-style="color:#999999" disabled="true" class="picker" value="{{doStart}}" placeholder='请选择' style='font-size: 13px;height:42px;'></input>
+        <image src='../../../images/selectBtn.png' class='selectBtn2' style='top: 188px; left: 110px;'></image>
+      </picker>
+      <view style='line-height: 43px; margin: 0 20px; color:#666666;font-size:13px;'>到</view>
+      <picker mode="date" value="{{doEnd}}" start="1900-09-01" end="2222-09-01" style='width: 100px;' bindchange="endChange">
+        <input placeholder-style="color:#999999" disabled="true" class="picker" value="{{doEnd}}" placeholder='请选择' style='font-size: 13px;height:42px;'></input>
+        <image src='../../../images/selectBtn.png' class='selectBtn2' style='left: 266px; top: 188px'></image>
+      </picker>
+    </view>
+    <view wx:if="{{ userList.length > 0}}" class="line_" style='padding: 13px 0; border-bottom: 1px dashed #DDDDDD; margin:0 15px;' wx:for="{{userList}}" bindtap='go_personInfo' data-openid='{{item.OpenId}}' data-sf="{{item.UserIdenriry}}">
+      <image class="col" src='{{item.WeChatIcon}}' style='width: 30px; height: 30px; vertical-align:middle;'></image>
+      <text class="col_name ellipsis" style='margin-left: 15px; line-height:32px; font-size: 13px;'>{{item.NickName}}</text>
+      <span class="col" style='float: right; color: #999999; font-size:12px; line-height:32px;'>{{item.IntoTime}}</span>
+    </view>
+    <view wx:if="{{ userList.length == 0}}">
+      <view class="noContent">暂无数据！</view>
+    </view>
+    <view style='height: 126rpx; background: #fff;'></view>
+    <view style='position: fixed; bottom:0;z-index: 2; width: 100%; text-align: center;background:#fff;padding:15px 0;border-top:1px solid #ddd;'>
+      总计
+      <span style='color: #CD1130;'>{{usertotal}}</span>条结果
+    </view>
+  </view>
+</view>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <style>
+        /*.printFlow_renyuananpai_class .layui-layer-title {*/
+            /*color: #A2B9F5;*/
+            /*font-size: 15px;*/
+        /*}*/
+
+        /*.showBox {*/
+            /*position: relative;*/
+            /*width: 143px;*/
+        /*}*/
+
+        /*.showBox span {*/
+            /*position: absolute;*/
+            /*top: 40%;*/
+            /*left: 50%;*/
+            /*font-size: 12px;*/
+            /*width: 70%;*/
+            /*color: #222222;*/
+            /*-webkit-transform: translate(-50%,-50%);*/
+            /*-moz-transform: translate(-50%,-50%);*/
+            /*-ms-transform: translate(-50%,-50%);*/
+            /*-o-transform: translate(-50%,-50%);*/
+            /*transform: translate(-50%,-50%);*/
+        /*}*/
+
+        /*.showBox img {*/
+            /*vertical-align: middle;*/
+        /*}*/
+    </style>
+
+</head>
+<body>
+
+
+<button onclick='f11()'>弹出1111</button>
+<button onclick='f22()'>弹出2222</button>
+<button onclick='f33()'>弹出3333</button>
+
+<script type="text/javascript" src="jquery-1.12.4.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="layui/layui.js"></script>
+<script>
+    function f11() {
+        var $height1 = window.top.$(document).height();
+        var $height2 = $height1- 280;
+        let allPrice="<span style='color: #FF0000;'>204204.57元</span>"
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            window.top.layer.open({
+                type: 2,
+                skin: '',
+                title: "2019年1月成都店主业务收入明细："+allPrice,
+                area: ['1210px', ($height1 - 150) + 'px'],
+                content: ['main_business_income.html?height='+$height2,'no']
+            })
+        });
+    }
+
+    function f22() {
+        var $height1 = window.top.$(document).height();
+        var $height2 = $height1- 280;
+        let allPrice="<span style='color: #FF0000;'>204204.57元</span>"
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            window.top.layer.open({
+                type: 2,
+                skin: '',
+                title: "2019年1月成都店提成明细："+allPrice,
+                area: ['1210px', ($height1 - 150) + 'px'],
+                content: ['details_of_royalty.html?height='+$height2,'no']
+            })
+        });
+    }
+    function f33() {
+        var $height1 = window.top.$(document).height();
+        var $height2 = $height1- 280;
+        let allPrice="<span style='color: #FF0000;'>204204.57元</span>"
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            window.top.layer.open({
+                type: 2,
+                skin: '',
+                title: "2019年1月成都店工资明细："+allPrice,
+                area: ['1210px', ($height1- 150) + 'px'],
+                content: ['salary_details.html?height='+$height2,'no']
+            })
+        });
+    }
+</script>
+</body>
+</html>
+
+
+<!--../../SysManage/UserManage/Order_fineDetail.html?userid=422&orderId=7117e599-a0c4-4eb9-bd0c-1bc246375c02-->
+<!--../../SysManage/UserManage/Order_fineDetail.html?userid=579&orderId=3bfedfa1-c769-4e3c-a185-cd838043ab8e-->

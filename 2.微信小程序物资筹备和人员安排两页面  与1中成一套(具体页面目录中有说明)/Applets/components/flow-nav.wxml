@@ -1,0 +1,30 @@
+
+<view class="nav-list" wx:if="{{two}}">
+    <view class="nav-li {{active==1?'nav-li-active':''}} {{two?'nav-li-two':''}}"
+          data-id="1"
+          bindtap="chooseNav">
+        基本信息
+    </view>
+    <view class="nav-li {{active==2?'nav-li-active':''}} {{two?'nav-li-two':''}}"
+          data-id="2"
+          bindtap="chooseNav">
+        当天流程
+    </view>
+</view>
+<view class="nav-list" wx:else>
+    <view class="nav-li {{active==1?'nav-li-active':''}}"
+          data-id="1"
+          bindtap="chooseNav">
+        基本信息
+    </view>
+    <view class="nav-li {{active==2?'nav-li-active':''}}"
+          data-id="2"
+          bindtap="chooseNav">
+        仪式流程
+    </view>
+    <view class="nav-li {{active==3?'nav-li-active':''}}"
+          data-id="3"
+          bindtap="chooseNav">
+        仪式完成后
+    </view>
+</view>

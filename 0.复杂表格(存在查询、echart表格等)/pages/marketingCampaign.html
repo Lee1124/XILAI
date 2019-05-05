@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<link rel="stylesheet" href="../../Scripts/layer/theme/default/layer.css">-->
+    <!--<link rel="stylesheet" href="layui/css/layui.css">-->
+    <link rel="stylesheet" href="marketingCampaign.css">
+</head>
+<body id="accountDetailedBody">
+<div id="app">
+
+    <div class="tableData_box">
+        <table style="height: 0;" cellpadding="0" cellspacing="0" border="1">
+            <thead>
+            <tr>
+                <th>订单</th>
+                <th>收入</th>
+                <th>支出</th>
+                <th>结余</th>
+            </tr>
+            </thead>
+            <tbody>
+            <template v-for="(items,index) in contentData">
+                <tr class="table01_tr">
+                    <td style="width: 300px;">{{items.order}}</td>
+                    <td style="width: 155px;">{{items.getMoney}}</td>
+                    <td style="width: 155px;">{{items.outMoney}}</td>
+                    <td style="width: 155px;" :class="{'isRed':items.lastMoney<0}">{{items.lastMoney}}</td>
+                </tr>
+            </template>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../View/new_designWorksList_ly_kxt/newpage/js/jquery-1.11.1.min.js"></script>
+<script src="../../View/new_designWorksList_ly_kxt/newpage/js/vue.js"></script>
+<script src="../../xlSystem/XL/js/main.js"></script>
+<script src="../../xlSystem/XL/layer/layer.js"></script>
+<!--<script src="layui/layui.js"></script>-->
+
+<script>
+
+
+    var myData = {
+        contentData: [],
+    };
+
+    //加载初始数据
+    var getkevalue = getkevalue();
+    var api = getkevalue.apiurl;//IP地址
+    // var branchid=getkevalue.branchid;//店id
+    var SearchDate = GetQueryString('SearchDate');//获取传的年月
+    var Branch = GetQueryString('Branch');//获取传的店ID
+    function loadData() {
+        var url1 = api + "/xlapi/Homepage/Cost/CostStatistics/GetGSSCYXDetail";
+        // console.log(url1)
+        var data1 = {
+            SearchDate: SearchDate,
+            Branch: Branch
+        };
+        $.ajax({
+            type: "post",
+            url: url1,
+            data: data1,
+            beforeSend: function (XHR) {
+                showLoading();
+                XHR.setRequestHeader('Authorization', localStorage.userinfo);
+            },
+            complete: function () {
+                hideLoading();
+            },
+            success: res => {
+                console.log(res.data);
+                if (res.data.length == 0) {
+                    // var html = "<div style='position: absolute;top: 40%;left: 48%;z-index: 9999;'>无数据</div>"
+                    var html = "<tr>\n" +
+                        "                <td style='padding: 130px;color: #999;' colspan='5'>无数据</td>\n" +
+                        "            </tr>";
+                    $(".tableData_box table tbody").append(html)
+                } else {
+                    var resultData = res.data.map(function (items, index) {
+                        return {
+                            order: items.OrderTitle,
+                            getMoney: items.ShouRu,
+                            outMoney: items.ZhiChu,
+                            lastMoney: items.JieYu,
+                        }
+                    });
+                    Vue.contentData = resultData
+                }
+            }
+        })
+    }
+
+    var Vue = new Vue({
+        el: "#app",
+        data: myData,
+        created() {
+            loadData();
+        }
+
+
+    });
+
+    //加载图标
+    function showLoading() {
+        var html = "<img src=\"../images/loading.gif\" alt=\"正在加载...\" class='loadImg' style=\"position: absolute;top: 50%;left: 50%;z-index: 999;width: 40px;height: 40px;-webkit-transform: translate(-50%,-50%);-moz-transform: translate(-50%,-50%);-ms-transform: translate(-50%,-50%);-o-transform: translate(-50%,-50%);transform: translate(-50%,-50%);\">";
+        $("body").append(html)
+    }
+
+    function hideLoading() {
+        $(".loadImg").hide()
+    }
+
+</script>
+</body>
+</html>

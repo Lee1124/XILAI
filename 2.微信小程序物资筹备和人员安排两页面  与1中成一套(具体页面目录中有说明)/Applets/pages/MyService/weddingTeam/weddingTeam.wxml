@@ -1,0 +1,18 @@
+<!--pages/MyService/weddingTeam/weddingTeam.wxml-->
+<view>
+  <view class='header'>
+    <text decode='true'> [&nbsp;长按某人头像可@此人&nbsp;]</text>
+  </view>
+  <view class='list'>
+    <view class='user_view' wx:for='{{personnelList}}'>
+      <image src='{{item.imgPath}}'></image>
+      <text class='userName'>{{item.Name}}</text>
+      <text class='postName'decode='true'>-&nbsp;{{item.postName}}&nbsp;-</text>
+    </view>
+  </view>
+  <view class='footer'>
+    <view>
+    <text>查看沟通记录</text>
+    </view>
+  </view>
+</view>

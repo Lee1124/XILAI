@@ -1,0 +1,111 @@
+/* pages/template/template.wxss */
+.tabbar_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 99999999 !important;
+    width: 100%;
+    height: 100rpx;
+    border-top: 1rpx solid #ddd; 
+}
+.showBar{
+  flex: 1;
+}
+.tabbar_nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 22rpx;
+    height: 100%;
+}
+.tabbar_nav view{
+  width: 15px;
+  height: 15px;
+  border-radius: 20px;
+  top: 0;
+ right:20px;
+border: 2px solid #fff;
+  background: red;
+  position: absolute;
+  color: #fff;
+   text-align: center;
+}
+.tabbar_nav image{
+  margin-top:4rpx;
+}
+.tabbar_nav text{
+  margin-top:2rpx;
+}
+
+.tabbar_icon{
+    width: 52rpx !important;
+    height: 52rpx;
+}
+.mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 9999999;
+}
+.my_content{
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width:70%; 
+  left: 50%;  
+  background-color: #ffffff;
+  font-size: 28rpx;
+  text-align: center;
+  border-radius: 10rpx;
+}
+.title{
+  padding:35px 0;
+  color:#999;
+}
+.content_t{
+font-size:20px;
+padding-top:10px;
+}
+.btn-group{ 
+  padding: 30rpx 0;
+  border-top: 1px solid #bbb; 
+}
+.btn-group button{
+  width: 100%;
+  background-color: #ffffff;
+  font-size: 30rpx;
+  color: #0B70EF;
+  border-radius: inherit;
+  position: inherit;
+  line-height: normal;  
+} 
+.header_box{
+  flex-direction:row;
+  display: flex;
+  padding-top:15px;
+  position:fixed;
+z-index:998;
+width:100%;
+background:#fff;
+
+}
+
+.header_box navigator{
+  font-size:14px;
+  margin-left:15%;
+
+  color:#222;
+}
+#check_View{
+  color:#cd1130;
+  border-bottom: 1px solid #cd1130;
+  padding-bottom:10px;
+}

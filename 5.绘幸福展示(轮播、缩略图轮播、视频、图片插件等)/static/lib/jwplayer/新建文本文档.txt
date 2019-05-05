@@ -1,0 +1,32 @@
+// <script type="text/javascript">
+       //   jwplayer("myElement").setup({
+           //   file: "ftp://Administrator:Windows2008@218.6.160.126/Video/D61C5D16-0DB4-0996-E963-3EC057E851D3.mp4",
+          //    height: 360,
+          //    image: "/assets/tbg.jpg",
+         //     width: 640,
+          //   logo: {
+             //       file: "assets/gdz4zR4a.png",
+             //       link: "http://www.example.com/"
+           //   },
+           //     mute:'false'
+        //  });
+
+         //  </script>
+
+
+,{
+        file: "ftp://Administrator:Windows2008@218.6.160.126/Video/59d20000-fb3a-47d7-96a4-481ebe4a9849.mp4",
+        image: "ftp://Administrator:Windows2008@218.6.160.126/Image/A26F0B9E-29A9-FB30-9833-6D68588F1E61.jpg",
+        title: "Tears of Steel Trailer",
+        description: "A complete open pipeline was used to produce this visual effect film."
+      },{
+        file: "ftp://Administrator:Windows2008@218.6.160.126/Video/4803501f-2cf5-4729-8f35-0f7038689cfcmp4",
+        image: "ftp://Administrator:Windows2008@218.6.160.126/Image/9E2CFB4F-9A40-063E-F5BA-4DB63C9D53EC.JPG",
+        title: "Big Buck Bunny Trailer",
+        description: "This  animated film is made using free and open source software."
+      },{
+        file: "ftp://Administrator:Windows2008@218.6.160.126/Video/f6529c6f-27ec-441f-ab4d-8dafccd6399a.rmvb",
+        image: "ftp://Administrator:Windows2008@218.6.160.126/Image/D8AB58E6-2B94-6591-CB9B-94932BFD803A.jpg",
+        title: "Elephants Dream Trailer",
+        description: "This is the worlds first open movie, made entirely with Blender."
+      }

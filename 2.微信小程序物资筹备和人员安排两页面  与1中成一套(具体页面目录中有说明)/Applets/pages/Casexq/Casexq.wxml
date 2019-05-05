@@ -1,0 +1,157 @@
+<!--pages/Casexq/Casexq.wxml-->
+
+
+<view class='parent' wx:if="{{content}}">
+    <!--<scroll-view class='Casexq' scroll-y="true">-->
+    <!---->
+    <!--<view class='top'>-->
+    <!--<text>{{casexqArr.Cname}}</text>-->
+    <!--</view>-->
+    <!--<view class='content'>-->
+    <!--<text wx:if="{{casexqArr.field!=''}}">场地： {{casexqArr.field}}</text>-->
+    <!--<text wx:if="{{casexqArr.wedding!=''}}">婚期： {{casexqArr.wedding}}</text>-->
+    <!--<text wx:if="{{xq_style!=''}}">风格： {{xq_style}}</text>-->
+    <!--<text wx:if="{{xq_color.length>0}}" style='margin-top:3%;height:30rpx;' class='colors'>颜色： <text class='color' style='background:{{item}}' wx:for="{{xq_color}}" wx:key="index"></text></text>-->
+    <!--</view>-->
+    <!--<view class='site'>-->
+    <!--<text>{{casexqArr.describe}}</text>-->
+    <!--</view>-->
+    <!--<view class='img' wx:for="{{imgArr}}" wx:key="{{index}}">-->
+    <!--<image src='{{loaded?item.img1:defaultimg}}' class='fade_in' lazy-load='true' mode='widthFix'  ></image>-->
+    <!--</view>-->
+    <!--</scroll-view>-->
+    <view class="case-detail-banner">
+        <image src="{{casexqArr.Cimg}}" class="img-fix-width" mode="widthFix"></image>
+    </view>
+    <view class="case-detail-main">
+        <view class="case-detail-title">
+            <view class="case-title-left"></view>
+            <view class="case-title-word">{{casexqArr.Cname}}</view>
+            <view class="case-title-right"></view>
+        </view>
+        <view class="case-title-address">
+            {{casexqArr.field}}
+        </view>
+        <view class="case-title-time">{{casexqArr.wedding}}</view>
+        <view class="case-title-context">
+           <text>{{casexqArr.describe}}</text>
+        </view>
+    </view>
+     <view  class="case-images">
+      <image wx:for="{{imgArr}}" style='margin-bottom:6px;' wx:key="{{index}}" src='{{loaded?item.img1:defaultimg}}' class='img-fix-width' lazy-load='true' mode='widthFix'  ></image>
+      <view class="hr_view">   </view>
+      <image  class="logo-mark" src="/images/icon/logo.png" mode="widthFix"></image>
+    </view>
+     
+   
+
+    <!-- <view class="case-images">
+        <image class="img-fix-width" src="/images/bg.png" mode="widthFix"></image>
+        <image class="img-fix-width" src="/images/bg.png" mode="widthFix"></image>
+        <image  class="img-fix-width" src="/images/bg.png" mode="widthFix"></image>
+        <image  class="img-fix-width" src="/images/bg.png" mode="widthFix"></image>
+        <image  class="logo-mark" src="/images/icon/logo.png" mode="widthFix"></image>
+    </view> -->
+    <view class='footer'>
+      <view class='left'>
+            <button class="btn haveBorder"
+                    bindtap='BackSY'>
+            </button>
+            <image src='../../images/icon/share-sy.png' class='syIcon' style=''></image>
+            <text>首页</text>
+        </view>
+        <view class='left'>
+            <button class="btn haveBorder"
+                    open-type='share'>
+            </button>
+            <image src='../../images/icon/share-ys.png'></image>
+            <text>分享</text>
+        </view>
+        <view class='middle'>
+            <button class="btn"
+                    hover-class='none'
+                    bindtap='phone'>
+                电话沟通
+            </button>
+        </view>
+        <view class='right'>
+            <button class="btn"
+                    hover-class='none'
+                    bindtap='zixun'>
+                立即咨询
+            </button>
+        </view>
+    </view>
+
+    <!--分享隐藏区域  -->
+    <!-- <view class='maskLayer' wx:if="{{fxsize}}"></view>
+    <view class='choose fx_choose' wx:if="{{fxsize}}" animation="{{animationData}}">
+        <view class='choose_top fx_choosetp'>
+            <view class='fx_tp_left' bindtap='friend'>
+             <image src='../../images/icon/friend.png'></image>
+               <text>微信好友</text>
+               <button open-type='share' plain='true' hover-class='none'></button>
+            </view>
+            <view class='fx_tp_middle'>
+               <image src='../../images/icon/quan.png'></image>
+               <text>朋友圈</text>
+            </view>
+            <view class='fx_tp_right'>
+               <image src='../../images/icon/cope.png'></image>
+              <text>复制链接</text>
+            </view>
+        </view>
+        <view class='choose_close fx_close' bindtap='fx_hideModal'>
+           取消
+        </view>
+    </view> -->
+</view>
+<!--立即预约隐藏区域  -->
+<view class='maskLayer' bindtap='hideModal' catchtouchmove="true" wx:if="{{chooseSize}}"></view>
+<view  catchtouchmove="true" class='choose' wx:if="{{chooseSize}}" animation='{{animationData}}'>
+    <view class='choose_top'>
+        <form bindsubmit='formSubmit'>
+            <!--滚动选择  -->
+            <!-- <view class='dianpu'>
+                <picker-view indicator-style="height: 50px;" style="width: 100%; height: 50px;color:#808080" value="{{value}}" bindchange="bindChange" >
+                  <picker-view-column>
+                    <view wx:for="{{array}}" style="height: 50px">{{array[index].name}}</view>
+                  </picker-view-column>
+                </picker-view>
+             </view> -->
+            <!--弹出式选择  -->
+            <picker mode="selector" range='{{array}}' value='{{index}}' style="color:{{color}}" range-key="{{'name'}}"
+                    bindchange='bindChange'>
+                <text class='dianpus'>{{array[index].name}}</text>
+            </picker>
+            <input type='text' placeholder-class='placename' name="user" value="{{value}}" placeholder='请输入姓名'></input>
+            <input type='number' name="phone" value="{{value}}" placeholder-class='placename'
+                   placeholder='请输入手机号'></input>
+            <button hover-class='none' formType='submit'>立即预约</button>
+        </form>
+    </view>
+    <view class='choose_close' bindtap='hideModal'>
+        取消
+    </view>
+</view>
+<!--电话沟通隐藏区域  -->
+<view class='maskLayer' catchtouchmove="true" wx:if="{{phonesize}}"></view>
+<view class='choose choose_phone' wx:if="{{phonesize}}" animation='{{animationData}}'>
+    <view class='choose_top top_phone' data-phone="4009951520" bindtap='callphone'>
+        <text>4009951520</text>
+    </view>
+    <view class='choose_close phone_close' bindtap='ph_hideModal'>
+        取消
+    </view>
+</view>
+<!-- <view class='bg' wx:if="{{showbg}}" bindtap='stopbgShow'>
+    <image src='../../images/fxbg.png'></image>
+</view> -->
+<loading wx:if="{{loading}}">加载中</loading>
+<!-- 引入图片预加载组件 -->
+<import src="/pages/img-loader/img-loader.wxml"/>
+<template is="img-loader" data="{{ imgLoadList }}"></template>
+
+
+
+

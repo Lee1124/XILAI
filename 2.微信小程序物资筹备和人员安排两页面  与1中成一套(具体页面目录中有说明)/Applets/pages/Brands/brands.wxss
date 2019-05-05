@@ -1,0 +1,178 @@
+/* pages/Brands/brands.wxss */
+@import "/pages/template/template.wxss";
+.brands{
+  width:100%;
+  height:100%;
+}
+/* 图片样式 */
+.header image{
+  width: 100%;
+  height: 450rpx;
+  position: relative;
+}
+.header .logo::after{
+   content: "";
+   width:100%;
+   height:450rpx;
+   background:rgba(0,0,0,.5);
+   position: absolute;
+   top:0;
+   left:0;
+}
+/*头部布局样式*/
+.header{
+  position: relative;
+}
+.header_content{
+  position: absolute;
+  bottom:6%;
+  color:white;
+  width: 100%;
+}
+.ct_left,.ct_right{
+  float:left;
+}
+.ct_left{
+  margin-left:5%;
+  margin-right:2%;
+}
+.ct_left image{
+  width: 150rpx;
+  height:150rpx;
+  border-radius: 50%;
+}
+.ct_title{
+  margin-top:0%;
+  font-size:39rpx;
+  font-weight: bold;
+  margin-bottom:0%;
+}
+.ct_titles{
+  font-size:27rpx;
+  margin-top:2%;
+}
+.ct_titles1{
+  font-size:27rpx;
+}
+/* 主体内容 */
+.content{
+  width: 100%;
+  padding-top:2%;
+  font-size:34rpx;
+  color:#666666;
+}
+.ct_phone text{
+  color:#999999;
+}
+.contents{
+  margin-left:3%;
+  font-size:30rpx;
+  color:#666666;
+}
+.phone{
+  display: inline-block!important;
+  color:blue;
+}
+.ct_phone view .wb_hunli{
+  color:#666666!important;
+  display: inline;
+}
+.wb_hunli{
+  margin-right:10%;
+}
+.ct_phone view:last-child{
+  margin-top:2%;
+}
+.ct_phone view .phone{
+  color:blue;
+}
+.ct_phone{
+  color:#999999;
+}
+.title text{
+  font-weight: bolder;
+  display: inline-block;
+  margin-bottom:2%; 
+}
+.ct_description text{
+  display: block;
+  font-size: 30rpx;
+}
+.ct_service,.ct_thanks,.ct_phone{
+  margin-top:4%;
+}
+.ct_description,.ct_service,.ct_thanks{
+  line-height: 48rpx;
+}
+.ct_phone text{
+   display: block;
+   margin-bottom: 2%;
+}
+.cop-tel{
+    margin-top: 60rpx;
+}
+
+
+/*新页面css*/
+
+.time{
+  margin: 0 auto;
+  margin-bottom:30rpx;
+  width:280rpx;
+  height:40rpx;
+  background:rgba(214,214,214,1);
+  border-radius:5px;
+  font-size: 28rpx;
+  text-align: center;
+  color:#fff;
+}
+.brand-list{
+  width:710rpx;
+  /*min-height:504rpx;*/
+  margin: 0 auto;
+  background:rgba(255,255,255,1);
+  border-radius:10rpx;
+  box-sizing: border-box;
+}
+image{
+  width: 100%;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  height: 342rpx;
+}
+.content{
+  border-top: none;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  box-sizing: border-box;
+}
+.content-title{
+  width:487px;
+  height:34rpx;
+  margin-left: 20rpx;
+  font-size:36rpx;
+  color:rgba(0,0,0,1);
+  line-height:56rpx;
+  box-sizing: border-box;
+}
+.content-text{
+  min-height: 40rpx;
+  line-height: 28rpx;
+  font-size: 30rpx;
+  color:#666;
+  margin-top: 28rpx;
+  margin-bottom: 30rpx;
+}
+.content-text text{
+  display: inline-block;
+  line-height: 38rpx;
+  font-size: 24rpx;
+  color:#666;
+  margin-left: 20rpx;
+  padding-bottom:10px;
+
+}
+.branchs_view{
+  background:#f4f4f4;
+padding-bottom:50px;
+}

@@ -1,0 +1,77 @@
+<!--pages/Administrators/MyFlow/MyFlow.wxml-->
+    <!--所有-->
+    <view class="header_1" bindtap="Choice" wx:if="{{ishead}}">
+        <view>
+            <text>{{header_right}}</text>
+            <text>({{AllCount}})</text>
+        </view>
+        <view>
+            {{header_left}}
+            <image class="left_1" src="../../../images/right.png" />
+        </view>
+    </view>
+   <view class="list_1" wx:for="{{AllData}}"  wx:key="index" >
+        <view class="title_1" bindtap="open_1" data-index="{{index}}" data-obj="{{item}}">
+            <view  data-index="{{index}}" data-obj="{{item}}">
+                <text  data-index="{{index}}" data-obj="{{item}}">{{item.Date}}</text>
+                <!--<text>（900）</text>-->
+            </view>
+            <view>
+                <text  data-index="{{index}}" data-obj="{{item}}">新增流量：</text>
+                <text  data-index="{{index}}" data-obj="{{item}}">{{item.NowDateCount}}</text>
+            </view>
+        </view>
+        <view class="list_2" data-height="{{item.height}}" style="height:{{item.height ? item.height : 0}}rpx">
+          <!-- <view wx:for="{{item.UserLists}}"> -->
+            <view wx:for="{{item.UserLists}}" bindtap='go_personInfo' data-openid='{{ item.UserOpenId }}' data-sf="{{item.UserIdenriry}}" class="userInfo">
+              <view class="image_box">
+                  <image src="{{item.HeadImg}}" />
+              </view>
+              <text class="username">
+                <text class="name_">{{item.NickName}}</text>
+                <!--  0订单 2机会 3游客  4 黑名单 -->
+                <text wx:if="{{ item.UserIdentity == 0 }}" class="userIdenriry green">[订单]</text>
+                <text wx:if="{{ item.UserIdentity == 2 }}" class="userIdenriry orange">[机会]</text>
+                <text wx:if="{{ item.UserIdentity == 3 }}" class="userIdenriry blue">[游客]</text>
+                <text wx:if="{{ item.UserIdentity == 4 }}" class="userIdenriry gray">[黑名单]</text>
+              </text>
+              <text class="time_1">{{item.Time}}</text>
+            </view>
+          <!-- </view> -->
+        </view>
+    </view>
+
+    <view class="kong" wx:if="{{!loading && AllCount==0}}">
+        —— 空空如也 ——
+    </view>
+
+    <!--<view class="loading" wx:if="{{loading}}">
+        <image src="../../../images/load.gif" />
+        <text>正在努力加载中</text>
+    </view>-->
+    <view class="loading" wx:if="{{!isdata && AllCount!=0}}">
+        <text>--我是有底线的--</text>
+    </view>
+    
+    <!--昨日-->
+    <!--<view wx:if="{{yesterday}}" class="list_1" wx:for="{{YesterdayData}}"  wx:key="index" >
+        <view class="title_1" bindtap="open_2" data-index="{{index}}" data-obj="{{item}}">
+            <view  data-index="{{index}}" data-obj="{{item}}">
+                <text  data-index="{{index}}" data-obj="{{item}}">{{item.Date}}</text>
+            </view>
+            <view>
+                <text  data-index="{{index}}" data-obj="{{item}}">新增流量：</text>
+                <text  data-index="{{index}}" data-obj="{{item}}">{{item.NowDateCount}}</text>
+            </view>
+        </view>
+        <view class="list_2" data-height="{{item.height}}" style="height:{{item.height ? item.height : 0}}rpx">
+            <view wx:for="{{item.UserLists}}">
+                <view class="image_box">
+                    <image src="{{item.HeadImg}}" />
+                </view>
+                <text class="username">{{item.NickName}}</text>
+                <text class="time_1">{{item.Time}}</text>
+            </view>
+        </view>
+    </view>-->
+

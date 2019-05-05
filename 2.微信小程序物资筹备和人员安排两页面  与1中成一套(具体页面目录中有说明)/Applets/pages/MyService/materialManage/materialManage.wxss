@@ -1,0 +1,153 @@
+/* pages/materialManage/materialManage.wxss */
+
+.bigBox {
+  padding: 0 30rpx;
+}
+
+.planList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.planList_left::before {
+  content: "";
+  width: 5rpx;
+  height: 26rpx;
+  display: inline-block;
+  background: #bb9860;
+  margin-right: 30rpx;
+}
+
+.planList_left, .planList_right {
+  display: flex;
+  align-items: center;
+}
+
+.planList_left text {
+  color: #bb9860;
+  font-size: 30rpx;
+}
+
+.planList_right button {
+  color: #999;
+  font-size: 28rpx;
+  outline: none;
+  border: 0;
+  padding: 0;
+  background: #fff;
+}
+
+.planList_right::before {
+  content: "";
+  width: 5rpx;
+  height: 26rpx;
+  display: inline-block;
+  background: #bb9860;
+  margin-right: 30rpx;
+}
+
+.planList_inner_box {
+  position: relative;
+}
+
+.planList_inner {
+  padding: 22rpx 10rpx;
+  width: 690rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx dashed #eee;
+  position: relative;
+}
+
+.planList_inner-title01 {
+  font-size: 28rpx;
+  color: #222;
+  margin-bottom: 8rpx;
+  width: 100%;
+}
+
+.planList_inner-title02 {
+  font-size: 28rpx;
+  color: #777;
+  width: 100%;
+}
+
+.order-item {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.remove {
+  width: 130rpx;
+  height: 100%;
+  background-color: #ff4200;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: -130rpx;
+  /* right: 0; */
+  display: flex;
+  font-size: 26rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 编辑图标 */
+
+.editBtnBox image {
+  width: 90rpx;
+  height: 90rpx;
+  position: fixed;
+  bottom: 330rpx;
+  right: 30rpx;
+  transition: all 0.1s;
+}
+
+.editBtnBox image:nth-child(3) {
+  bottom: 235rpx;
+}
+
+
+.image1-show {
+  opacity: 1;
+  z-index: 99;
+}
+
+.image1-hide {
+  opacity: 0;
+  z-index: -1;
+}
+
+.image2-show {
+  opacity: 1;
+  z-index: 99;
+}
+
+.image2-hide {
+  opacity: 0;
+  z-index: -1;
+}
+
+/* 删除提示 */
+
+.delTips {
+  color: #aaa;
+  font-size: 26rpx;
+  background: #f1f1f6;
+  height: 58rpx;
+  line-height: 58rpx;
+  padding: 0 30rpx;
+  position: relative;
+}
+
+.delTips image {
+  width: 20rpx;
+  height: 20rpx;
+  position: absolute;
+  top: 50%;
+  right: 30rpx;
+  transform: translateY(-50%);
+}

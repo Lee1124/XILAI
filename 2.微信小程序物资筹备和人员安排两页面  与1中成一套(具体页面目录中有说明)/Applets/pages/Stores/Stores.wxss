@@ -1,0 +1,153 @@
+/* pages/Stores/Stores.wxss */
+@import "/pages/template/template.wxss";
+
+.bt_image{
+  width: 100%;
+  height:100%;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+.fade_in {
+    animation: fadeIn 1s both;
+}
+.mc{
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.3);
+  position: absolute;
+  top:0;
+}
+.content_left text{
+  display: block;
+  text-align: center;
+  margin-bottom:2%;
+  letter-spacing: 1px;
+  font-weight: 100;
+  font-size:29rpx;
+}
+.content_left text:first-child{
+    font-size:46rpx;
+    letter-spacing: 2px;
+    font-weight: 200;
+}
+.hunli{
+  position: relative;
+  margin-bottom:54rpx !important;
+  color:white;
+}
+.hunli::after{
+   content:"";
+   display:block;
+   width:14rpx;
+   height:2rpx;
+   background: rgba(255,255,255,.5);
+   position:absolute;
+   right:35%;
+   top:50%;
+}
+.hunli::before{
+  content:"";
+  display: block;
+  width: 14rpx;
+  height:2rpx;
+  background: rgba(255,255,255,.5);
+  position: absolute;
+  left:35%;
+  top:50%;
+}
+.content_right{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 330rpx;
+  margin: 0 auto;
+}
+.content_right text{
+  text-align: center;
+  border:1px solid rgba(255,255,255,.7);
+  display: inline-block;
+  /*padding:16rpx 24rpx;*/
+  width: 140rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-left:10%;
+  font-weight: 300;
+  font-size:26rpx;
+}
+.content_right text:first-child{
+  margin-left:0;
+}
+/*.content_right text*/
+.content_right image{
+  width: 55rpx;
+  height: 55rpx;
+  margin-right:20%;
+}
+.Storess{
+  position: relative;
+  width:100%;
+  height:430rpx;
+  color:white;
+}
+.Stores{
+  padding-bottom: 60px;
+}
+.content{
+  position:absolute;
+  width:80%;
+  height:50%;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  margin:auto;
+}
+  /*遮罩层  */
+  .maskLayer{
+  width: 100%;
+  height:100%;
+  position:fixed;
+  z-index:998;
+  top:0;
+  background:rgba(0,0,0,.7);
+}
+.choose{
+  position: fixed;
+  bottom:2%;
+  width:96%;
+  height:20%;
+  margin-left:2%;
+  z-index:998;
+}
+.choose_top{
+  width:100%;
+  height:70%;
+  background:white;
+  margin-bottom:2%;
+  border-radius: 5px;
+  padding-top:2%;
+}
+.top_phone{
+  height:50%;
+  text-align: center;
+  line-height: 90rpx;
+  color: #0054fe;
+}
+.top_phone text{
+  display: inline-block;
+  width: 100%;
+  height:100%;
+}
+.choose_close{
+  width:100%;
+  height:18%;
+  background:white;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 93rpx;
+}
+.phone_close{
+  height:40%;
+}

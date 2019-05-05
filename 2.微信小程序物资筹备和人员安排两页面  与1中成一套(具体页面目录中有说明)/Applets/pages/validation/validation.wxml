@@ -1,0 +1,2 @@
+<!-- <view><image class='logo' src='../../images/icon.png'></image></view> -->
+<view class='loadView'><image class='load' src='../../images/load.gif'></image><text>正在加载</text></view>

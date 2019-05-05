@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>printFlow</title>
+    <script type="text/javascript" src="../newpage/js/jquery-1.11.1.min.js"></script>
+    <script src="../../../xlSystem/XL/js/main.js"></script>
+    <script src="../../../Scripts/layer/layer.js"></script>
+    <script src="../newpage/js/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="printFlow_renyuananpai.css?v=2">
+
+</head>
+<body>
+<div id="app" v-cloak>
+    <!--头部-->
+    <div class="imgBox">
+        <img src="pic/printFlow.png">
+    </div>
+    <div class="titleText">{{contentData.title}}</div>
+
+    <!--基本信息部分-->
+    <div class="base_news">
+        <div class="base_news_inner">
+            <span>基本信息</span>
+        </div>
+        <table class="table_01" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td>
+                    <span>婚期:</span>
+                    <input type="text" :value="hunQi" readonly style="width: 75%">
+                </td>
+                <td colspan="2">
+                    <span>场地:</span>
+                    <input type="text" :value="changDi" readonly>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <span>新郎:</span>
+                    <input type="text" :value="xinNiang" readonly style="width: 75%">
+                </td>
+                <td colspan="2">
+                    <span>新娘:</span>
+                    <input type="text" :value="xinLang" readonly>
+                </td>
+
+            </tr>
+            <tr :data-index="0" :ID="myId">
+                <td>
+                    <span>婚礼管家:</span>
+                    <input type="text" :value="guanJia" @blur="changeText0()">
+                </td>
+                <td>
+                    <span>全程督导:</span>
+                    <input type="text" :value="duDao" @blur="changeText0()">
+                </td>
+                <td>
+                    <span>执行时间:</span>
+                    <input type="text" :value="zhiXingTime" @blur="changeText0()">
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+    <!--/基本信息部分-->
+
+    <!--人员安排部分-->
+    <div class="personnel_time">
+        <div class="personnel_time_inner">
+            <span>人员安排</span>
+        </div>
+        <table class="table_02" cellpadding="0" cellspacing="0">
+            <thead>
+            <tr @contextmenu="rightClickEvent2($event)">
+                <td style="width: 5%;">姓名</td>
+                <td style="width: 25%;">职务</td>
+                <td style="width: 50%;">任务</td>
+                <td style="width: 20%;">联系电话</td>
+            </tr>
+            </thead>
+            <tbody @contextmenu="rightClickEvent($event)">
+            <template v-for="(items1,index) in contentData_01">
+                <tr v-if="items1.Sort!=0" :data-index="items1.Sort" :id="items1.Id" :key="items1.Id">
+                    <td>
+                        <input type="text" :value=items1.FlowPath @blur="changeText1()">
+                    </td>
+                    <td>
+                        <div contenteditable="true" @blur="changeText1()" v-text="items1.Personnel"
+                             style="width: 130px;margin: 0 auto;"></div>
+                    </td>
+                    <td>
+                        <div contenteditable="true" class="textArea" @blur="changeText1()"
+                             v-text="items1.Article"></div>
+                    </td>
+                    <td>
+                        <input type="text" :value="items1.Date" @blur="changeText1()">
+                    </td>
+                </tr>
+
+            </template>
+
+            </tbody>
+
+            <tfoot style="width: 100%">
+            <tr style="height: 60px;"></tr>
+            </tfoot>
+        </table>
+
+    </div>
+    <!--/人员安排部分-->
+
+    <!--页脚-->
+    <div class="footer">
+        <img src="pic/printFlow_foot.png" alt="页脚">
+    </div>
+    <!--/页脚-->
+
+
+    <!-- 右键点击菜单 -->
+    <div id="menu">
+        <div class="menu" @click="up_data">上方新添加一行</div>
+        <div class="menu" @click="down_data">下方新添加一行</div>
+        <div class="menu" @click="del_data">删除当前这一行</div>
+    </div>
+
+
+    <!-- 漂浮打印按钮 -->
+    <div class="all_float" onclick="test()">打印</div>
+    <!--二维码-->
+    <div class="miniIcon">
+        <img src="pic/mini.png" height="48" width="48" @mouseEnter="show" @mouseleave="hide"/>
+        <div class="codeImage" :class="{show:showCode}">
+            <img src="http://192.168.1.192:5080/View/SupplierFile/getcodeimage.ashx?oid=3a023802-b35d-4925-b665-b01f588f3115&type=127"
+                 id="qrCodeImage" height="160" width="150"/>
+            <div>扫描小程序</div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    var orderid = GetQueryString("orderId");
+    var api = getkevalue().apiurl;
+
+    <!--打印-->
+    function test() {
+        window.print()
+    }
+
+    //数据对象
+    var myData = {
+        hunQi: '',
+        changDi: '',
+        xinNiang: '',
+        xinLang: '',
+        guanJia: '',
+        duDao: '',
+        zhiXingTime: '',
+        myId: 0,
+        showCode: false,
+        contentData: [],
+        contentData_01: [],
+    };
+
+    var data_index;//当前行索引
+    var thisId;//当前行ID
+    //事件对象
+    var myMethods = {
+        //鼠标右击事件
+        rightClickEvent(event) {
+            event.preventDefault();
+            data_index = $(event.target).parent().parent().attr("data-index");
+            thisId = $(event.target).parent().parent().attr("id");
+            if (data_index == undefined) {
+                data_index = $(event.target).parent().attr("data-index");
+            }
+            if (thisId == undefined) {
+                thisId = $(event.target).parent().attr("id");
+            }
+
+            $("#menu").show();
+            $("#menu").css({
+                top: event.clientY + 'px',
+                left: event.clientX + 'px',
+            });
+        },
+
+        rightClickEvent2(event) {
+            event.preventDefault();
+            data_index = 1;
+            $("#menu").show();
+            $("#menu").css({
+                top: event.clientY + 'px',
+                left: event.clientX + 'px',
+            });
+        },
+        //修改基本信息最后一行
+        changeText0() {
+            var ID = $(event.target).parent().parent().attr("id");
+            var index = 0;//当前行
+            var FlowPath = $(event.target).parent().parent().children("td").eq(0).children('input').val();//婚礼管家
+            var Personnel = $(event.target).parent().parent().children("td").eq(1).children('input').val();//全程督导
+            var Article = $(event.target).parent().parent().children("td").eq(2).children('input').val();//执行时间
+            changeThisTdText(ID, index, FlowPath, Personnel, Article);
+        },
+        //修改人员安排
+        changeText1() {
+            var ID = $(event.target).parent().parent().attr("id");
+            var index = $(event.target).parent().parent().attr("data-index");//当前行
+            var FlowPath = $(event.target).parent().parent().children("td").eq(0).children('input').val();//姓名
+            var Personnel = $(event.target).parent().parent().children("td").eq(1).children('div').text();//职务
+            var Article = $(event.target).parent().parent().children("td").eq(2).children('div').text();//任务
+            var Date = $(event.target).parent().parent().children("td").eq(3).children('input').val();//执行时间
+            changeThisTdText(ID, index, FlowPath, Personnel, Article, Date);
+        },
+        show() {
+            this.showCode = !this.showCode;
+        },
+        hide() {
+            this.showCode = !this.showCode;
+        },
+        //上方新添加一行
+        up_data() {
+            addRow();
+            $("#menu").hide();
+        },
+        //下方新添加一行
+        down_data() {
+            data_index = parseInt(data_index) + 1;
+            addRow();
+            $("#menu").hide();
+        },
+        //删除当前这一行
+        del_data() {
+            delThisRow();
+            $("#menu").hide();
+        },
+    };
+
+
+    //添加一行
+    function addRow() {
+        // var FlowPath = flowPath;//所属区块
+        var Sort = parseInt(data_index);//当前位置
+        // console.log(suoshuqu);
+        var data = {
+            FlowPath: "",//姓名
+            Personnel: "",//职务
+            Article: "",//任务
+            Date: "",//联系电话
+            Type: "3",
+            Sort: Sort,
+            show: true,
+            OrderId: orderid
+        };
+        var url = api + '/xlapi/FlowScheme/Operation/FlowScheme/AddRow';
+        $.ajax({
+            type: 'post',
+            url: url,
+            // async: false,
+            data: {modelJson: data},
+            success: res => {
+                if (res.status == 'OK') {
+                    // Vue.contentData_01.splice(Sort, 0,data);
+                    // vm.contentData_01.splice(Sort, 1,"");
+                    // sort();
+                    loadStartData();
+                }
+            }
+        })
+    }
+
+
+    //删除一行
+    function delThisRow() {
+        // var FlowPath = flowPath;//所属区块
+        var Sort = parseInt(data_index);//当前位置
+        var data = {
+            Type: "3",
+            Sort: Sort,
+            Id: thisId,
+            show: true,
+            OrderId: orderid
+        };
+        var url = api + '/xlapi/FlowScheme/Operation/FlowScheme/DeleteRow?no=' + Math.random() * 10 + 10;
+        $.ajax({
+            type: 'post',
+            url: url,
+            async: false,
+            data: {modelJson: data},
+            success: res => {
+                // console.log(res);
+                if (res.status == 'OK') {
+                    loadStartData();
+                }
+            }
+        })
+    }
+
+    //修改信息
+    function changeThisTdText(ID, index, FlowPath, Personnel, Article, Date) {
+        var data = {
+            FlowPath: FlowPath,
+            Personnel: Personnel,
+            Article: Article,
+            Type: 3,
+            Date: Date,
+            Sort: index,
+            show: true,
+            OrderId: orderid,
+            Id: ID,
+        };
+        var url = api + '/xlapi/FlowScheme/Operation/FlowScheme/EditRow?no=' + Math.random() * 10 + 20;
+        $.ajax({
+            type: 'post',
+            url: url,
+            cache: false,
+            async: false,
+            data: {modelJson: data},
+            success: res => {
+                console.log(res)
+                if (res.status == 'OK') {
+                    // loadStartData();
+                }
+            }
+        })
+    }
+
+    //加载初始数据
+    function loadStartData() {
+        var data = {
+            orderid: orderid,
+            type: 3    //写死
+        };
+        var url = api + '/xlapi/FlowScheme/Operation/FlowScheme/GetFriendsInfamily';
+        $.ajax({
+            type: 'post',
+            url: url,
+            data: data,
+            dataType: 'JSON',
+            success: function (res) {
+                console.log(res)
+                // console.log(res.data)
+
+                vm.contentData = res;
+                vm.hunQi = res.data.orderdate;
+                vm.changDi = res.data.address;
+                vm.xinNiang = res.data.brind;
+                vm.xinLang = res.data.groom;
+                vm.guanJia = res.data.modelList[0].FlowPath;
+                vm.duDao = res.data.modelList[0].Personnel;
+                vm.zhiXingTime = res.data.modelList[0].Article;
+                vm.myId = res.data.modelList[0].Id;
+
+                vm.contentData_01 = res.data.modelList;
+            }
+        })
+    }
+
+
+    window.onclick = function (e) {
+        document.querySelector('#menu').style.display = 'none';
+    };
+
+
+    var vm = new Vue({
+        el: "#app",
+        data: myData,
+        methods: myMethods,
+        created() {
+            loadStartData();//加载初始数据
+        }
+
+
+    })
+
+
+</script>
+</html>

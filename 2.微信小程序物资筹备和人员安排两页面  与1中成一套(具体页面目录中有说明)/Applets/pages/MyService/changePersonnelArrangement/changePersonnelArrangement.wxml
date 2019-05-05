@@ -1,0 +1,23 @@
+<!--pages/changeMaterialManage/changeMaterialManage.wxml-->
+<view class='changePage'>
+  <view class='changePage_inner_top'>
+    <view class='changePage_inner'>
+      <text>职务</text>
+      <input value="{{defalutData.Personnel}}" bindinput="getInputContent1" />
+    </view>
+
+    <view class='changePage_inner'>
+      <text>联系人</text>
+      <input value="{{defalutData.FlowPath}}" bindinput="getInputContent2" />
+    </view>
+
+    <view class='changePage_inner_textarea'>
+      <text>任务</text>
+      <textarea value="{{defalutData.Article}}" bindinput="getTextareaContent"/>
+    </view>
+
+  </view>
+  <view class='yesBtnBox'>
+    <button catchtap='keepChange'>保存</button>
+  </view>
+</view>
