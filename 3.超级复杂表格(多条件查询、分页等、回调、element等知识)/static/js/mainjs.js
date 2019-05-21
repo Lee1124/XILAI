@@ -12,7 +12,7 @@ function getkevalue() {
     //if(window.localStorage.userinfo==undefined){
     //    window.localStorage.userinfo="http://localhost/|1|2|xlhl|http://localhost:5819/|http://171.211.126.122:8092/|1,1|http://192.168.1.253:8095/|http://192.168.1.98:8088";
     //}
-      returnval="http://localhost/|1|2|xlhl|http://localhost:5819/|http://171.211.126.122:8092/|1,1|http://192.168.1.253:8095/|http://192.168.1.112:8088";
+      returnval="http://localhost/|1|2|xlhl|http://localhost:5819/|http://171.211.126.122:8092/|1,1|http://192.168.1.253:8095/|http://192.168.1.253:8092";
      // var returnval = "http://localhost:5080/|1|2|xlhl|http://171.211.126.122:8091/|http://171.211.126.122:8092/|2,1|1|";
     //var returnval = "http://localhost:5080/|585|28|xlhl|http://localhost:5819/|http://171.211.126.122:8092/|3,1|3,1|192.168.1.193:8088";
     //var returnval = "http://localhost:5080/|606|32|xlhl|http://171.211.126.122:8091/|http://171.211.126.122:8092/|1,1|1|"

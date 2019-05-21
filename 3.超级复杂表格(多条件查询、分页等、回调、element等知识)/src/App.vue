@@ -44,12 +44,15 @@
                     @handleSelectionChange="handleSelectionChange"
                     @sortChange="sortChange"
                     @showLiuShiYuanYin="showLiuShiYuanYin"
+                    @headerCellClick="headerCellClick"
+                    @yeWuLaiYuan="yeWuLaiYuan"
+
       ></tableContent>
     </div>
 
     <!--弹出框-->
     <msgBox :Opacity="Opacity" :list="list" :showBox="showBox" @hideModel="hideModel"
-            @yesEvent_add="yesEvent_add"
+            @choiseThisAdd="choiseThisAdd"
             @yesEvent_return="yesEvent_return"
             :retName="retName"
             :retCt="retCt"
@@ -91,13 +94,59 @@
 
 
   var myMethods = {
+    //恢复点击来源查询
+    headerCellClick() {
+      this.strfrom = '';
+
+      for (let i = this.selectData.length - 1; i >= 0; i--) {
+        if (this.selectData[i].PARENT_ID != undefined) {
+          if (this.selectData[i].PARENT_ID == 19) {
+            this.selectData.splice(i, 1)
+          }
+        }
+      }
+      for (let i = 0; i < this.inputSelect.length; i++) {
+        if (this.inputSelect[i].titleName == '业务来源') {
+          for (let j = 0; j < this.inputSelect[i].data.length; j++) {
+            this.inputSelect[i].data[j].isShowBorder = false
+          }
+        }
+      }
+      if (this.selectData.length==0){
+        this.isShowAddInput=false
+      }
+      this.loadStartData();
+    },
+    //点击来源查询
+    yeWuLaiYuan(val) {
+      console.log(this.inputSelect)
+      for (let i = this.selectData.length - 1; i >= 0; i--) {
+        if (this.selectData[i].PARENT_ID != undefined) {
+          if (this.selectData[i].PARENT_ID == 19) {
+            this.selectData.splice(i, 1)
+          }
+        }
+      }
+      for (let i = 0; i < this.inputSelect.length; i++) {
+        if (this.inputSelect[i].titleName == '业务来源') {
+          for (let j = 0; j < this.inputSelect[i].data.length; j++) {
+            this.inputSelect[i].data[j].isShowBorder = false
+          }
+        }
+      }
+      if (this.selectData.length==0){
+        this.isShowAddInput=false
+      }
+      this.strfrom = val;
+      this.loadStartData();
+    },
 
     //显示流失原因
-    showLiuShiYuanYin(val) {
+    showLiuShiYuanYin(obj) {
       this.show_lossManage_dialogBox = true;
       // 获取流失信息
-      this.row_orderid = val.ORDER_ID;
-      this.rowNewsText = val.OrderDate + val.Hotel;
+      this.row_orderid = obj.obj1.ORDER_ID;
+      this.rowNewsText = obj.obj1.OrderDate + obj.obj1.Hotel;
       let data = {
         id: this.row_orderid
       };
@@ -105,6 +154,10 @@
         .then(res => {
           if (res.status == 200) {
             this.lossManageData = res.data;
+            if (obj.obj2 == 'my') {
+              $('.lossManage_dialogBox .el-dialog__footer').remove();
+              $('.lossManage_dialogBox').height('425px')
+            }
           }
         }, err => {
           console.log(err)
@@ -138,19 +191,16 @@
         }
 
         if (obj.name == '登记时间' && obj.zt == 'ascending') {
-          this.orderby = '';
+          this.orderby = 'AddOrderTime';
           this.asc = '';
-          // this.timetype='adddate';
           this.loadStartData();
         } else if (obj.name == '登记时间' && obj.zt == 'descending') {
-          this.orderby = 'adddate';
+          this.orderby = 'AddOrderTime';
           this.asc = 'descending';
-          // this.timetype='adddate';
           this.loadStartData();
         } else if (obj.name == null && obj.zt == null) {
           this.orderby = '';
           this.asc = '';
-          // this.timetype='adddate';
           this.loadStartData();
         }
       }
@@ -169,8 +219,7 @@
       this.getText = val.obj2;
       let OrderId = this.row_orderid;
       let openid = '';
-      // this.wxPageSrc = 'http://192.168.1.253:9527/publicView/salesVolume.html?WeddingRole=' + this.WeddingRole + '&OrderId=' + OrderId + '&openid=' + openid;
-      this.wxPageSrc = 'http://211.149.163.185:8090/publicView/salesVolume.html?WeddingRole=' + this.WeddingRole + '&OrderId=' + OrderId + '&openid=' + openid;
+      this.wxPageSrc = this.pageApiUrl + '/publicView/salesVolume.html?WeddingRole=' + this.WeddingRole + '&OrderId=' + OrderId + '&openid=' + openid;
     },
 
     //获取微信绑定等信息回调函数
@@ -212,8 +261,7 @@
         this.show_personChance_dialogBox = true;
         let author = 2;
         let openType = 'moreChange';
-        // this.personChanceSrc = 'http://192.168.1.253:9527/Login/saixuan_tongyong.html?author=' + author + '&openType=' + openType;
-        this.personChanceSrc = 'http://211.149.163.185:8090/Login/saixuan_tongyong.html?author=' + author + '&openType=' + openType;
+        this.personChanceSrc = this.pageApiUrl + '/Login/saixuan_tongyong.html?author=' + author + '&openType=' + openType;
       }
     },
 
@@ -259,8 +307,7 @@
       this.row_userid = obj.Recuserid;
       let author = 2;
       let openType = 'salesPage';
-      // this.personChanceSrc = 'http://192.168.1.253:9527/Login/saixuan_tongyong.html?author=' + author + '&openType=' + openType;
-      this.personChanceSrc = 'http://211.149.163.185:8090/Login/saixuan_tongyong.html?author=' + author + '&openType=' + openType;
+      this.personChanceSrc = this.pageApiUrl + '/Login/saixuan_tongyong.html?author=' + author + '&openType=' + openType;
       this.show_personChance_dialogBox = true;
     },
 
@@ -345,7 +392,7 @@
       })
     },
     //新增销售机会确认事件
-    yesEvent_add(val) {
+    choiseThisAdd(val) {
       if (val == 0) {
         return false;
       }
@@ -356,8 +403,7 @@
       } else {
         isorder = '3';
       }
-      // window.location.href = "http://192.168.1.253:9527/View/Order_N/Index_New.aspx?power=edit&type=add&coustomertype=" + val + "&isorder=" + isorder
-      window.location.href = "http://211.149.163.185:8090/View/Order_N/Index_New.aspx?power=edit&type=add&coustomertype=" + val + "&isorder=" + isorder
+      window.location.href = this.pageApiUrl + "/View/Order_N/Index_New.aspx?power=edit&type=add&coustomertype=" + val + "&isorder=" + isorder
     },
 
     //编辑
@@ -368,15 +414,13 @@
       /* row_coustomertype(coustomertype): '',//表当前行的客户类型
         row_CUSTOMER_ID（ CUSTOMER_ID）: '',//表当前行的客户id
         row_orderid（orderID）: '',//表当前行的订单id*/
-      // window.location.href = "http://192.168.1.253:9527/View/Order_N/Index_New.aspx?coustomertype=" + this.row_coustomertype + "&orderID=" + this.row_orderid + "&CUSTOMER_ID=" + this.row_CUSTOMER_ID + "&type=branch&power=edit&isorder=2&modifiedheat=true";
-      window.location.href = "http://211.149.163.185:8090/View/Order_N/Index_New.aspx?coustomertype=" + this.row_coustomertype + "&orderID=" + this.row_orderid + "&CUSTOMER_ID=" + this.row_CUSTOMER_ID + "&type=branch&power=edit&isorder=2&modifiedheat=true";
+      window.open(this.pageApiUrl + "/View/Order_N/Index_New.aspx?coustomertype=" + this.row_coustomertype + "&orderID=" + this.row_orderid + "&CUSTOMER_ID=" + this.row_CUSTOMER_ID + "&type=branch&power=edit&isorder=2&modifiedheat=true")
     },
 
     //添加沟通记录
     addSay(obj) {
       this.show_addSay_dialogBox = true;
-      // this.addSayPageSrc = 'http://192.168.1.253:9527/View/CustomerManage/OrderContanct.aspx?type=pastadd' + '&id=' + obj.ORDER_ID;
-      this.addSayPageSrc = 'http://211.149.163.185:8090/View/CustomerManage/OrderContanct.aspx?type=pastadd' + '&id=' + obj.ORDER_ID;
+      this.addSayPageSrc = this.pageApiUrl + '/View/CustomerManage/OrderContanct.aspx?type=pastadd' + '&id=' + obj.ORDER_ID;
     }, //添加沟通记录
     getpassdata3(obj) {
       if (obj == '保存成功') {
@@ -608,7 +652,7 @@
           this.strbranch = this.dianIDArr.join(',');
           this.loadStartData();
 
-        } else if (titleName == '人员统计') {
+        } else if (titleName == '负责人') {
           for (let i = obj1.data.length - 1; i >= 0; i--) {
             if (obj1.data[i].isShowBorder == true) {
               obj1.data[i].isShowBorder = false;
@@ -636,14 +680,26 @@
               obj1.data[i].isShowBorder = false;
             }
           }
-          obj1.data[index2].isShowBorder = true;
+          if (this.laiYuanData.indexOf(obj1.data[index2]) == -1) {
+            this.laiYuanData.push(obj1.data[index2])
+          }
+
+          for (let i = 0; i < obj1.data.length; i++) {
+            for (let j = 0; j < this.laiYuanData.length; j++) {
+              if (obj1.data[i] == this.laiYuanData[j]) {
+                obj1.data[i].isShowBorder = true;
+              }
+            }
+          }
           for (let i = 0; i < this.inputSelect.length; i++) {
             for (let j = 0; j < this.inputSelect[i].data.length; j++) {
               if (this.inputSelect[i].data[j].isShowBorder) {
                 if (this.selectData.indexOf(this.inputSelect[i].data[j]) == -1) {
                   this.selectData.push(this.inputSelect[i].data[j]);
                   if (this.inputSelect[i].data[j].PARENT_ID == 19) {
-                    this.ywIDArr = this.inputSelect[i].data[j];
+                    if (this.ywIDArr.indexOf(this.inputSelect[i].data[j].ID) == -1) {
+                      this.ywIDArr.push(this.inputSelect[i].data[j].ID);
+                    }
                   }
                   if (this.inputSelect[i].data[j].PARENT_ID == 2) {
                     this.ztIDArr = this.inputSelect[i].data[j];
@@ -652,8 +708,7 @@
               }
             }
           }
-
-          this.strfrom = this.ywIDArr.ID;
+          this.strfrom = this.ywIDArr.join(',');
           this.strtype = this.ztIDArr.ID;
           if (this.strbranch == undefined) {
             this.strbranch = '';
@@ -686,7 +741,6 @@
           }
         });
 
-
         this.dianIDArr2.splice(0, this.dianIDArr.length);//清空数组
         for (let i = 0; i < this.selectData.length; i++) {
           for (let j = 0; j < this.dianIDArr.length; j++) {
@@ -703,16 +757,14 @@
         } else {
           this.strbranch = ''
         }
-
-
-        this.ywIDArr = '';
+        this.ywIDArr = [];
         this.ztIDArr = '';
         this.rytjIDArr = '';
         for (let i = 0; i < this.selectData.length; i++) {
           if (this.selectData[i].PARENT_ID == 19) {
-            this.ywIDArr = this.selectData[i]
+            this.ywIDArr.push(this.selectData[i].ID)
           } else {
-            this.ywIDArr = ''
+            this.ywIDArr = [];
           }
           if (this.selectData[i].PARENT_ID == 2) {
             this.ztIDArr = this.selectData[i]
@@ -722,12 +774,11 @@
           if (this.selectData[i].USER_ID != undefined) {
             this.rytjIDArr = this.selectData[i].USER_ID
           } else {
-            console.log("进2")
             this.rytjIDArr = ''
           }
         }
 
-        this.strfrom = this.ywIDArr.ID;
+        this.strfrom = this.ywIDArr.join(',');
         this.strtype = this.ztIDArr.ID;
         this.selectuerid = this.rytjIDArr;
         if (this.strbranch == undefined) {
@@ -791,18 +842,18 @@
             // console.log(res.data)
             getRY(that);
           } else {
-            res.data.forEach((item, index) => {//添加状态
+            res.data.forEach((item, index, arr) => {//添加状态
               item.isShowBorder = false;
               if (item.selected == true) {
                 item.isShowBorder = true;
               }
-              item.contentName = item.BRANCH_NAME
+              item.contentName = item.BRANCH_NAME;
+              item.contentName2 = item.BRANCH_NAME;
             });
             let dPObj = {
               titleName: '店铺选择',
               data: res.data
             };
-
             this.inputSelect.push(dPObj);
             getRY(that);
           }
@@ -810,25 +861,25 @@
           console.log(err)
         });
 
-
-      //获取统计人员
+      //获取统计负责人
       function getRY(thisObj) {
         thisObj.$axios.get(api + '/xlapi/SysManage/Order/Orderlist/RetTongjiUser', {
           params: {
-            strType: strType,
-            strbranch: strbranch
+            strbranch: strbranch,
+            userid: thisObj.userid
           }
         })
           .then(res => {
             if (res.data.length == 0) {
               getYWLY(that);
             } else {
-              res.data.forEach((item, index) => {//添加状态
+              res.data.forEach((item, index, arr) => {//添加状态
                 item.isShowBorder = false;
-                item.contentName = item.NAME
+                item.contentName = item.NAME + "(" + arr[index].ParticipatingWorks + ")";
+                item.contentName2 = item.NAME;
               });
               let rYObj = {
-                titleName: '人员统计',
+                titleName: '负责人',
                 data: res.data
               };
               thisObj.inputSelect.push(rYObj);
@@ -851,6 +902,7 @@
               res.data.forEach((item, index) => {//添加状态
                 item.isShowBorder = false;
                 item.contentName = item.NAME;
+                item.contentName2 = item.NAME;
                 if (item.PARENT_ID == 19) {
                   yWLYArr.push(item)
                 }
@@ -911,6 +963,10 @@
     //加载初始数据
     loadStartData() {
       if (this.flag = true) {
+
+        if (this.strType == 'editbranch') {
+          this.strbranch = getkevalue().branchid;
+        }
         this.flag = false;
         this.loading = true;
         //=============定义全局变量=============
@@ -965,6 +1021,10 @@
     name: 'App',
     data() {
       return {
+
+        // pageApiUrl: 'http://211.149.163.185:8090',//211用
+        pageApiUrl:'http://192.168.1.253:9527',//253用
+
         flag: true,
 
         rowNewsText: '',
@@ -990,13 +1050,16 @@
         selectData: [],//高级搜索选择数据
         dianIDArr: [],//高级搜索搜索店
         dianIDArr2: [],//高级搜索搜索店
-        ywIDArr: '',//高级搜索搜索来源
+        ywIDArr: [],//高级搜索搜索来源
         ztIDArr: '',//高级搜索搜索状态
         rytjIDArr: '',//高级搜索搜索状态
         searchIdArr: [],//高级搜索选择类型ID
         isShowAddInput: false,//高级搜索框显示
         isShowSelectBox: false,//高级搜索内容框显示
         tableData: [],//表格数据
+        laiYuanData: [],
+        yuCunData: [],
+        // yuCunData2: [],
 
         total: 0,
         allYeMa: 0,
@@ -1045,6 +1108,7 @@
         row_CUSTOMER_ID: '',//表当前行的客户id
 
         handleSelectionChangeData: [],//选择表当前行的数据
+
 
       }
     },

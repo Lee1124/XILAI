@@ -10,7 +10,7 @@
         <div class="addInput" v-show="isShowAddInput" @mouseenter="showAddInput">
           <template v-for="(items,index) in selectData">
             <div class="addInput_inner">
-              {{items.contentName}}
+              {{items.contentName2}}
               <img src="../../../static/img/close2.png" @click="closeSelect(items)" alt="关闭">
             </div>
           </template>
@@ -19,7 +19,7 @@
 
       <div id="selectBox" class="selectBox" v-loading="loading" v-show="isShowSelectBox"><!--v-show="isShowSelectBox"--><!--v-loading="loading"-->
         <!--最近搜索-->
-        <div class="select_content">
+        <div class="select_content" style="display: none;">
           <span class="label">最近搜索：</span>
           <ul class="select_content_inner">
             <li><span>某酒店名</span></li><!--class="select_name"-->

@@ -6,6 +6,7 @@
       :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
       tooltip-effect="dark"
       :header-cell-style="{textAlign:'center',backgroundColor:'#E6E6E6',color:'#808080',fontSize:'14px',padding:'8px 0'}"
+      :header-cell-class-name="getHeaderClassName"
       :cell-style="cellStyle"
       row-key="id"
       :expand-row-keys="entexpands"
@@ -17,6 +18,7 @@
       @sort-change="sortChange"
       @cell-mouse-enter="tdHover"
       @cell-mouse-leave="tdHoverNo"
+      @header-click="headerCellClick"
       :height="tableHeight"
       v-loading="loading"
       show-overflow-tooltip
@@ -26,8 +28,9 @@
         <template slot-scope="scope">
           <el-table
             :row-class-name="table2RowClassName"
-            :header-cell-style="{textAlign:'center',backgroundColor:'#ECECEC'}"
+            :header-cell-style="{textAlign:'center',backgroundColor:'#E7E7E7',padding:'4px 0',borderLeft:'1px solid #DDDDDD',fontSize:'13px',borderBottom: '1px solid #E6E6E6'}"
             :data="scope.row.msglis"
+            style="border-right: 0"
           >
             <el-table-column
               prop="time"
@@ -40,32 +43,34 @@
             <el-table-column
               prop="Title"
               label="标题"
-              width="150"
+              width="240"
               show-overflow-tooltip
               align="center">
             </el-table-column>
 
             <el-table-column
-              prop="Contents"
               label="内容"
               show-overflow-tooltip
-              align="center">
+            >
+              <template slot-scope=scope>
+                <span style="text-align: left!important;display: block;">{{scope.row.Contents}}</span>
+              </template>
             </el-table-column>
 
             <el-table-column
               prop="item"
               label="添加人"
-              width="450"
+              width="200"
               align="center">
             </el-table-column>
             <el-table-column
               label="操作"
-              width="80"
+              width="50"
               align="center">
               <template slot-scope="scope">
                 <span @click="returnBtnEvent(scope.row)"
                       style="color: #3B3D98;text-decoration: underline;font-size: 14px;cursor: pointer;">回复</span>
-                <span class="tianChong2"></span>
+                <!--<span class="tianChong2"></span>-->
               </template>
             </el-table-column>
           </el-table>
@@ -87,7 +92,7 @@
         label="服务日期"
         align="center"
         width="100"
-        sortable
+        sortable="custom"
         show-overflow-tooltip
       >
         <template slot-scope="scope">{{ scope.row.OrderDate }}</template>
@@ -100,11 +105,15 @@
       >
       </el-table-column>
       <el-table-column
-        prop="Hotel"
         label="酒店"
         align="center"
+        width="110"
         show-overflow-tooltip
       >
+        <template slot-scope="scope">
+          <span v-if="scope.row.Hotel!='未定酒店'">{{ scope.row.Hotel }}</span>
+          <span v-if="scope.row.Hotel=='未定酒店'" style="color: #b2b2b2;">{{ scope.row.Hotel }}</span>
+        </template>
       </el-table-column>
       <el-table-column
         prop="cusname"
@@ -139,9 +148,11 @@
       <el-table-column
         label="状态"
         align="center"
+        width="95"
         show-overflow-tooltip>
         <template slot-scope="scope">
-          <span style="color: #F3484C;" v-if="scope.row.status=='申请流失中'" @click.stop="showLiuShiYuanYin(scope.row)" class="redLiuShi">{{scope.row.status}}</span>
+          <span style="color: #F3484C;" v-if="scope.row.status=='申请流失中'" @click.stop="showLiuShiYuanYin(scope.row,strType)"
+                class="redLiuShi">{{scope.row.status}}</span>
           <span style="color: #BB9860;" v-if="scope.row.status!='申请流失中'">{{scope.row.status}}</span>
         </template>
       </el-table-column>
@@ -160,8 +171,7 @@
         show-overflow-tooltip>
       </el-table-column>
       <el-table-column
-        label="新娘微信绑定"
-        width="110"
+        label="新娘微信"
         align="center">
         <template slot-scope="scope">
           <img v-if="scope.row.xnimg!=''" key-name="新娘" :src="scope.row.xnimg" class="imgStyle imgStyleWH imgStyBig"
@@ -175,8 +185,7 @@
         </template>
       </el-table-column>
       <el-table-column
-        label="新郞微信绑定"
-        width="110"
+        label="新郞微信"
         align="center">
         <template slot-scope="scope">
           <img v-if="scope.row.xlimg!=''" key-name="新郞" :src="scope.row.xlimg" class="imgStyle imgStyleWH imgStyBig"
@@ -190,16 +199,18 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="Source"
         label="业务来源"
         align="center"
         show-overflow-tooltip>
+        <template slot-scope="scope">
+          <span @click.stop="yeWuLaiYuan(scope.row.Sourceids)">{{scope.row.Source}}</span>
+        </template>
       </el-table-column>
       <el-table-column
         prop="addtime"
         label="登记时间"
         align="center"
-        sortable
+        sortable="custom"
         width="100"
         show-overflow-tooltip>
       </el-table-column>
@@ -243,10 +254,12 @@
         label="" align="center" width="60">
         <template slot-scope="scope">
           <div :class="{'lastTd':scope.row.lastTdColorZt}">
-            <img src="../../../static/img/s.png" v-if="scope.row.showJt" class="imgStyle">
-            <img src="../../../static/img/x.png" v-if="!scope.row.showJt" class="imgStyle">
+            <img src="../../../static/img/s.png" v-if="scope.row.showJt" class="imgStyle" style="margin-left: 12px">
+            <img src="../../../static/img/x.png" v-if="!scope.row.showJt" class="imgStyle" style="margin-left: 12px">
           </div>
           <span class="tianChong"></span>
+          <!--<span class="tianChong2"></span>-->
+          <!--<span class="tianChong3"></span>-->
         </template>
       </el-table-column>
     </el-table>
@@ -270,9 +283,30 @@
 
 
   var myMethods = {
+    //表头class类名
+    getHeaderClassName({row, column, rowIndex, columnIndex}){
+      if (columnIndex==15){
+        return 'yeWuLaiYuan'
+      }
+    },
+    //恢复点击来源查询
+    headerCellClick(column, event){
+      if (column.label=='业务来源'){
+        this.$emit('headerCellClick')
+      }
+    },
+    //点击来源查询
+    yeWuLaiYuan(Sourceids){
+      this.$emit('yeWuLaiYuan',Sourceids)
+    },
     //显示流失原因
-    showLiuShiYuanYin(obj){
-      this.$emit('showLiuShiYuanYin',obj)
+    showLiuShiYuanYin(obj,val) {
+      // console.log(val)
+      let valObj={
+        obj1:obj,
+        obj2:val,
+      };
+      this.$emit('showLiuShiYuanYin', valObj)
     },
 
     //鼠标移入显示更多操作
@@ -334,13 +368,12 @@
       } else {
         return 'padding:21px 0;fontSize:14px;color:#4C4C4C;height:70px;cursor:pointer';
       }
-
-
     },
 
     //点击某行展开
     rowExpand(row, event, column) {
-      $(event.target).parent().parent().addClass('.table_td_color2')
+      // $(event.target).parent().parent().addClass('.table_td_color2')
+
 
       window.Vue.tableData.forEach((item, index) => {
         item.showJt = true;
@@ -392,7 +425,7 @@
     },
     //鼠标移入微信时候
     tdHover(row, column, cell, event) {
-      if (column.label == '新娘微信绑定') {
+      if (column.label == '新娘微信') {
         $(event.target).children().find('.wx_no').css({
           display: 'none',
         });
@@ -400,7 +433,7 @@
           display: 'block',
           margin: '0 auto'
         })
-      } else if (column.label == '新郞微信绑定') {
+      } else if (column.label == '新郞微信') {
         $(event.target).children().find('.wx_no').css({
           display: 'none'
         });
@@ -412,7 +445,7 @@
     },
     //鼠标移出微信时候
     tdHoverNo(row, column, cell, event) {
-      if (column.label == '新娘微信绑定') {
+      if (column.label == '新娘微信') {
         $(event.target).children().find('.wx_no').css({
           display: 'block',
           margin: '0 auto'
@@ -420,7 +453,7 @@
         $(event.target).children().find('.wx_hover').css({
           display: 'none',
         })
-      } else if (column.label == '新郞微信绑定') {
+      } else if (column.label == '新郞微信') {
         $(event.target).children().find('.wx_no').css({
           display: 'block',
           margin: '0 auto'
@@ -477,6 +510,15 @@
       // console.log(this.$refs.multipleTable)
     },
     updated() {
+      /*.children().children().children('.el-table__body-wrapper').children().children('tbody').find('tr')*/
+
+      let newTr = $('.expanded').next().children().children();
+      // let newTr = $('.expanded').next().children().children().children('.el-table__header-wrapper').children().children().eq(1).children().children('.el-table_2_column_25');
+      // newTr
+      $(newTr).after('<div class="tianChong4"></div>')
+      $(newTr).after('<div class="tianChong5"></div>')
+
+      // $(newTr).after('<th class="tianChong6 el-table_2_column_25  is-center   is-leaf"></th>')
 
     },
     created() {
@@ -543,8 +585,17 @@
     transform: translate(-50%, -50%);
   }
 
-  /deep/ .el-table__body-wrapper {
-    /*overflow-y: scroll;*/
+  /deep/ .el-table__body {
+    padding-bottom: 100px;
+    background: #f7f7f7;
+  }
+
+  /deep/ .el-table__empty-text {
+    /*margin-top: -160px;*/
+  }
+
+  /deep/ .el-table__expanded-cell .el-table__body {
+    padding-bottom: 0;
   }
 
   /deep/ .el-table__body-wrapper::-webkit-scrollbar {
@@ -605,7 +656,7 @@
   }
 
   .del:hover {
-    color: #db2727;
+    color: #db2727!important;
   }
 
   .addSay {
@@ -708,14 +759,6 @@
     background-color: #F2F2F2;
   }
 
-  /deep/ .el-table__row:nth-of-type(2n):hover > td {
-    background-color: #F7F7F7;
-  }
-
-  /deep/ .el-table__row:nth-of-type(2n-1):hover > td {
-    background-color: #ffffff;
-  }
-
   /deep/ .el-table .table2:nth-of-type(2n-1) {
     background-color: #F7F7F7;
   }
@@ -733,35 +776,29 @@
     background-color: #F7F7F7;
   }
 
-  >>> .table_td_color > td {
-    background: #F7F7F7;
-    transition: all .5s;
+  /deep/ .el-table .table2 td:first-of-type{
+    color: #808080;
+  }
+  /deep/ .el-table .table2 td:nth-of-type(2){
+    color: #808080;
+  }
+  /deep/ .el-table .table2 td:nth-of-type(3){
+    color: #3E3E3E;
+  }
+  /deep/ .el-table .table2 td:nth-of-type(4){
+    color: #808080;
   }
 
-  >>> .table_td_noColor > td {
-    background: #fff;
-    transition: all .5s;
+  /deep/ .el-table .table2 td {
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #E6E6E6;
+  }
+  /deep/ .el-table .table2 td:first-of-type{
+    border-left: 0;
   }
 
-
-  .table_td_color>td:last-of-type .tianChong {
-    background: #F7F7F7;
-  }
-  .table_td_noColor>td:last-of-type .tianChong {
-    background: #fff;
-  }
-
-  .tianChong {
-    width: 12px;
-    height: 70px;
-    display: block;
-    position: absolute;
-    right: -12px;
-    top: -1px;
-  }
-
-  /deep/ .el-table .table2 td:first-of-type, /deep/ .el-table .table2 td:nth-of-type(3) {
-    color: #BB9860;
+  /deep/ .el-table th:first-of-type {
+    border-left: 0!important;
   }
 
   /deep/ .el-pagination.is-background .el-pager li:not(.disabled).active {
@@ -895,42 +932,161 @@
     border-left: 1px solid #BB9860 !important;
   }
 
-  /deep/ .table1> td {
-    transition: all .5s;
-  }
-  /deep/ .table1:hover > td {
-    border-top: 1px solid #BB9860;
-    border-bottom: 1px solid #BB9860;
-    padding: 17px 0 !important;
-    height: 70px !important;
+  >>> .table_td_color > td:last-of-type .tianChong {
+    background: #F7F7F7;
   }
 
-  /deep/ .table1:hover > td:nth-of-type(1) {
+  >>> .table_td_noColor > td:last-of-type .tianChong {
+    background: #fff;
+  }
+
+  >>> .table1 .tianChong {
+    width: 12px;
+    height: 68px;
+    display: block;
+    position: absolute;
+    right: -12px;
+    top: -1px;
+
+  }
+
+  >>> .table1 > td {
+    transition: all .5s;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+  }
+
+  >>> .table1 td:nth-of-type(1) {
+    transition: all .2s;
+    border-left: 1px solid #fff;
+  }
+
+  >>> .table1 td .tianChong {
+    transition: all .2s;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+  }
+
+  >>> .table1:hover td .tianChong {
+    transition: all .2s;
+    border-top: 1px solid #BB9860;
+    border-bottom: 1px solid #BB9860;
+    border-right: 1px solid #BB9860;
+    z-index: 9;
+  }
+
+  >>> .table1:hover td {
+    border-top: 1px solid #BB9860;
+    border-bottom: 1px solid #BB9860;
+  }
+
+  >>> .table1:hover td:nth-of-type(1) {
+    transition: all .2s;
     border-left: 1px solid #BB9860;
   }
 
   >>> .expanded > td {
     border-top: 1px solid #BB9860;
+    border-bottom: 1px solid rgb(236, 236, 236);
   }
 
   >>> .expanded > td:first-of-type {
     border-left: 1px solid #BB9860;
   }
 
+  >>> .table2 > td:last-of-type {
+    /*border-right: 1px solid #BB9860;*/
+  }
+
+  >>> .table2 .el-table td div {
+    border-right: 1px solid #BB9860;
+  }
+
   >>> .expanded > td .tianChong {
-    height: 118px;
+    height: 70px;
     border-top: 1px solid #BB9860;
     border-right: 1px solid #BB9860;
-    background: rgb(236, 236, 236)!important;
+    border-bottom: 1px solid #BB9860;
+    background: rgb(236, 236, 236) !important;
   }
 
   /deep/ .expanded:hover > td {
-    border-bottom: 0 solid #fff;
-    height: 70px !important;
-    padding: 17px 0 !important;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    border-bottom: 1px solid rgb(236, 236, 236);
+  }
+
+  /deep/ .expanded:hover > td .tianChong {
+    border-bottom: 0;
+  }
+
+  >>> .tianChong4 {
+    width: 12px;
+    height: 33px;
+    position: absolute;
+    top: 0;
+    right: -12px;
+    background: #E7E7E7;
+    border-right: 1px solid #BB9860;
+  }
+
+  >>> .tianChong5 {
+    width: 12px;
+    height: 100.6%;
+    position: absolute;
+    top: 0;
+    right: -12px;
+    background: #F7F7F7;
+    border-right: 1px solid #BB9860;
+    border-bottom: 1px solid #BB9860;
+  }
+
+  >>> .table2 td {
+    position: relative;
+    overflow: visible;
+  }
+
+  >>> .table_td_color > td {
+    background: #FAFAFA;
+    transition: all .1s;
+  }
+
+  >>> .table_td_noColor > td {
+    background: #fff;
+    transition: all .1s;
+  }
+
+  >>> .table_td_color:hover > td {
+    background: #F7F7F7 !important;
+    transition: all .1s;
+  }
+
+  >>> .table_td_noColor:hover > td {
+    background: transparent !important;
+    transition: all .1s;
+  }
+
+  >>> .table1:hover > td {
+
+  }
+
+  >>> .table1 td .tianChong2 {
+    display: block;
+    background: rgb(236, 236, 236);
+    position: absolute;
+    width: 12px;
+    height: 48px;
+    top: 70px;
+    right: -12px;
+  }
+
+  >>> .table1 td .tianChong3 {
+    display: block;
+    background: red;
+    position: absolute;
+    width: 12px;
+    height: 48px;
+    top: 118px;
+    right: -12px;
   }
 
   >>> .el-table_1_column_1 {
@@ -943,32 +1099,12 @@
     color: #d74145 !important;
   }
 
-  >>> .table_td_color td .tianChong, >>> .table_td_noColor td .tianChong{
-    transition: all .5s;
-    /*border-top: 1px solid #BB9860;*/
-    /*border-bottom: 1px solid #BB9860!important;*/
-    /*border-right: 1px solid #BB9860;*/
+  >>> .el-table__empty-block {
+    background: #f7f7f7 !important;
   }
 
-  >>> .table_td_color:hover > td .tianChong, >>> .table_td_noColor:hover > td .tianChong{
-    border-top: 1px solid #BB9860;
-    /*border-bottom: 1px solid #BB9860!important;*/
-    border-right: 1px solid #BB9860;
+  >>> .yeWuLaiYuan {
+    cursor: pointer;
   }
-  >>> .table2 td {
-    position: relative;
-    overflow: visible;
-  }
-
-  >>> .table2 td .tianChong2 {
-    width: 12px;
-    height: 20px;
-    display: block;
-    position: absolute;
-    right: -12px;
-    top: -1px;
-    background: red!important;
-  }
-
 
 </style>

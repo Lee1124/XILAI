@@ -10,13 +10,13 @@
       <div class="model_content">
         <ul>
           <template v-for="(item,index) in list">
-            <li @click="choiseThis(item)" :class="{'selfBorder':item.isChoise}">{{item.addName}}</li>
+            <li @click="choiseThisAdd(item)"  @mouseenter="mouseenterThis(item)" :class="{'selfBorder':item.isChoise}">{{item.addName}}</li>
           </template>
         </ul>
       </div>
       <div class="model_foot">
-        <button @click="yesEvent_add($event)">确定</button>
-        <button @click="hideModel">取消</button>
+        <!--<button @click="yesEvent_add($event)">确定</button>-->
+        <!--<button @click="hideModel">取消</button>-->
       </div>
     </div>
 
@@ -61,7 +61,7 @@
     created() {
     },
     methods: {
-      choiseThis(obj) {
+      mouseenterThis(obj) {
         this.list.forEach((item, index) => {
           item.isChoise = false;
         });
@@ -70,23 +70,23 @@
       hideModel() {
         this.$emit('hideModel')
       },
-      yesEvent_add(e) {
-        let text = $(e.target).parent().prev().children().find(".selfBorder").text();
+      choiseThisAdd(obj) {
         let type = 0;
-        if (text == '添加婚礼销售机会') {
+        if (obj.addName == '添加婚礼销售机会') {
           type = 1;
-        } else if (text == '添加宝宝宴销售机会') {
+        } else if (obj.addName == '添加宝宝宴销售机会') {
           type = 2;
-        } else if (text == '添加生日宴销售机会') {
+        } else if (obj.addName == '添加生日宴销售机会') {
           type = 3;
-        } else if (text == '添加添加商业庆典销售机会') {
+        } else if (obj.addName == '添加添加商业庆典销售机会') {
           type = 4;
-        } else if (text == '添加网络销售机会') {
+        } else if (obj.addName == '添加网络销售机会') {
           type = 6;
-        } else if (text == '添加其他庆典销售机会') {
+        } else if (obj.addName == '添加其他庆典销售机会') {
           type = 5;
         }
-        this.$emit('yesEvent_add', type)
+        // this.$emit('yesEvent_add', type)
+        this.$emit('choiseThisAdd', type)
       },
       yesEvent_return() {
         let text=$("#return_textArea").val();
@@ -255,8 +255,9 @@
     border: 1px solid #BB9860 !important;
   }
 
-  .model_content ul li:hover {
+  .model_content ul li:active {
     color: #BB9860;
+    font-weight: 700;
   }
 
   .model_content_return {

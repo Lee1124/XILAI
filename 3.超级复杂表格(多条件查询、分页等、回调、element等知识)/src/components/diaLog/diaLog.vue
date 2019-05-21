@@ -375,6 +375,10 @@
     padding: 0;
   }
 
+  /deep/ .wx_dialogBox .el-dialog__footer {
+    display: none;
+  }
+
   /deep/ #wx_iframe {
     width: 100%;
     height: 600px;
