@@ -1,0 +1,423 @@
+.closeIcon {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    display: block;
+    font-style: normal;
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    cursor: pointer;
+    z-index: 99988;
+    box-sizing: border-box;
+    transition: all .2s;
+}
+
+.dialogViewBox {
+    width: 800px;
+    height: 540px;
+    border-radius: 0;
+    /*padding: 35px;*/
+    margin: 0!important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.dialogViewBox .el-dialog__title {
+    font-size: 17px;
+    color: #4c4c4c;
+}
+
+.dialogViewBox .el-dialog__header,
+.dialogViewBox .el-dialog__body,
+.dialogViewBox .el-dialog__footer {
+    padding: 0;
+    margin: 0;
+}
+
+.dialogViewBox .el-dialog__body {
+    height: 100%;
+}
+
+.dialogViewBox .el-dialog__body .content {
+    height: 100%;
+}
+
+.dialogViewBox .el-dialog__body iframe {
+    width: 100%;
+    height: 100%;
+}
+
+/*内页*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 35px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.clearFloat:after {
+    clear: both;
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+li {
+    list-style: none;
+}
+
+html, body {
+    height: 100%;
+}
+
+#shopChoice {
+    padding-top: 30px;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.shopChoice-bm::-webkit-scrollbar,
+.shopChoice-tp-left .list::-webkit-scrollbar,
+.shopList ul::-webkit-scrollbar {
+    width: 3px;
+    background: #E6E6E6;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+}
+
+.shopChoice-bm::-webkit-scrollbar-thumb,
+.shopChoice-tp-left .list::-webkit-scrollbar-thumb,
+.shopList ul::-webkit-scrollbar-thumb {
+    background-color: #BB9860;
+    width: 3px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+}
+
+.shopChoice-title {
+    text-align: center;
+    color: #4c4c4c;
+    font-size: 17px;
+    height: 22px;
+    position: relative;
+}
+
+.shopChoice-title span {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.shopChoice-tp-left {
+    width: 25.5%;
+    height: 290px;
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid rgba(230, 230, 230, 1);
+    font-size: 14px;
+    color: #4C4C4C;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    transition: all .3s;
+}
+
+.shopChoice-tp-left:hover {
+    border: 1px solid rgba(187, 152, 96, 1);
+}
+
+.shopChoice-tp-left .title {
+    font-weight: bold;
+    padding: 15px 18px;
+}
+
+.shopChoice-tp-left .list {
+    max-height: 235px;
+    overflow: auto;
+}
+
+.shopChoice-tp-left .list ul {
+    padding: 0 10px;
+}
+
+.shopChoice-tp-left .list ul li {
+    padding: 5px 0;
+    margin-bottom: 10px;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.shopChoice-tp-left .list ul li:first-child {
+    margin-top: 15px;
+}
+
+.shopChoice-tp-left .list ul li:hover {
+    color: #BB9860;
+}
+
+.shopChoice-tp-left .list ul li dl {
+    margin-top: 10px;
+}
+
+.shopChoice-tp-left .list ul li dd {
+    height: 32px;
+    line-height: 32px;
+    padding: 0 0 0 22px;
+    color: #4C4C4C;
+}
+
+.shopChoice-tp-left .list ul li dd:hover {
+    color: #BB9860;
+}
+
+.shopChoice-tp-right {
+    border: 1px solid rgba(230, 230, 230, 1);
+    width: 70%;
+    height: 290px;
+    display: inline-block;
+    float: right;
+    border-radius: 5px;
+    padding: 12px 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    transition: all .3s;
+}
+
+.shopChoice-tp-right:hover {
+    border: 1px solid rgba(187, 152, 96, 1);
+}
+
+.selectList .el-input--suffix .el-input__inner {
+    height: 32px;
+    width: 160px;
+    border: 1px solid #DDD;
+}
+
+.selectList .el-select .el-input .el-select__caret {
+    line-height: 32px;
+}
+
+.el-select .el-input__inner:focus {
+    border-color: #BB9860;
+}
+
+.el-select-dropdown__item.selected {
+    color: #BB9860;
+}
+
+.selectList-select .el-select .el-input.is-focus .el-input__inner {
+    border-color: #BB9860;
+}
+
+.selectList-search {
+    display: flex;
+    align-items: center;
+}
+
+.selectList-search .el-input {
+     width: auto;
+ }
+
+.selectList-search input {
+    height: 32px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 160px;
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    outline: none;
+    padding-left: 8px;
+}
+.selectList-search input::placeholder {
+    color: #999999;
+}
+
+.selectList-search .el-button {
+    height: 32px;
+    padding: 0 12px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-left: 0;
+    outline: none;
+}
+
+.selectList-search .el-button:hover {
+    color: #BB9860;
+    border-color: #DDD;
+    background: transparent;
+}
+
+.selectList-search .el-button:focus {
+    color: #4c4c4c;
+    border-color: #DDD;
+    background: transparent;
+}
+
+.selectList-search input:focus {
+    border-color: #DDD;
+}
+
+.selectList-select {
+    float: left;
+    margin-right: 20px;
+}
+
+.selectList-search {
+    font-size: 14px;
+    color: #4c4c4c;
+}
+
+.shopList {
+    margin-top: 25px;
+    height: 87%;
+}
+
+.shopList ul {
+    overflow: auto;
+    height: 92%;
+    padding-left: 6px;
+}
+
+.shopList li {
+    padding: 10px 25px 10px 10px;
+    float: left;
+    position: relative;
+    margin: 5px;
+}
+
+.shopList li img {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.shopChoice-tp-right .shopList input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    border: 1px solid #DDDDDD;
+    outline: none;
+    vertical-align: -4px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.shopChoice-bm {
+    height: 90px;
+    margin-top: 10px;
+    overflow: auto;
+}
+
+.shopChoice-bm ul li {
+    padding: 10px 33px;
+    text-align: center;
+    background: rgba(230, 230, 230, 1);
+    float: right;
+    color: #BB9860;
+    font-size: 14px;
+    margin: 10px 12px;
+    position: relative;
+}
+
+.shopChoice-bm i {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    overflow: hidden;
+    top: -9px;
+    right: -9px;
+    cursor: pointer;
+    background: url("../images/shopclose.png") no-repeat center center;
+}
+
+.shopChoice-btn {
+    position: absolute;
+    bottom: 35px;
+    right: 35px;
+}
+
+.shopChoice-btn button {
+    width: 120px;
+    height: 38px;
+    line-height: 38px;
+    border-radius: 4px;
+    outline: none;
+    border: 0;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.shopChoice-btn button:first-child {
+    color: #B2B2B2;
+    background: transparent;
+}
+
+.shopChoice-btn button:last-child {
+    background: #BB9860;
+    color: #fff;
+}
+
+.province {
+    display: inline-block;
+    width: 100%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+
+.selectList {
+    padding: 0 15px 0 18px;
+}
+
+.selectList span {
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.selectList span:hover {
+    color: #BB9860;
+}
+
+.isShowCityStyle .province {
+    color: #BB9860;
+    border-bottom: 1px solid #BB9860;
+}
+
+.isSelectStyle {
+    background: #E6E6E6;
+    color: #BB9860 !important;
+}
+
+.isChoiceLiStyle {
+    background: #E6E6E6;
+}
+
+.spanIsChoiceThisType {
+    color: #BB9860 !important;
+}
+
+.el-message {
+    min-width: 200px;
+}

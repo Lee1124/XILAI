@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>店铺选择</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/shop-choice.css">
+
+    <!--<link rel="stylesheet" href="../../Scripts/element/index.css">
+    <link rel="stylesheet" href="css/shop-choice.css?no=1">-->
+</head>
+<body>
+
+<div id="shopChoice">
+    <div class="shopChoice-title">
+        <span v-cloak>店铺选择({{showChoiceShopListLength}})</span>
+    </div>
+    <div class="shopChoice-tp">
+        <!--左边地区-->
+        <div class="shopChoice-tp-left" :style="{height:myHeight}">
+            <div class="title">选择地区</div>
+            <div class="list">
+                <ul>
+                    <template v-for="(item,index) in newsData.provdata">
+                        <li @click="choiceProvince(item)" v-cloak :class="{'isShowCityStyle':item.selected}">
+                            <span class="province" v-cloak>{{item.province}} {{item.provbrancount}}</span>
+                            <dl v-show="item.selected">
+                                <template v-for="(item2,index) in item.citys">
+                                    <dd @click.stop="choiceCity(item2)" class="city"
+                                        :class="{'isSelectStyle':item2.selected}">{{item2.city}} {{item2.citycount}}
+                                    </dd>
+                                </template>
+                            </dl>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+        <!--右边店铺-->
+        <div class="shopChoice-tp-right" :style="{height:myHeight}">
+            <div class="selectList">
+                <template v-for="(item,index) in newsData.data">
+                    <span v-cloak @click="spanIsChoiceThis(item)"
+                          :class="{'spanIsChoiceThisType':item.isChoiceThisType}">{{item.name}} {{item.dataLength}}</span>
+                </template>
+            </div>
+            <div class="shopList">
+                <template v-for="(item,index) in newsData.data">
+                    <ul class="clearFloat" v-show="item.isChoiceThisType">
+                        <template v-for="(item1,index1) in item.showWillShop">
+                            <li :class="{'isChoiceLiStyle':item.selected}"><input type="checkbox" @click="changeCheckbox(item1)">
+                                {{item1.bName}}
+                                <img @click="changeCheckbox(item1)" v-if="item1.selected" src="images/cked.png"></li>
+                        </template>
+                    </ul>
+                </template>
+
+            </div>
+        </div>
+    </div>
+    <div class="shopChoice-bm" :style="{height:myHeight2}">
+        <ul>
+            <template v-for="(item,index) in showChoiceShopList">
+                <li>
+                    <span v-text="item.bName"></span>
+                    <i @click="delChoiceShop(item)"></i>
+                </li>
+            </template>
+        </ul>
+    </div>
+    <div class="shopChoice-btn">
+        <button @click="closeDiaLog">取消</button>
+        <button @click="confirmSelect">确认</button>
+    </div>
+</div>
+
+<script src="jquery-1.12.4.js"></script>
+<script src="vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="mainjs.js"></script>
+<script src="js/shop-choice.js"></script>
+
+
+<!--<script src="../../common/lib/jquery-1.12.4.js"></script>-->
+<!--<script src="../../common/lib/vue.js"></script>-->
+<!--&lt;!&ndash;<script src="https://unpkg.com/element-ui/lib/index.js"></script>&ndash;&gt;-->
+<!--<script src="../../Scripts/element/index.js"></script>-->
+<!--<script src="../../xlSystem/XL/js/main.js"></script>-->
+<!--<script src="js/shop-choice.js?no=1"></script>-->
+
+</body>
+</html>

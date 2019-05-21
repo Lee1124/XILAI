@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/shop-choice.css">
+</head>
+<body>
+
+<div id="app">
+    <button @click="f1">店铺选择</button>
+
+    <el-dialog
+            title=""
+            :visible.sync="showDialogViewBox"
+            :show-close=false
+            :close-on-click-modal="false"
+            :close-on-press-escape="false"
+            custom-class="dialogViewBox"
+            center>
+        <i class="closeIcon" @click="closeTip">
+            <img src="images/close.png" alt="关闭">
+        </i>
+        <div class="content">
+            <iframe src="shop-choice.html?type=getShopId" frameborder="0"></iframe>
+        </div>
+        <span slot="footer" class="dialog-footer">
+        </span>
+    </el-dialog>
+</div>
+
+
+
+
+<script src="jquery-1.12.4.js"></script>
+<script src="vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+
+
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                showDialogViewBox:true
+            };
+        },
+        methods: {
+            closeTip(){
+                this.showDialogViewBox=false;
+            },
+            f1(){
+                this.showDialogViewBox=true;
+            },
+            getShopId(arrObj){
+                console.log(arrObj)
+            }
+        },
+        created() {
+            window.closeTip=this.closeTip;
+            window.getShopId=this.getShopId;
+        },
+    });
+</script>
+</body>
+</html>
